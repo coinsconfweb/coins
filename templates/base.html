@@ -1,0 +1,153 @@
+{% from "partials/macros.html" import asset_url %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ conf.meta.short_name }}{% endblock %} – {{ conf.meta.full_name }}</title>
+  <meta name="description" content="{% block description %}{{ conf.meta.description | trim }}{% endblock %}">
+  <link rel="stylesheet" href="{{ depth }}static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a1628'/><text y='24' x='4' font-size='22' fill='%23e8c547'>C</text></svg>">
+  {% block head_extra %}{% endblock %}
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="{{ depth }}index.html" class="nav-logo">
+      {% if conf.meta.logo %}
+      <img src="{{ asset_url(conf.meta.logo, depth) }}" alt="{{ conf.meta.short_name }}">
+      {% else %}
+      <span class="logo-badge">IEEE</span>
+      <span class="logo-text">{{ conf.meta.acronym }} {{ conf.meta.edition }}</span>
+      {% endif %}
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="{{ depth }}index.html">Home</a></li>
+
+      <li class="dropdown">
+        <button>Conference ▾</button>
+        <div class="dropdown-menu">
+          <a href="{{ depth }}pages/cfp.html">Call for Papers</a>
+          <a href="{{ depth }}pages/proposals.html">Call for Proposals</a>
+          <a href="{{ depth }}pages/authors.html">Author's Guide</a>
+          <a href="{{ depth }}pages/committee.html">Conference Committee</a>
+          <a href="{{ depth }}pages/outreach.html">Outreach Program</a>
+          <a href="{{ depth }}pages/sponsorship.html">Call for Sponsorship</a>
+        </div>
+      </li>
+
+      <li class="dropdown">
+        <button>Program ▾</button>
+        <div class="dropdown-menu">
+          <a href="{{ depth }}pages/program.html">Full Schedule</a>
+          <a href="{{ depth }}pages/keynotes.html">Keynote Speakers</a>
+          <a href="{{ depth }}pages/tutorials.html">Tutorials</a>
+          <a href="{{ depth }}pages/competitions.html">Competitions</a>
+          <a href="{{ depth }}pages/phd-forum.html">PhD Forum</a>
+          <a href="{{ depth }}pages/workshops.html">Workshops</a>
+        </div>
+      </li>
+
+      <li class="dropdown">
+        <button>Attend ▾</button>
+        <div class="dropdown-menu">
+          <a href="{{ depth }}pages/registration.html">Registration</a>
+          <a href="{{ depth }}pages/venue.html">Conference Venue</a>
+          <a href="{{ depth }}pages/visa.html">VISA Information</a>
+        </div>
+      </li>
+
+      <li class="dropdown">
+        <button>Past Events ▾</button>
+        <div class="dropdown-menu">
+          {% for ed in conf.past_editions %}
+          {% set archived = conf.archives | selectattr('year', 'equalto', ed.year) | list | first %}
+          {% if ed.mirror %}
+          <a href="{{ depth }}{{ ed.mirror }}">{{ conf.meta.acronym }} {{ ed.year }} — {{ ed.location.split(',')[0] }}</a>
+          {% elif archived %}
+          <a href="{{ depth }}pages/archive-{{ ed.year }}.html">{{ conf.meta.acronym }} {{ ed.year }} — {{ ed.location.split(',')[0] }}</a>
+          {% else %}
+          <a href="{{ ed.url }}" target="_blank">{{ conf.meta.acronym }} {{ ed.year }} — {{ ed.location.split(',')[0] }}</a>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </li>
+
+      <li><a href="{{ depth }}pages/contact.html">Contact</a></li>
+      <li>
+        <a href="{{ conf.meta.easychair_url }}" class="btn nav-cta" target="_blank">Submit Paper</a>
+      </li>
+    </ul>
+    <div class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+{% block content %}{% endblock %}
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:0.6rem">
+        {% if conf.meta.logo %}
+        <img src="{{ asset_url(conf.meta.logo, depth) }}" alt="{{ conf.meta.short_name }}" style="height:28px;width:auto">
+        {% else %}
+        <span class="ieee-badge">IEEE</span>
+        <span style="font-family:'Fraunces',serif;color:#f5f4f0;font-size:1.1rem;font-weight:700">{{ conf.meta.acronym }} {{ conf.meta.edition }}</span>
+        {% endif %}
+      </div>
+      <p>{{ conf.meta.full_name }}.<br>
+      {{ conf.venue.institution }}, {{ conf.venue.city }} · {{ conf.dates.conference_display }}</p>
+      <p style="margin-top:0.75rem;font-size:0.8rem">
+        Sponsored by {% for s in conf.sponsors %}<strong style="color:#f5f4f0">{{ s.name }}</strong>{% if not loop.last %} &amp; {% endif %}{% endfor %}
+      </p>
+    </div>
+    <div class="footer-col">
+      <h5>Conference</h5>
+      <ul>
+        <li><a href="{{ depth }}pages/cfp.html">Call for Papers</a></li>
+        <li><a href="{{ depth }}pages/proposals.html">Call for Proposals</a></li>
+        <li><a href="{{ depth }}pages/authors.html">Author's Guide</a></li>
+        <li><a href="{{ depth }}pages/committee.html">Committee</a></li>
+        <li><a href="{{ depth }}pages/outreach.html">Outreach</a></li>
+        <li><a href="{{ depth }}pages/sponsorship.html">Sponsorship</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Program</h5>
+      <ul>
+        <li><a href="{{ depth }}pages/program.html">Schedule</a></li>
+        <li><a href="{{ depth }}pages/keynotes.html">Keynotes</a></li>
+        <li><a href="{{ depth }}pages/tutorials.html">Tutorials</a></li>
+        <li><a href="{{ depth }}pages/competitions.html">Competitions</a></li>
+        <li><a href="{{ depth }}pages/phd-forum.html">PhD Forum</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Attend</h5>
+      <ul>
+        <li><a href="{{ depth }}pages/registration.html">Registration</a></li>
+        <li><a href="{{ depth }}pages/venue.html">Venue</a></li>
+        <li><a href="{{ depth }}pages/visa.html">VISA Info</a></li>
+        <li><a href="{{ depth }}pages/contact.html">Contact Us</a></li>
+        <li><a href="{{ conf.meta.easychair_url }}" target="_blank">Submit via EasyChair</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© {{ conf.meta.edition }} {{ conf.meta.short_name }}. All rights reserved.</span>
+    <div class="footer-ieee">
+      <span class="ieee-badge">IEEE</span>
+      <span>Technically Co-Sponsored by {% for s in conf.sponsors %}{{ s.name }}{% if not loop.last %} &amp; {% endif %}{% endfor %}</span>
+    </div>
+  </div>
+</footer>
+
+<script src="{{ depth }}static/js/main.js" data-countdown="{{ conf.dates.countdown_iso }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

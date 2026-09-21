@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% set depth = "../" %}
+{% block title %}Conference Venue{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Conference Venue</div>
+    <h1>Conference Venue</h1>
+    <p>{{ conf.venue.institution }}, {{ conf.venue.name }}, {{ conf.venue.city }}, {{ conf.venue.country }} · {{ conf.dates.conference_display }}</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+
+    <!-- Photo gallery -->
+    <div class="venue-gallery">
+      {% for photo in conf.venue.photos %}
+      <div class="photo-item" onclick="openLightbox('{{ photo.url }}','{{ photo.caption }}')">
+        <img src="{{ photo.url }}" alt="{{ photo.caption }}" loading="lazy">
+        <div class="photo-caption">{{ photo.caption }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="venue-grid" style="margin-top:2.5rem">
+      <div class="venue-info">
+        <h3>{{ conf.venue.name }}</h3>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--blue-bright);margin-bottom:0.75rem">{{ conf.venue.institution | upper }}</p>
+        <div class="venue-address">
+          {{ conf.venue.address }}<br>
+          {{ conf.venue.zip }} {{ conf.venue.city }}, {{ conf.venue.country }}<br>
+          <br>
+          {% if conf.venue.official_url %}
+          <a href="{{ conf.venue.official_url }}" target="_blank" style="font-size:0.85rem">→ Official Venue Page</a>
+          {% endif %}
+        </div>
+        <p style="font-size:0.9rem;color:var(--gray-dark);line-height:1.7">{{ conf.venue.about_city | trim }}</p>
+        <div class="info-box" style="margin-top:1.5rem">
+          <strong>🚌 Getting There</strong>
+          <p>{{ conf.venue.transport | trim }}</p>
+        </div>
+      </div>
+      <div class="venue-map">
+        <iframe src="{{ conf.venue.maps_embed_url }}" width="100%" height="100%" style="border:0" allowfullscreen loading="lazy" title="Venue map"></iframe>
+      </div>
+    </div>
+
+    <h2 style="font-family:'Fraunces',serif;font-size:1.6rem;margin-top:3rem;margin-bottom:1.25rem">Recommended Hotels</h2>
+    <p style="color:var(--gray-dark);font-size:0.9rem;margin-bottom:1.5rem">All hotels below are within walking distance of the venue.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+      <div>
+        <div class="hotels-list">
+          <h4>4-Star Hotels</h4>
+          {% for h in conf.venue.hotels if h.stars >= 4 %}
+          <div class="hotel-item">
+            <div>
+              <strong style="font-size:0.9rem">{{ h.name }}</strong>
+              <div style="font-size:0.78rem;color:var(--gray-dark)">{{ h.walk_min }} min walk{% if h.note %} · {{ h.note }}{% endif %}</div>
+            </div>
+            <span class="hotel-stars">{{ '★' * h.stars }}{{ h.suffix if h.suffix else '' }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div>
+        <div class="hotels-list">
+          <h4>3-Star Hotels</h4>
+          {% for h in conf.venue.hotels if h.stars == 3 %}
+          <div class="hotel-item">
+            <div>
+              <strong style="font-size:0.9rem">{{ h.name }}</strong>
+              <div style="font-size:0.78rem;color:var(--gray-dark)">{{ h.walk_min }} min walk{% if h.note %} · {{ h.note }}{% endif %}</div>
+            </div>
+            <span class="hotel-stars">{{ '★' * h.stars }}</span>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="info-box" style="margin-top:1.5rem">
+          <strong>ℹ️ Booking Note</strong>
+          <p>{{ conf.venue.hotel_block_note | trim }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+      <a href="visa.html" class="btn btn-primary btn-sm">VISA Information →</a>
+      <a href="registration.html" class="btn btn-outline btn-sm" style="border-color:var(--gray-light);color:var(--text)">Registration</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function openLightbox(url, caption) {
+  document.getElementById('lightbox-img').src = url;
+  document.getElementById('lightbox-caption').textContent = caption;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+{% endblock %}

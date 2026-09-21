@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import person_avatar %}
+{% set depth = "../" %}
+{% block title %}Conference Committee{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Conference Committee</div>
+    <h1>Conference Committee</h1>
+    <p>{{ conf.meta.short_name }} is organized by a dedicated international committee from leading institutions worldwide.</p>
+  </div>
+</div>
+
+<section class="section section-dark">
+  <div class="section-inner">
+    <div class="committee-section">
+      {% for group in conf.committee %}
+      <div class="committee-role">
+        <div class="role-title">{{ group.role }}</div>
+        <div class="people-grid">
+          {% for person in group.members %}
+          <div class="person-card">
+            {{ person_avatar(person, teal=(group.color == 'teal'), depth=depth) }}
+            <div class="person-name">{{ person.name }}</div>
+            <div class="person-affil">{{ person.affiliation }}
+              {% if person.email %}<br><a href="mailto:{{ person.email }}" style="color:var(--teal);font-size:0.78rem">{{ person.email }}</a>{% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+
+      <div class="info-box" style="margin-top:2rem;background:rgba(14,165,160,0.1);border-color:var(--teal)">
+        <strong style="color:var(--teal)">Full Committee</strong>
+        <p style="color:var(--gray)">This listing reflects key committee roles. The full committee, including all track chairs and program committee members, is published in the proceedings. Contact: <a href="mailto:{{ conf.meta.contact_email }}" style="color:var(--accent)">{{ conf.meta.contact_email }}</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

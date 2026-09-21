@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% set depth = "../" %}
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Registration</div>
+    <h1>Registration &amp; Camera Ready</h1>
+    <p>Register for {{ conf.meta.short_name }} and submit your camera-ready paper. Early registration deadline: <strong style="color:var(--accent)">{{ conf.registration.early_deadline }}</strong>.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+
+    {% if not conf.registration.open %}
+    <div class="info-box">
+      <strong>ℹ️ Registration Opens: {{ conf.registration.open_date }}</strong>
+      <p>Camera-ready manuscripts are due by {{ conf.registration.early_deadline }}. All accepted papers must have at least one registered author by this date.</p>
+    </div>
+    {% endif %}
+
+    <h2 style="font-family:'Fraunces',serif;font-size:1.6rem;margin-top:2.5rem;margin-bottom:0.5rem">Registration Rates</h2>
+    <p style="color:var(--gray-dark);margin-bottom:1.5rem;font-size:0.9rem">All rates are per-person. At least one author per accepted paper must register at a full author rate.</p>
+
+    <div class="reg-grid">
+      {% for r in conf.registration.rates %}
+      <div class="reg-card {% if r.featured %}featured{% endif %}">
+        <div class="reg-type">{{ r.type }}</div>
+        <div class="reg-price"><sup>{{ r.currency }}</sup>{{ r.price }}</div>
+        <div class="reg-note">{{ r.note }}</div>
+        <ul class="reg-features">
+          {% for item in r.includes %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+        {% if conf.registration.open %}
+        <a href="#" class="btn btn-primary btn-sm" style="width:100%;justify-content:center">Register →</a>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <div style="margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+      <div class="info-box success">
+        <strong>🎓 Student Travel Grants</strong>
+        <p>Highly skilled students with an accepted paper may apply for registration grants. Competition-based. Contact: <a href="mailto:{{ conf.meta.contact_email }}">{{ conf.meta.contact_email }}</a></p>
+      </div>
+      <div class="info-box warning">
+        <strong>📄 Extra Page Charges</strong>
+        <p>Camera-ready papers may include up to {{ conf.cfp.max_extra_pages }} extra pages beyond {{ conf.cfp.max_pages }} at <strong>${{ conf.registration.extra_page_fee }} per page</strong>.</p>
+      </div>
+    </div>
+
+    <h2 style="font-family:'Fraunces',serif;font-size:1.4rem;margin-top:2.5rem;margin-bottom:1rem">Camera-Ready Checklist</h2>
+    <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.5rem">
+      <ul style="list-style:none;font-size:0.9rem;line-height:2.1">
+        <li>☐ Revise manuscript addressing all reviewer comments</li>
+        <li>☐ Include author names and affiliations (unblind)</li>
+        <li>☐ Verify compliance with IEEE Xplore PDF requirements</li>
+        <li>☐ Upload revision report detailing all changes made</li>
+        <li>☐ Sign and submit IEEE copyright release form</li>
+        <li>☐ Register at least one author by {{ conf.registration.early_deadline }}</li>
+        <li>☐ Upload final PDF via EasyChair by {{ conf.registration.early_deadline }}</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:2rem">
+      <a href="authors.html" class="btn btn-primary btn-sm">Author's Guide →</a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% set depth = "../" %}
+{% block title %}Contact{% endblock %}
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Contact</div>
+    <h1>Contact Us</h1>
+    <p>Questions about submissions, registration, VISA letters, or any other aspect of {{ conf.meta.short_name }}?</p>
+  </div>
+</div>
+<section class="section">
+  <div class="section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
+      <div>
+        <h2 style="font-family:'Fraunces',serif;font-size:1.5rem;margin-bottom:1.5rem">Get in Touch</h2>
+        <div style="display:grid;gap:1.25rem">
+          <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.25rem;display:flex;gap:1rem;align-items:flex-start">
+            <span style="font-size:1.5rem;flex-shrink:0">📧</span>
+            <div>
+              <div style="font-weight:600;font-size:0.92rem;margin-bottom:0.25rem">General Inquiries</div>
+              <a href="mailto:{{ conf.meta.contact_email }}" style="color:var(--blue-bright);font-size:0.9rem">{{ conf.meta.contact_email }}</a>
+              <div style="font-size:0.8rem;color:var(--gray-dark);margin-top:0.25rem">General Co-Chairs: {{ conf.committee[0].members | map(attribute='name') | join(', ') }}</div>
+            </div>
+          </div>
+          <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.25rem;display:flex;gap:1rem;align-items:flex-start">
+            <span style="font-size:1.5rem;flex-shrink:0">📋</span>
+            <div>
+              <div style="font-weight:600;font-size:0.92rem;margin-bottom:0.25rem">Technical Program</div>
+              {% for pc in conf.cfp.program_chairs %}
+              <div style="font-size:0.88rem">{{ pc.name }} — <a href="mailto:{{ pc.email }}" style="color:var(--blue-bright)">{{ pc.email }}</a></div>
+              <div style="font-size:0.78rem;color:var(--gray-dark)">{{ pc.affiliation }}</div>
+              {% endfor %}
+            </div>
+          </div>
+          <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.25rem;display:flex;gap:1rem;align-items:flex-start">
+            <span style="font-size:1.5rem;flex-shrink:0">📄</span>
+            <div>
+              <div style="font-weight:600;font-size:0.92rem;margin-bottom:0.25rem">Paper Submissions</div>
+              <a href="{{ conf.meta.easychair_url }}" target="_blank" style="color:var(--blue-bright);font-size:0.9rem">EasyChair Submission Portal →</a>
+              <div style="font-size:0.8rem;color:var(--gray-dark);margin-top:0.25rem">All submissions via EasyChair only</div>
+            </div>
+          </div>
+          <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.25rem;display:flex;gap:1rem;align-items:flex-start">
+            <span style="font-size:1.5rem;flex-shrink:0">✈️</span>
+            <div>
+              <div style="font-weight:600;font-size:0.92rem;margin-bottom:0.25rem">VISA Invitation Letters</div>
+              <a href="mailto:{{ conf.meta.contact_email }}?subject=VISA%20Invitation%20Letter%20Request" style="color:var(--blue-bright);font-size:0.9rem">{{ conf.meta.contact_email }}</a>
+              <div style="font-size:0.8rem;color:var(--gray-dark);margin-top:0.25rem">Include passport details and registration confirmation</div>
+            </div>
+          </div>
+          <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.25rem;display:flex;gap:1rem;align-items:flex-start">
+            <span style="font-size:1.5rem;flex-shrink:0">🎓</span>
+            <div>
+              <div style="font-weight:600;font-size:0.92rem;margin-bottom:0.25rem">PhD Forum</div>
+              <a href="mailto:{{ conf.phd_forum.contact }}" style="color:var(--blue-bright);font-size:0.9rem">{{ conf.phd_forum.contact }}</a>
+              {% if conf.phd_forum.chairs %}
+              <div style="font-size:0.8rem;color:var(--gray-dark);margin-top:0.25rem">PhD Forum Chair: {{ conf.phd_forum.chairs[0].name }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 style="font-family:'Fraunces',serif;font-size:1.5rem;margin-bottom:1.5rem">Quick Facts</h2>
+        <div style="background:var(--navy);color:var(--white);border-radius:4px;padding:1.75rem;margin-bottom:1.5rem">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem">{{ conf.meta.short_name }}</div>
+          <div style="display:grid;gap:0.75rem;font-size:0.88rem">
+            <div><span style="color:var(--gray)">Dates:</span> <strong>{{ conf.dates.conference_display }}</strong></div>
+            <div><span style="color:var(--gray)">Venue:</span> <strong>{{ conf.venue.institution }}, {{ conf.venue.city }}</strong></div>
+            <div><span style="color:var(--gray)">Paper Deadline:</span> <strong style="color:var(--accent)">{{ conf.cfp.submission_deadline }}</strong></div>
+            <div><span style="color:var(--gray)">Notification:</span> <strong>{{ deadline('notification').date }}</strong></div>
+            <div><span style="color:var(--gray)">Camera-Ready:</span> <strong>{{ deadline('camera_ready').date }}</strong></div>
+            <div><span style="color:var(--gray)">Submit:</span> <a href="{{ conf.meta.easychair_url }}" style="color:var(--teal)" target="_blank">EasyChair →</a></div>
+          </div>
+        </div>
+        <div class="info-box">
+          <strong>🕐 Response Time</strong>
+          <p>We aim to respond within 2–3 business days. For urgent matters, indicate this in your subject line.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

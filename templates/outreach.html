@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% set depth = "../" %}
+{% block title %}Engagement & Outreach{% endblock %}
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Outreach Program</div>
+    <h1>Engagement &amp; Outreach</h1>
+    <p>{{ conf.meta.short_name }} is committed to diversity, inclusion, and the development of the next generation of researchers.</p>
+  </div>
+</div>
+<section class="section">
+  <div class="section-inner">
+    {% if conf.featured_activities %}
+    <span class="section-tag">Featured Program Activities</span>
+    <h2 class="section-title">What's On at {{ conf.meta.acronym }} {{ conf.meta.edition }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-top:1.5rem;margin-bottom:3rem">
+      {% for act in conf.featured_activities %}
+      <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.5rem">
+        <div style="font-size:2rem;margin-bottom:0.6rem">{{ act.icon }}</div>
+        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:0.4rem">{{ act.label }}</h3>
+        <p style="font-size:0.85rem;color:var(--gray-dark);line-height:1.65">{{ act.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+      <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.75rem">
+        <div style="font-size:2.5rem;margin-bottom:0.75rem">🎓</div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:0.75rem">Student Travel Grants</h3>
+        <p style="font-size:0.88rem;color:var(--gray-dark);line-height:1.7">{{ conf.meta.acronym }} Executive Committee offers registration grants for highly skilled students with an accepted paper. Grants are awarded on a competitive basis. Applications from students in the <strong>Middle East</strong> and <strong>Asia</strong> are especially encouraged.</p>
+        <div style="margin-top:1.25rem"><a href="mailto:{{ conf.meta.contact_email }}" class="btn btn-primary btn-sm">Apply: {{ conf.meta.contact_email }}</a></div>
+      </div>
+      <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.75rem">
+        <div style="font-size:2.5rem;margin-bottom:0.75rem">🌍</div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:0.75rem">RAS CARES</h3>
+        <p style="font-size:0.88rem;color:var(--gray-dark);line-height:1.7">{{ conf.meta.short_name }} adheres to the <strong>IEEE RAS CARES</strong> initiative — a commitment to a safe, respectful, and inclusive environment. CARES provides confidential support for attendees who experience or witness harassment or discrimination.</p>
+        <div style="margin-top:1.25rem"><a href="https://www.ieee-ras.org/about-ras/governance/ieee-ras-cares" class="btn btn-outline btn-sm" style="border-color:var(--gray-light);color:var(--text)" target="_blank">Learn about RAS CARES →</a></div>
+      </div>
+      <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.75rem">
+        <div style="font-size:2.5rem;margin-bottom:0.75rem">🤝</div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:0.75rem">Diversity, Equity &amp; Inclusion</h3>
+        <p style="font-size:0.88rem;color:var(--gray-dark);line-height:1.7">{{ conf.meta.short_name }} welcomes participants from all backgrounds, career stages, geographies, and institutions. Special consideration is given to underrepresented communities in STEM through grant programs, outreach talks, and mentoring sessions.</p>
+      </div>
+      <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.75rem">
+        <div style="font-size:2.5rem;margin-bottom:0.75rem">🚀</div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:0.75rem">Workforce Development</h3>
+        <p style="font-size:0.88rem;color:var(--gray-dark);line-height:1.7">{{ conf.meta.acronym }} organizes career development sessions, job fairs, and networking events connecting PhD students and early-career researchers with industry leaders and academic hiring managers.</p>
+      </div>
+    </div>
+    <div class="info-box success" style="margin-top:2.5rem">
+      <strong>Code of Conduct</strong>
+      <p>All participants are expected to adhere to the <a href="https://www.ieee.org/about/ieee-code-of-conduct.html" target="_blank">IEEE Code of Conduct</a>. Harassment or disrespectful behaviour will not be tolerated. Report violations to conference organizers or via the RAS CARES channel.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

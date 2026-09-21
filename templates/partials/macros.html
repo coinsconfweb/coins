@@ -1,0 +1,32 @@
+{# Resolves an image field that may be an absolute URL, a domain-root path
+   (e.g. "/static/img/x.jpg"), or a path relative to the site root without a
+   leading slash (e.g. "static/img/people/x.jpg"). Only that last form needs
+   the page's `depth` prefix ("../" on pages/*.html) to resolve correctly —
+   absolute URLs (http(s)://, data:) and leading-slash paths must be left
+   untouched. #}
+{% macro asset_url(path, depth="") %}{% if path and '://' not in path and not path.startswith('data:') and not path.startswith('/') %}{{ depth }}{{ path }}{% else %}{{ path }}{% endif %}{% endmacro %}
+
+{% macro person_avatar(person, teal=false, size="", depth="") %}
+{% if person.photo %}
+<img class="person-photo" {% if size %}style="width:{{ size }};height:{{ size }};margin-bottom:0"{% endif %} src="{{ asset_url(person.photo, depth) }}" alt="{{ person.name }}">
+{% else %}
+<div class="person-avatar" {% if teal or size %}style="{% if teal %}background:linear-gradient(135deg,var(--teal),var(--navy-mid));{% endif %}{% if size %}width:{{ size }};height:{{ size }};margin-bottom:0;{% endif %}"{% endif %}>{{ person.initials }}</div>
+{% endif %}
+{% endmacro %}
+
+{% macro page_hero(title, subtitle="", breadcrumb_label="", tag="") %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    {% if breadcrumb_label %}
+    <div class="breadcrumb">
+      <a href="{{ depth }}index.html">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      {% if breadcrumb_label %}{{ breadcrumb_label }}{% endif %}
+    </div>
+    {% endif %}
+    {% if tag %}<div class="hero-eyebrow" style="margin-top:0.75rem;display:inline-flex">{{ tag }}</div>{% endif %}
+    <h1>{{ title }}</h1>
+    {% if subtitle %}<p>{{ subtitle }}</p>{% endif %}
+  </div>
+</div>
+{% endmacro %}

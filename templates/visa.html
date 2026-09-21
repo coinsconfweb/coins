@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% set depth = "../" %}
+{% block title %}VISA Information{% endblock %}
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> VISA Information</div>
+    <h1>VISA Information</h1>
+    <p>{{ conf.venue.city }}, {{ conf.venue.country }} is in the {{ conf.visa.regime_name }}. Many nationalities require a visa for short stays.</p>
+  </div>
+</div>
+<section class="section">
+  <div class="section-inner">
+    <div class="info-box warning">
+      <strong>⚠️ Apply Early</strong>
+      <p>VISA processing times vary by country. We strongly recommend applying at least 6–8 weeks before travel. Conference organizers can provide an official invitation letter.</p>
+    </div>
+    <h2 style="font-family:'Fraunces',serif;font-size:1.4rem;margin-top:2rem;margin-bottom:1rem">Do I Need a VISA?</h2>
+    <p style="color:var(--gray-dark);max-width:720px;line-height:1.8">{{ conf.venue.country }} is a member of the {{ conf.visa.regime_name }}. {{ conf.visa.eligibility_note | trim }} Check your country's requirements at the <a href="{{ conf.visa.national_portal.url }}" target="_blank">{{ conf.visa.national_portal.name }}</a>.</p>
+    <h2 style="font-family:'Fraunces',serif;font-size:1.4rem;margin-top:2.5rem;margin-bottom:1rem">Invitation Letter</h2>
+    <p style="color:var(--gray-dark);max-width:720px;line-height:1.8">Registered authors and attendees requiring an official invitation letter should contact <a href="mailto:{{ conf.meta.contact_email }}">{{ conf.meta.contact_email }}</a> after completing registration. Please include: full name (as on passport), passport number and expiry, institution/affiliation, country of residence, paper title (if applicable), and proof of registration.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem">
+      <a href="{{ conf.visa.national_portal.url }}" target="_blank" style="text-decoration:none">
+        <div style="border:1px solid var(--gray-light);padding:1.25rem;border-radius:4px;transition:border-color 0.2s" onmouseover="this.style.borderColor='var(--blue-bright)'" onmouseout="this.style.borderColor='var(--gray-light)'">
+          <div style="font-size:1.5rem;margin-bottom:0.5rem">{{ conf.visa.national_portal.flag }}</div>
+          <div style="font-weight:600;font-size:0.9rem;color:var(--text)">{{ conf.visa.national_portal.label }}</div>
+          <div style="font-size:0.8rem;color:var(--gray-dark);margin-top:0.25rem">{{ conf.visa.national_portal.domain_display }}</div>
+        </div>
+      </a>
+      <a href="{{ conf.visa.regional_portal.url }}" target="_blank" style="text-decoration:none">
+        <div style="border:1px solid var(--gray-light);padding:1.25rem;border-radius:4px;transition:border-color 0.2s" onmouseover="this.style.borderColor='var(--blue-bright)'" onmouseout="this.style.borderColor='var(--gray-light)'">
+          <div style="font-size:1.5rem;margin-bottom:0.5rem">{{ conf.visa.regional_portal.flag }}</div>
+          <div style="font-weight:600;font-size:0.9rem;color:var(--text)">{{ conf.visa.regional_portal.label }}</div>
+          <div style="font-size:0.8rem;color:var(--gray-dark);margin-top:0.25rem">{{ conf.visa.regional_portal.org }}</div>
+        </div>
+      </a>
+    </div>
+    <div style="margin-top:2rem"><a href="venue.html" class="btn btn-primary btn-sm">← Conference Venue</a></div>
+  </div>
+</section>
+{% endblock %}

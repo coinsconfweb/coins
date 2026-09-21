@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import asset_url %}
+{% set depth = "../" %}
+{% block title %}Call for Sponsorship{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Call for Sponsorship</div>
+    <h1>Call for Sponsorship</h1>
+    <p>Partner with {{ conf.meta.short_name }} and reach an international community of researchers, engineers, and industry leaders in intelligent systems.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+
+    <p style="color:var(--gray-dark);line-height:1.8;max-width:760px">{{ conf.sponsorship.intro | trim }}</p>
+
+    {% if conf.sponsorship.why_sponsor %}
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem;margin-top:2rem">
+      {% for reason in conf.sponsorship.why_sponsor %}
+      <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.25rem;font-size:0.88rem;color:var(--gray-dark);line-height:1.6">✦ {{ reason }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <h2 style="font-family:'Fraunces',serif;font-size:1.6rem;margin-top:3rem;margin-bottom:0.5rem">Sponsorship Tiers</h2>
+    <p style="color:var(--gray-dark);margin-bottom:1.5rem;font-size:0.9rem">
+      Package pricing and full benefit details:
+      {% if conf.sponsorship.prospectus_url %}see the <a href="{{ asset_url(conf.sponsorship.prospectus_url, depth) }}" target="_blank">sponsorship prospectus</a>, or{% endif %}
+      contact <a href="mailto:{{ conf.sponsorship.contact_email }}">{{ conf.sponsorship.contact_email }}</a>.
+      {% if conf.sponsorship.deadline and conf.sponsorship.deadline != 'TBA' %}Commitment deadline: <strong style="color:var(--accent)">{{ conf.sponsorship.deadline }}</strong>.{% endif %}
+    </p>
+
+    <div class="reg-grid">
+      {% for tier in conf.sponsorship.tiers %}
+      <div class="reg-card" {% if tier.featured %}style="border-color:var(--accent)"{% endif %}>
+        <div class="reg-type">{{ tier.name }}</div>
+        <div class="reg-price">{{ tier.price }}</div>
+        <ul class="reg-features">
+          {% for b in tier.benefits %}
+          <li>{{ b }}</li>
+          {% endfor %}
+        </ul>
+        <a href="mailto:{{ conf.sponsorship.contact_email }}?subject=Sponsorship%20Inquiry%20—%20{{ tier.name }}" class="btn btn-primary btn-sm" style="width:100%;justify-content:center">Inquire →</a>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if conf.sponsors %}
+    <h2 style="font-family:'Fraunces',serif;font-size:1.4rem;margin-top:3rem;margin-bottom:1rem">Current Sponsors</h2>
+    <div class="logo-marquee" style="border:1px solid var(--gray-light)">
+      <div class="logo-marquee-track">
+        {% for i in range(2) %}
+        {% for s in conf.sponsors %}
+        <a href="{{ s.url }}" target="_blank" style="text-decoration:none" {% if i == 1 %}aria-hidden="true" tabindex="-1"{% endif %}>
+          {% if s.logo %}
+          <img src="{{ asset_url(s.logo, depth) }}" alt="{{ s.name }}">
+          {% else %}
+          <div class="sponsor-logo" style="color:var(--gray-dark);background:#f8f6f2;border-color:var(--gray-light)">{{ s.name }}<br><span style="font-size:0.7rem;font-weight:400;opacity:0.7">{{ s.role }}</span></div>
+          {% endif %}
+        </a>
+        {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="info-box" style="margin-top:2.5rem">
+      <strong>📧 Get in Touch</strong>
+      <p>Questions about sponsorship packages, custom arrangements, or in-kind support? Contact us at <a href="mailto:{{ conf.sponsorship.contact_email }}">{{ conf.sponsorship.contact_email }}</a>.</p>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

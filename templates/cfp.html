@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% set depth = "../" %}
+{% block title %}Call for Papers{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Call for Papers</div>
+    <div class="hero-eyebrow" style="margin-top:0.75rem;display:inline-flex">Submission Open</div>
+    <h1>Call for Papers</h1>
+    <p>Original research on intelligent systems spanning hardware, AI, networks, and applications. Deadline: <strong style="color:var(--accent)">{{ conf.cfp.submission_deadline }}</strong>.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+
+    <div class="info-box warning">
+      <strong>📅 Submission Deadline: {{ conf.cfp.submission_deadline }}</strong>
+      <p>Complete manuscripts submitted via <a href="{{ conf.meta.easychair_url }}" target="_blank">EasyChair</a>. {{ conf.cfp.review_type }} review policy — anonymize your manuscript.</p>
+    </div>
+
+    <div style="margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+      <div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:0.75rem">Submission Format</h3>
+        <ul style="list-style:none;font-size:0.9rem;line-height:2">
+          <li>✦ Up to <strong>{{ conf.cfp.max_pages }} pages</strong> (IEEE two-column, 10pt font)</li>
+          <li>✦ Optional {{ conf.cfp.max_extra_pages }} extra pages at <strong>${{ conf.cfp.extra_page_fee }}/page</strong></li>
+          <li>✦ PDF format only, with savable text</li>
+          <li>✦ <strong>{{ conf.cfp.review_type }}</strong> — no author names/affiliations</li>
+          <li>✦ Use <a href="{{ conf.cfp.ieee_template_url }}" target="_blank">IEEE Proceedings Template</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:0.75rem">Review Process</h3>
+        <ul style="list-style:none;font-size:0.9rem;line-height:2">
+          <li>✦ Blind peer review by multiple reviewers</li>
+          <li>✦ Criteria: Relevance, Originality, Technical Quality</li>
+          <li>✦ Full papers: 20+5 min oral presentation</li>
+          <li>✦ Short papers: 13+2 min oral presentation</li>
+          <li>✦ Published in <strong>IEEE Xplore</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    {% for cluster in conf.cfp.clusters %}
+    <div class="cluster-section" style="margin-top:{% if loop.first %}3rem{% else %}2rem{% endif %}">
+      <div class="cluster-header">
+        <span class="cluster-num">{{ cluster.number }}</span>
+        <span class="cluster-title">{{ cluster.title }} — {{ cluster.subtitle }}</span>
+      </div>
+      <div class="tracks-grid">
+        {% for track in cluster.tracks %}
+        <div class="track-card">
+          <div class="track-num">{{ track.number }}</div>
+          <h4>{{ track.title }}</h4>
+          <p>{{ track.description | trim }}</p>
+          <div class="track-keywords">
+            {% for kw in track.keywords %}<span class="kw">{{ kw }}</span>{% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+
+    <div class="cluster-section" style="margin-top:2rem">
+      <div class="cluster-header">
+        <span class="cluster-num" style="background:var(--teal)">Special</span>
+        <span class="cluster-title">Special Session Tracks</span>
+      </div>
+      <div class="tracks-grid">
+        {% for ss in conf.cfp.special_sessions %}
+        <div class="track-card">
+          <div class="track-num" style="color:var(--teal)">Special Session</div>
+          <h4>{{ ss.title }}</h4>
+          <p>{{ ss.description | trim }}</p>
+          <div class="track-keywords">
+            {% for kw in ss.keywords %}<span class="kw">{{ kw }}</span>{% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if conf.cfp.cfp_pdf_url %}
+    <div class="info-box" style="margin-top:2rem">
+      <strong>📎 Download the Full CFP</strong>
+      <p>The complete Call for Papers PDF: <a href="{{ conf.cfp.cfp_pdf_url }}" target="_blank">CFP-IEEECOINS{{ conf.meta.edition }}.pdf</a></p>
+    </div>
+    {% endif %}
+
+    <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+      <a href="{{ conf.meta.easychair_url }}" class="btn btn-primary" target="_blank">Submit Paper via EasyChair →</a>
+      <a href="authors.html" class="btn btn-outline btn-sm" style="border-color:var(--gray-light);color:var(--text);align-self:center">Author's Guide</a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

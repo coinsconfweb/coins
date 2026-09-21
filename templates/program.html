@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import person_avatar %}
+{% set depth = "../" %}
+{% block title %}Program{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Program <span class="breadcrumb-sep">›</span> Full Schedule</div>
+    <h1>Conference Program</h1>
+    <p>{{ conf.venue.institution }}, {{ conf.venue.city }} · {{ conf.dates.conference_display }}</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+
+    {% if conf.program.status == 'draft' %}
+    <div class="info-box warning">
+      <strong>⏳ {{ conf.program.status_note }}</strong>
+      <p>The structure below represents the planned schedule. Full paper titles and presenter details will be added after acceptance notifications.</p>
+    </div>
+    {% endif %}
+
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;margin-bottom:0.25rem">
+      <a href="keynotes.html" class="btn btn-outline btn-sm" style="border-color:var(--gray-light);color:var(--text)">🎤 Keynotes</a>
+      <a href="tutorials.html" class="btn btn-outline btn-sm" style="border-color:var(--gray-light);color:var(--text)">🎓 Tutorials</a>
+      <a href="workshops.html" class="btn btn-outline btn-sm" style="border-color:var(--gray-light);color:var(--text)">🏛 Workshops</a>
+      <a href="competitions.html" class="btn btn-outline btn-sm" style="border-color:var(--gray-light);color:var(--text)">🏆 Competitions</a>
+      <a href="phd-forum.html" class="btn btn-outline btn-sm" style="border-color:var(--gray-light);color:var(--text)">🎓 PhD Forum</a>
+    </div>
+
+    <div class="program-day-tabs">
+      {% for day in conf.program.days %}
+      <button class="day-tab {% if loop.first %}active{% endif %}" data-target="{{ day.id }}">{{ day.short }}</button>
+      {% endfor %}
+    </div>
+
+    {% for day in conf.program.days %}
+    <div class="day-content {% if loop.first %}active{% endif %}" id="{{ day.id }}">
+      <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;color:var(--gray-dark);margin-bottom:1.25rem;padding-top:0.25rem">{{ day.label }}</h3>
+      {% for s in day.sessions %}
+      <div class="session-block">
+        <div class="session-time">{{ s.time }}</div>
+        <div class="session-card {{ s.type }}">
+          <div class="session-title">
+            {% if s.type == 'keynote' and 'Keynote' in s.title %}🎤 {% endif %}
+            {{ s.title }}
+          </div>
+          {% if s.detail %}<div class="session-speaker">{{ s.detail }}</div>{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+
+    {% if conf.panelists %}
+    <div style="margin-top:3rem">
+      <span class="section-tag">Panel Sessions</span>
+      <h2 class="section-title">Panelists</h2>
+      <div class="people-grid" style="margin-top:1.5rem">
+        {% for p in conf.panelists %}
+        <div class="person-card light">
+          {{ person_avatar(p, depth=depth) }}
+          <div class="person-name">{{ p.name }}</div>
+          <div class="person-affil">{{ p.affiliation }}</div>
+          {% if p.topic %}<div class="person-affil" style="margin-top:0.4rem;font-style:italic">{{ p.topic }}</div>{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Legend -->
+    <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
+      <span style="font-size:0.78rem;color:var(--gray-dark);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:0.08em">Legend:</span>
+      <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem"><span style="width:10px;height:10px;border-radius:2px;background:var(--accent);display:inline-block"></span> Keynote / Social</div>
+      <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem"><span style="width:10px;height:10px;border-radius:2px;background:var(--blue);display:inline-block"></span> Technical Session</div>
+      <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem"><span style="width:10px;height:10px;border-radius:2px;background:var(--teal);display:inline-block"></span> Special Session</div>
+      <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem"><span style="width:10px;height:10px;border-radius:2px;background:var(--gray);display:inline-block"></span> Break</div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

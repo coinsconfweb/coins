@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import person_avatar %}
+{% set depth = "../" %}
+{% block title %}Tutorials{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Program <span class="breadcrumb-sep">›</span> Tutorials</div>
+    <h1>Tutorials</h1>
+    <p>Deep-dive technical tutorials on emerging and foundational topics in intelligent systems. Half-day and full-day sessions by leading experts.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+
+    {% set confirmed = conf.tutorials | selectattr('confirmed') | list %}
+    {% if not confirmed %}
+    <div class="info-box warning">
+      <strong>⏳ Tutorials — To Be Announced</strong>
+      <p>The tutorial program will be confirmed after proposal review. If you are interested in proposing a tutorial, please see the <a href="proposals.html">Call for Proposals</a>. Proposals must be submitted via <a href="{{ conf.meta.easychair_url }}" target="_blank">EasyChair</a>.</p>
+    </div>
+    {% endif %}
+
+    <div class="event-grid">
+      {% for t in conf.tutorials %}
+      <div class="event-card" id="{{ t.id }}">
+        <div class="event-type">Tutorial · {{ t.duration }}</div>
+        <h3>{{ t.title }}</h3>
+        {% if t.presenter and t.presenter != 'TBA' %}
+        <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.5rem">
+          {% if t.presenter_photo or t.presenter_initials %}
+          {{ person_avatar({'name': t.presenter, 'photo': t.presenter_photo, 'initials': t.presenter_initials}, size="36px", depth=depth) }}
+          {% endif %}
+          <div class="presenter" style="margin-bottom:0">{{ t.presenter }}{% if t.affiliation and t.affiliation != 'TBA' %} — {{ t.affiliation }}{% endif %}</div>
+        </div>
+        {% else %}
+        <div class="presenter" style="color:var(--gray)">Presenter TBA</div>
+        {% endif %}
+        <p>{{ t.abstract }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div style="margin-top:2.5rem;padding:1.75rem;border:1px solid var(--gray-light);border-radius:4px;background:#f8f6f2">
+      <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;margin-bottom:0.75rem">Propose a Tutorial</h3>
+      <p style="font-size:0.9rem;color:var(--gray-dark);line-height:1.7">
+        Are you an expert in a topic relevant to {{ conf.meta.acronym }}? We welcome tutorial proposals for half-day or full-day sessions. See the full submission guidelines on the
+        <a href="proposals.html">Call for Proposals</a> page, then submit your proposal via EasyChair.
+      </p>
+      <div style="margin-top:1rem">
+        <a href="{{ conf.meta.easychair_url }}" class="btn btn-primary btn-sm" target="_blank">Submit via EasyChair →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

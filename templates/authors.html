@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% set depth = "../" %}
+{% block title %}Author's Guide{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Author's Guide</div>
+    <h1>Author's Guide</h1>
+    <p>Everything you need to prepare, submit, and finalize your manuscript for {{ conf.meta.short_name }}.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem">
+      <div class="info-box warning">
+        <strong>📅 Submission Deadline: {{ conf.cfp.submission_deadline }}</strong>
+        <p>Submit via <a href="{{ conf.meta.easychair_url }}" target="_blank">EasyChair</a>. {{ conf.cfp.review_type }} policy — remove all author information.</p>
+      </div>
+      <div class="info-box success">
+        <strong>📋 Template</strong>
+        <p>Use the <a href="{{ conf.cfp.ieee_template_url }}" target="_blank">IEEE Proceedings Paper Template</a>. Two-column, 10pt font, PDF only.</p>
+      </div>
+    </div>
+
+    <h2 style="font-family:'Fraunces',serif;font-size:1.6rem;margin-bottom:1.5rem">Submission Guidelines</h2>
+
+    <div style="display:grid;gap:1.5rem">
+      <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.5rem">
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:1rem;color:var(--blue)">📄 Manuscript Requirements</h3>
+        <ul style="list-style:none;font-size:0.9rem;line-height:2.1">
+          <li>✦ Maximum <strong>{{ conf.cfp.max_pages }} pages</strong>, including abstract, figures, tables, and references</li>
+          <li>✦ IEEE two-column format, 10pt font, PDF format only (savable text)</li>
+          <li>✦ Up to {{ conf.cfp.max_extra_pages }} additional pages at <strong>${{ conf.cfp.extra_page_fee }} per page</strong></li>
+          <li>✦ Must be in English; original, previously unpublished work</li>
+          <li>✦ Special Session papers: label <code style="background:var(--gray-light);padding:1px 5px;border-radius:2px">(Special Session)</code> at top-right of first page (10pt)</li>
+        </ul>
+      </div>
+
+      <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.5rem">
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:1rem;color:var(--blue)">🕶 {{ conf.cfp.review_type }} Review Policy</h3>
+        <ul style="list-style:none;font-size:0.9rem;line-height:2.1">
+          <li>✦ Remove all author names, affiliations, and acknowledgments</li>
+          <li>✦ References to your own work should be in the third person</li>
+          <li>✦ No identifying information in PDF metadata</li>
+          <li>✦ Non-conforming manuscripts returned without review</li>
+        </ul>
+      </div>
+
+      <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.5rem">
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:1rem;color:var(--blue)">🔬 Review Criteria</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:0.75rem;font-size:0.88rem">
+          {% for criterion in ['Relevance','Originality','Technical Quality','Significance','Presentation'] %}
+          <div style="background:var(--gray-light);padding:0.75rem;border-radius:3px;text-align:center;font-weight:600">{{ criterion }}</div>
+          {% endfor %}
+        </div>
+        <p style="font-size:0.85rem;margin-top:1rem;color:var(--gray-dark)">Full papers: 20+5 min oral. Short papers: 13+2 min oral.</p>
+      </div>
+
+      <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.5rem">
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:1rem;color:var(--blue)">📸 Camera-Ready Requirements</h3>
+        <ul style="list-style:none;font-size:0.9rem;line-height:2.1">
+          <li>✦ Include author names and affiliations</li>
+          <li>✦ Address all reviewer-requested changes; no other modifications</li>
+          <li>✦ Submit a revision report detailing all changes</li>
+          <li>✦ Pass the <strong>IEEE eXpress compliance check</strong></li>
+          <li>✦ Sign and submit the <strong>IEEE copyright release form</strong></li>
+        </ul>
+      </div>
+
+      <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.5rem">
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:1rem;color:var(--blue)">🎫 Presentation Requirement</h3>
+        <ul style="list-style:none;font-size:0.9rem;line-height:2.1">
+          <li>✦ At least one author must register by the camera-ready deadline</li>
+          <li>✦ At least one author must attend and present in person</li>
+          <li>✦ IEEE may remove unrepresented papers from IEEE Xplore</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap">
+      <a href="{{ conf.meta.easychair_url }}" class="btn btn-primary" target="_blank">Submit on EasyChair →</a>
+      <a href="{{ conf.cfp.ieee_template_url }}" class="btn btn-outline btn-sm" style="border-color:var(--gray-light);color:var(--text);align-self:center" target="_blank">IEEE Template</a>
+      <a href="cfp.html" class="btn btn-outline btn-sm" style="border-color:var(--gray-light);color:var(--text);align-self:center">View Call for Papers</a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

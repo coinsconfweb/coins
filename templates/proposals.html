@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% set depth = "../" %}
+{% block title %}Call for Proposals{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Call for Proposals</div>
+    <h1>Call for Proposals</h1>
+    <p>{{ conf.meta.short_name }} invites proposals for workshops, tutorials, special sessions, and panels. Deadline: <strong style="color:var(--accent)">{{ conf.cfp.proposal_deadline }}</strong>.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+
+    <div class="info-box warning">
+      <strong>📅 Proposal Deadline: {{ conf.cfp.proposal_deadline }}</strong>
+      <p>All proposals are submitted via <a href="{{ conf.meta.easychair_url }}" target="_blank">EasyChair</a> — select the matching proposal track (Workshop / Tutorial / Special Session / Panel) when submitting. Questions? Contact the Program Chairs:
+        {% for pc in conf.cfp.program_chairs %}<strong>{{ pc.name }}</strong> ({{ pc.affiliation }}) — <a href="mailto:{{ pc.email }}">{{ pc.email }}</a>{% if not loop.last %} · {% endif %}{% endfor %}
+      </p>
+    </div>
+
+    <p style="margin-top:1.5rem;color:var(--gray-dark);max-width:720px;line-height:1.8">
+      {{ conf.meta.short_name }} welcomes proposals that complement the main technical program and address emerging research topics, industrial challenges, or interdisciplinary themes. Accepted proposals will be integrated into the conference program.
+    </p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem">
+      <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.75rem">
+        <div style="font-size:2rem;margin-bottom:0.75rem">🏛</div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:0.75rem">Workshops</h3>
+        <p style="font-size:0.88rem;color:var(--gray-dark);line-height:1.7;margin-bottom:1rem">Half-day or full-day workshops on focused topics. May include paper presentations, demos, and discussions.</p>
+        <h4 style="font-size:0.85rem;font-weight:600;margin-bottom:0.5rem">Proposal must include:</h4>
+        <ul style="list-style:none;font-size:0.85rem;line-height:1.9;color:var(--gray-dark)">
+          <li>✦ Workshop title and topic description</li>
+          <li>✦ Motivation and relevance to {{ conf.meta.acronym }}</li>
+          <li>✦ Organizer(s) bio and affiliation</li>
+          <li>✦ Estimated number of attendees</li>
+          <li>✦ Proposed format and duration</li>
+          <li>✦ Preliminary list of invited speakers</li>
+        </ul>
+      </div>
+      <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.75rem">
+        <div style="font-size:2rem;margin-bottom:0.75rem">🎓</div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:0.75rem">Tutorials</h3>
+        <p style="font-size:0.88rem;color:var(--gray-dark);line-height:1.7;margin-bottom:1rem">Half-day or full-day tutorials on emerging or foundational topics. Deep technical knowledge for the {{ conf.meta.acronym }} community.</p>
+        <h4 style="font-size:0.85rem;font-weight:600;margin-bottom:0.5rem">Proposal must include:</h4>
+        <ul style="list-style:none;font-size:0.85rem;line-height:1.9;color:var(--gray-dark)">
+          <li>✦ Tutorial title and abstract</li>
+          <li>✦ Learning objectives and target audience</li>
+          <li>✦ Presenter(s) bio and expertise</li>
+          <li>✦ Outline of content and schedule</li>
+          <li>✦ Required materials or prerequisites</li>
+        </ul>
+      </div>
+      <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.75rem">
+        <div style="font-size:2rem;margin-bottom:0.75rem">⚡</div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:0.75rem">Special Sessions</h3>
+        <p style="font-size:0.88rem;color:var(--gray-dark);line-height:1.7;margin-bottom:1rem">Focused sessions on emerging or cross-disciplinary topics with their own coordinators and sub-program committees.</p>
+        <h4 style="font-size:0.85rem;font-weight:600;margin-bottom:0.5rem">Proposal must include:</h4>
+        <ul style="list-style:none;font-size:0.85rem;line-height:1.9;color:var(--gray-dark)">
+          <li>✦ Session title and scope</li>
+          <li>✦ Relevance and timeliness</li>
+          <li>✦ Coordinator(s) and mini-PC</li>
+          <li>✦ Draft call for papers</li>
+          <li>✦ List of tentative invited papers</li>
+        </ul>
+      </div>
+      <div style="border:1px solid var(--gray-light);border-radius:4px;padding:1.75rem">
+        <div style="font-size:2rem;margin-bottom:0.75rem">🎤</div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:0.75rem">Panels</h3>
+        <p style="font-size:0.88rem;color:var(--gray-dark);line-height:1.7;margin-bottom:1rem">Panel sessions addressing timely and impactful topics: DEI, industrial perspectives, technology transfer, and future research directions.</p>
+        <h4 style="font-size:0.85rem;font-weight:600;margin-bottom:0.5rem">Proposal must include:</h4>
+        <ul style="list-style:none;font-size:0.85rem;line-height:1.9;color:var(--gray-dark)">
+          <li>✦ Panel title and central question</li>
+          <li>✦ Moderator bio and affiliation</li>
+          <li>✦ Confirmed or tentative panelists</li>
+          <li>✦ Format and duration (60–90 min)</li>
+          <li>✦ Why this topic matters now</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:2.5rem">
+      <strong>📧 How to Submit</strong>
+      <p>Submit your proposal as a PDF via <a href="{{ conf.meta.easychair_url }}" target="_blank">EasyChair</a>, selecting the track that matches your proposal type (Workshop / Tutorial / Special Session / Panel). For questions, contact the Program Chairs:
+        {% for pc in conf.cfp.program_chairs %}{{ pc.name }} — <a href="mailto:{{ pc.email }}">{{ pc.email }}</a>{% if not loop.last %}, {% endif %}{% endfor %}.
+      </p>
+      <div style="margin-top:1rem">
+        <a href="{{ conf.meta.easychair_url }}" class="btn btn-primary btn-sm" target="_blank">Submit via EasyChair →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

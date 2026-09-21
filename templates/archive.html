@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% set depth = "../" %}
+{% block title %}{{ conf.meta.acronym }} {{ archive.year }} Archive{% endblock %}
+{% block description %}Archived record of {{ conf.meta.full_name }} {{ archive.year }}, held in {{ archive.location }}.{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Past Events <span class="breadcrumb-sep">›</span> {{ archive.year }}</div>
+    <h1>{{ conf.meta.acronym }} {{ archive.year }}{% if archive.edition_ordinal %} <span style="font-weight:400;color:var(--gray)">— {{ archive.edition_ordinal }} Edition</span>{% endif %}</h1>
+    <p>{{ archive.dates_display }} · {{ archive.location }}{% if archive.format and archive.format != archive.location %} · {{ archive.format }}{% endif %}</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+
+    <div class="info-box" style="margin-bottom:2rem">
+      <strong>📁 Archived Record</strong>
+      <p>{{ archive.archived_note }}{% if archive.source_url %} The original site (while still online) can be found at <a href="{{ archive.source_url }}" target="_blank">{{ archive.source_url }}</a>.{% endif %}</p>
+    </div>
+
+    {% if archive.tagline %}
+    <p style="font-family:'Fraunces',serif;font-size:1.2rem;font-style:italic;color:var(--gray-dark);max-width:56rem">{{ archive.tagline }}</p>
+    {% endif %}
+    {% if archive.about %}
+    <p style="margin-top:1rem;color:var(--gray-dark);line-height:1.7;max-width:56rem">{{ archive.about | trim }}</p>
+    {% endif %}
+
+    {% if archive.venue %}
+    <h2 style="font-family:'Fraunces',serif;font-size:1.6rem;margin-top:3rem;margin-bottom:1rem">Venue</h2>
+    <div class="venue-info" style="max-width:36rem">
+      <h3>{{ archive.venue.name }}</h3>
+      <div class="venue-address">
+        {{ archive.venue.address }}{% if archive.venue.zip %}, {{ archive.venue.zip }}{% endif %}<br>
+        {{ archive.venue.city }}, {{ archive.venue.country }}
+        {% if archive.venue.official_url %}<br><br><a href="{{ archive.venue.official_url }}" target="_blank" style="font-size:0.85rem">→ Official Venue Page</a>{% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if archive.general_chairs or archive.program_chairs %}
+    <h2 style="font-family:'Fraunces',serif;font-size:1.6rem;margin-top:3rem;margin-bottom:1.25rem">Organizing Committee</h2>
+    <div class="committee-section">
+      {% if archive.general_chairs %}
+      <div class="committee-role">
+        <div class="role-title">General Chairs</div>
+        <div class="people-grid">
+          {% for person in archive.general_chairs %}
+          <div class="person-card">
+            <div class="person-avatar">{{ initials(person.name) }}</div>
+            <div class="person-name">{{ person.name }}</div>
+            <div class="person-affil">{{ person.affiliation }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+      {% if archive.program_chairs %}
+      <div class="committee-role">
+        <div class="role-title">Program Chairs</div>
+        <div class="people-grid">
+          {% for person in archive.program_chairs %}
+          <div class="person-card">
+            <div class="person-avatar">{{ initials(person.name) }}</div>
+            <div class="person-name">{{ person.name }}</div>
+            <div class="person-affil">{{ person.affiliation }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    {% if archive.other_chairs %}
+    <div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:0.75rem 2rem">
+      {% for oc in archive.other_chairs %}
+      <div style="font-size:0.88rem;padding:0.6rem 0;border-bottom:1px solid var(--gray-light)">
+        <strong>{{ oc.role }}:</strong> <span style="color:var(--gray-dark)">{{ oc.people }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endif %}
+
+    {% if archive.keynotes %}
+    <h2 style="font-family:'Fraunces',serif;font-size:1.6rem;margin-top:3rem;margin-bottom:1.25rem">Keynote Speakers</h2>
+    <div class="keynote-grid">
+      {% for k in archive.keynotes %}
+      <div class="keynote-card">
+        <div class="keynote-card-header">
+          <div class="keynote-avatar">🎤</div>
+          <div class="keynote-meta">
+            <div class="name">{{ k.name }}</div>
+            <div class="affil">{{ k.affiliation }}</div>
+          </div>
+        </div>
+        <div class="keynote-card-body">
+          {% if k.title %}<div class="talk-title">{{ k.title }}</div>{% endif %}
+          {% if k.summary %}<div class="abstract">{{ k.summary | trim }}</div>{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if archive.topics %}
+    <h2 style="font-family:'Fraunces',serif;font-size:1.6rem;margin-top:3rem;margin-bottom:1.25rem">Topics</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:0.6rem">
+      {% for t in archive.topics %}
+      <span class="badge badge-future" style="font-size:0.82rem;padding:0.4rem 0.9rem">{{ t }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if archive.program_note %}
+    <h2 style="font-family:'Fraunces',serif;font-size:1.6rem;margin-top:3rem;margin-bottom:1rem">Program</h2>
+    <p style="color:var(--gray-dark);line-height:1.7;max-width:56rem">{{ archive.program_note | trim }}</p>
+    {% endif %}
+
+    {% if archive.proceedings_note %}
+    <div class="info-box" style="margin-top:1.5rem">
+      <strong>📄 Proceedings</strong>
+      <p>{{ archive.proceedings_note | trim }}</p>
+    </div>
+    {% endif %}
+
+    {% if archive.sponsors %}
+    <h2 style="font-family:'Fraunces',serif;font-size:1.6rem;margin-top:3rem;margin-bottom:1.25rem">Sponsors</h2>
+    <div class="sponsor-logos">
+      {% for s in archive.sponsors %}
+      <div class="sponsor-logo">{{ s }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--gray-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <a href="{{ depth }}index.html" class="btn btn-outline btn-sm" style="border-color:var(--gray-light);color:var(--text)">← Back to {{ conf.meta.short_name }}</a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

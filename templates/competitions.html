@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% set depth = "../" %}
+{% block title %}Competitions{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Program <span class="breadcrumb-sep">›</span> Competitions</div>
+    <h1>Competitions</h1>
+    <p>{{ conf.meta.short_name }} hosts hands-on competitions and challenges open to student teams and researchers. Prizes awarded at the gala dinner.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+
+    {% set confirmed = conf.competitions | selectattr('confirmed') | list %}
+    {% if not confirmed %}
+    <div class="info-box warning">
+      <strong>⏳ Competition Details — To Be Announced</strong>
+      <p>Full competition details, rules, and registration instructions will be published here. To propose a competition track, submit via <a href="{{ conf.meta.easychair_url }}" target="_blank">EasyChair</a> — questions can be sent to <a href="mailto:{{ conf.meta.contact_email }}">{{ conf.meta.contact_email }}</a>.</p>
+    </div>
+    {% endif %}
+
+    <div class="event-grid" style="margin-top:2rem">
+      {% for c in conf.competitions %}
+      <div class="event-card" id="{{ c.id }}">
+        <div class="event-type">Competition</div>
+        <h3>{{ c.title }}</h3>
+        <div class="presenter">Topic: {{ c.topic }}</div>
+        <p>{{ c.description | trim }}</p>
+        <div class="meta-row">
+          {% if c.prize and c.prize != 'TBA' %}
+          <div class="meta-item"><strong>Prize:</strong> {{ c.prize }}</div>
+          {% endif %}
+          {% if c.deadline and c.deadline != 'TBA' %}
+          <div class="meta-item"><strong>Deadline:</strong> {{ c.deadline }}</div>
+          {% endif %}
+          {% if c.contact %}
+          <div class="meta-item"><strong>Contact:</strong> <a href="mailto:{{ c.contact }}">{{ c.contact }}</a></div>
+          {% endif %}
+        </div>
+        {% if not c.confirmed %}
+        <div style="margin-top:1rem"><span class="tba-badge">Details TBA</span></div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endblock %}

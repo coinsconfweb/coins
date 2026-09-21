@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import asset_url %}
+{% set depth = "../" %}
+{% block title %}Keynote Speakers{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Program <span class="breadcrumb-sep">›</span> Keynote Speakers</div>
+    <h1>Keynote Speakers</h1>
+    <p>{{ conf.meta.short_name }} features {{ conf.keynotes | length }} invited keynote lectures from leading researchers and innovators in intelligent systems.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+
+    {% set confirmed = conf.keynotes | selectattr('confirmed') | list %}
+    {% if not confirmed %}
+    <div class="info-box warning">
+      <strong>⏳ Keynote Speakers — To Be Announced</strong>
+      <p>Keynote speakers will be announced following the paper acceptance notification on <strong>{{ conf.dates.deadlines[1].date }}</strong>. Please check back soon.</p>
+    </div>
+    {% endif %}
+
+    <div class="keynote-grid" style="margin-top:2rem">
+      {% for k in conf.keynotes %}
+      <div class="keynote-card" id="{{ k.id }}">
+        <div class="keynote-card-header">
+          {% if k.photo %}
+          <img class="keynote-photo" src="{{ asset_url(k.photo, depth) }}" alt="{{ k.name }}">
+          {% else %}
+          <div class="keynote-avatar">🎤</div>
+          {% endif %}
+          <div class="keynote-meta">
+            {% if not k.confirmed %}<span class="tba-badge">TBA</span>{% endif %}
+            <div class="name">{{ k.name }}</div>
+            <div class="affil">{{ k.affiliation }}</div>
+            <div class="slot">{{ k.day }} · {{ k.time }}</div>
+          </div>
+        </div>
+        <div class="keynote-card-body">
+          {% if k.title and k.title != 'TBA' %}
+          <div class="talk-title">{{ k.title }}</div>
+          {% endif %}
+          {% if k.abstract %}
+          <div class="abstract">{{ k.abstract }}</div>
+          {% endif %}
+          {% if k.bio %}
+          <details style="margin-top:1rem">
+            <summary style="cursor:pointer;font-size:0.85rem;font-weight:600;color:var(--blue-bright)">Speaker Bio</summary>
+            <p style="margin-top:0.75rem;font-size:0.85rem;color:var(--gray-dark);line-height:1.7">{{ k.bio }}</p>
+          </details>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endblock %}

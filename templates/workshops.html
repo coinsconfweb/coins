@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% set depth = "../" %}
+{% block title %}Workshops{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Program <span class="breadcrumb-sep">›</span> Workshops</div>
+    <h1>Workshops</h1>
+    <p>Co-located workshops provide focused forums for emerging and cross-disciplinary topics within the {{ conf.meta.acronym }} community.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+
+    {% set confirmed = conf.workshops | selectattr('confirmed') | list %}
+    {% if not confirmed %}
+    <div class="info-box warning">
+      <strong>⏳ Workshop Program — To Be Announced</strong>
+      <p>The workshop program will be confirmed after proposal review. Proposals are due by <strong>{{ conf.cfp.proposal_deadline }}</strong>. See <a href="proposals.html">Call for Proposals</a> for submission details.</p>
+    </div>
+    {% endif %}
+
+    <div class="event-grid" style="margin-top:2rem">
+      {% for w in conf.workshops %}
+      <div class="event-card" id="{{ w.id }}">
+        <div class="event-type">Workshop · {{ w.duration }}</div>
+        <h3>{{ w.title }}</h3>
+        {% if w.organizers and w.organizers != 'TBA' %}
+        <div class="presenter">Organizers: {{ w.organizers }}</div>
+        {% else %}
+        <div class="presenter" style="color:var(--gray)">Organizers TBA</div>
+        {% endif %}
+        <p>{{ w.description }}</p>
+        {% if not w.confirmed %}
+        <div style="margin-top:1rem"><span class="tba-badge">Details TBA</span></div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <div style="margin-top:2.5rem;padding:1.75rem;border:1px solid var(--gray-light);border-radius:4px;background:#f8f6f2">
+      <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;margin-bottom:0.75rem">Organize a Workshop</h3>
+      <p style="font-size:0.9rem;color:var(--gray-dark);line-height:1.7">
+        Interested in organizing a workshop at {{ conf.meta.short_name }}? We welcome proposals for half-day and full-day workshops on topics complementary to the main conference tracks.
+        Consult the <a href="proposals.html">Call for Proposals</a> page, then submit your proposal via EasyChair.
+      </p>
+      <div style="margin-top:1rem">
+        <a href="{{ conf.meta.easychair_url }}" class="btn btn-primary btn-sm" target="_blank">Submit via EasyChair →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+{% from "partials/macros.html" import asset_url %}
+{% set depth = "" %}
+
+{% block title %}Home{% endblock %}
+{% block description %}{{ conf.meta.full_name }}. {{ conf.venue.institution }}, {{ conf.venue.city }}, {{ conf.venue.country }}. {{ conf.dates.conference_display }}.{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">{{ conf.meta.short_name }}</div>
+    <h1>{{ conf.meta.hero_title_main }}<br><em>{{ conf.meta.hero_title_emphasis }}</em></h1>
+    <p class="hero-subtitle">{{ conf.meta.description | trim }}</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="icon">📅</span>
+        <div><strong>{{ conf.dates.conference_display }}</strong><span>3-Day Conference</span></div>
+      </div>
+      <div class="hero-meta-item">
+        <span class="icon">🏛</span>
+        <div><strong>{{ conf.venue.institution }}</strong><span>{{ conf.venue.city }}, {{ conf.venue.country }}</span></div>
+      </div>
+      <div class="hero-meta-item">
+        <span class="icon">📄</span>
+        <div><strong>Submission Deadline</strong><span>{{ deadline('submission').date }}</span></div>
+      </div>
+      <div class="hero-meta-item">
+        <span class="icon">🔬</span>
+        <div><strong>{{ conf.cfp.clusters | length * 3 }} Technical Tracks</strong><span>{{ conf.cfp.clusters | length }} Clusters · {{ conf.cfp.special_sessions | length }} Special Sessions</span></div>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="{{ conf.meta.easychair_url }}" class="btn btn-primary" target="_blank">Submit Your Paper →</a>
+      <a href="pages/cfp.html" class="btn btn-outline">View Call for Papers</a>
+      <a href="pages/program.html" class="btn btn-outline">Conference Program</a>
+    </div>
+  </div>
+</section>
+
+<!-- SPONSORS -->
+<section class="section section-dark">
+  <div class="section-inner">
+    <span class="section-tag">Sponsorship</span>
+    <h2 class="section-title" style="color:var(--white)">Sponsored &amp; Endorsed By</h2>
+    <p class="section-lead">{{ conf.meta.short_name }} is technically co-sponsored by {{ conf.sponsors | map(attribute='name') | join(' and ') }}. Proceedings are published in IEEE Xplore.</p>
+    <div class="logo-marquee">
+      <div class="logo-marquee-track">
+        {% for i in range(2) %}
+        {% for s in conf.sponsors %}
+        <a href="{{ s.url }}" target="_blank" style="text-decoration:none" {% if i == 1 %}aria-hidden="true" tabindex="-1"{% endif %}>
+          {% if s.logo %}
+          <img src="{{ asset_url(s.logo, depth) }}" alt="{{ s.name }}">
+          {% else %}
+          <div class="sponsor-logo">{{ s.name }}<br><span style="font-size:0.7rem;font-weight:400;opacity:0.7">{{ s.role }}</span></div>
+          {% endif %}
+        </a>
+        {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<div class="countdown-bar">
+  <div class="countdown-inner">
+    <span class="countdown-label">📅 Conference opens in</span>
+    <div class="countdown-units">
+      <div class="countdown-unit"><span class="num" id="cd-days">--</span><span class="lbl">Days</span></div>
+      <span class="countdown-divider">:</span>
+      <div class="countdown-unit"><span class="num" id="cd-hours">--</span><span class="lbl">Hours</span></div>
+      <span class="countdown-divider">:</span>
+      <div class="countdown-unit"><span class="num" id="cd-mins">--</span><span class="lbl">Mins</span></div>
+      <span class="countdown-divider">:</span>
+      <div class="countdown-unit"><span class="num" id="cd-secs">--</span><span class="lbl">Secs</span></div>
+    </div>
+    <a href="{{ conf.meta.easychair_url }}" class="btn btn-primary btn-sm" style="margin-left:auto" target="_blank">Submit by {{ deadline('submission').date }} →</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    {% for s in conf.stats %}
+    <div class="stat-item">
+      <div class="stat-num">{{ s.number }}</div>
+      <div class="stat-lbl">{{ s.label }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section">
+  <div class="section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center">
+      <div>
+        <span class="section-tag">About {{ conf.meta.acronym }}</span>
+        <h2 class="section-title">{{ conf.meta.about_headline }}</h2>
+        <p class="section-lead">{{ conf.meta.description | trim }}</p>
+        <div style="display:flex;gap:1rem;margin-top:1.75rem;flex-wrap:wrap">
+          <a href="pages/cfp.html" class="btn btn-primary btn-sm">Explore Tracks</a>
+          <a href="pages/committee.html" class="btn btn-outline btn-sm" style="border-color:var(--gray-light);color:var(--text)">Meet the Committee</a>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gray-light);border-radius:4px;overflow:hidden">
+        {% for cluster in conf.cfp.clusters %}
+        <div style="background:#f8f6f2;padding:1.5rem">
+          <div style="font-weight:700;margin-bottom:0.3rem;font-size:0.9rem">{{ cluster.title }}</div>
+          <div style="font-size:0.8rem;color:var(--gray-dark)">{{ cluster.subtitle }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY DATES -->
+<section class="section section-alt" id="dates">
+  <div class="section-inner">
+    <span class="section-tag">Important Dates</span>
+    <h2 class="section-title">Key Deadlines</h2>
+    <div class="dates-grid">
+      {% for d in conf.dates.deadlines %}
+      <div class="date-row">
+        <div class="date-event">{{ d.label }}<small>{{ d.note }}</small></div>
+        <div class="date-value">{{ d.date }}</div>
+        <span class="date-badge badge-{{ d.status }}">
+          {% if d.status == 'open' %}Open Now
+          {% elif d.status == 'upcoming' %}Upcoming
+          {% elif d.status == 'future' %}Future
+          {% else %}Passed{% endif %}
+        </span>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="margin-top:1.5rem">
+      <a href="pages/cfp.html" class="btn btn-primary btn-sm">Full Call for Papers</a>
+    </div>
+  </div>
+</section>
+
+<!-- VENUE PHOTOS + PREVIEW -->
+<section class="section">
+  <div class="section-inner">
+    <span class="section-tag">Venue</span>
+    <h2 class="section-title">{{ conf.venue.institution }}, {{ conf.venue.city }}</h2>
+    <p class="section-lead">{{ conf.meta.acronym }} {{ conf.meta.edition }} will be held at the historic {{ conf.venue.name }} at the {{ conf.venue.institution }}{% if conf.venue.highlight %} — {{ conf.venue.highlight }}{% endif %}.</p>
+
+    <!-- PHOTO GALLERY -->
+    <div class="venue-gallery">
+      {% for photo in conf.venue.photos %}
+      <div class="photo-item" onclick="openLightbox('{{ photo.url }}','{{ photo.caption }}')">
+        <img src="{{ photo.url }}" alt="{{ photo.caption }}" loading="lazy">
+        <div class="photo-caption">{{ photo.caption }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem;align-items:start">
+      <div>
+        <p style="color:var(--gray-dark);margin-bottom:1rem;line-height:1.8">{{ conf.venue.about_city | trim }}</p>
+        <a href="pages/venue.html" class="btn btn-primary btn-sm">Venue &amp; Hotels →</a>
+      </div>
+      <div style="background:var(--gray-light);border-radius:4px;overflow:hidden;height:240px">
+        <iframe src="{{ conf.venue.maps_embed_url }}" width="100%" height="100%" style="border:0" allowfullscreen loading="lazy" title="Venue map"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEYNOTES TEASER -->
+<section class="section section-alt">
+  <div class="section-inner">
+    <span class="section-tag">Keynote Speakers</span>
+    <h2 class="section-title">Invited Keynotes</h2>
+    <p class="section-lead">{{ conf.meta.acronym }} {{ conf.meta.edition }} features {{ conf.keynotes | length }} keynote lectures from world-leading researchers and innovators.</p>
+    <div class="keynote-grid">
+      {% for k in conf.keynotes %}
+      <div class="keynote-card">
+        <div class="keynote-card-header">
+          {% if k.photo %}
+          <img class="keynote-photo" src="{{ k.photo }}" alt="{{ k.name }}">
+          {% else %}
+          <div class="keynote-avatar">🎤</div>
+          {% endif %}
+          <div class="keynote-meta">
+            {% if not k.confirmed %}<span class="tba-badge">TBA</span>{% endif %}
+            <div class="name">{{ k.name }}</div>
+            <div class="affil">{{ k.affiliation }}</div>
+            <div class="slot">{{ k.day }} · {{ k.time }}</div>
+          </div>
+        </div>
+        <div class="keynote-card-body">
+          <div class="talk-title">{{ k.title }}</div>
+          <div class="abstract">{{ k.abstract }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="margin-top:1.5rem">
+      <a href="pages/keynotes.html" class="btn btn-primary btn-sm">All Keynote Details →</a>
+    </div>
+  </div>
+</section>
+
+<!-- STUDENT TRAVEL GRANTS -->
+<section class="section section-dark">
+  <div class="section-inner">
+    <div class="info-box success" style="background:rgba(14,165,160,0.1);border-color:var(--teal)">
+      <strong style="color:var(--teal)">Student Travel Grants Available</strong>
+      <p style="color:var(--gray)">COINS Executive Committee offers registration grants for highly skilled students with an accepted paper. Competition-based. Applications especially encouraged from the Middle East and Asia. Contact: <a href="mailto:{{ conf.meta.contact_email }}" style="color:var(--accent)">{{ conf.meta.contact_email }}</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+function openLightbox(url, caption) {
+  document.getElementById('lightbox-img').src = url;
+  document.getElementById('lightbox-caption').textContent = caption;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+{% endblock %}
