@@ -69,7 +69,7 @@
           {% if ed.mirror %}
           <a href="{{ depth }}{{ ed.mirror }}">{{ conf.meta.acronym }} {{ ed.year }} — {{ ed.location.split(',')[0] }}</a>
           {% elif archived %}
-          <a href="{{ depth }}pages/archive-{{ ed.year }}.html">{{ conf.meta.acronym }} {{ ed.year }} — {{ ed.location.split(',')[0] }}</a>
+          <a href="{{ depth }}{{ ed.year }}/index.html">{{ conf.meta.acronym }} {{ ed.year }} — {{ ed.location.split(',')[0] }}</a>
           {% else %}
           <a href="{{ ed.url }}" target="_blank">{{ conf.meta.acronym }} {{ ed.year }} — {{ ed.location.split(',')[0] }}</a>
           {% endif %}

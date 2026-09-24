@@ -90,7 +90,8 @@ permanent, self-contained snapshot instead of being overwritten:
    taxonomy, sponsorship tiers, featured activities) can stay as-is.
 
 Editions before 2026 (2019-2025), whose own sites live externally and are being
-retired, instead get a condensed single-page summary under `archives[]` — see
+retired, instead get a condensed single-page summary under `archives[]`, published
+at `<year>/index.html` (the old `pages/archive-<year>.html` addresses redirect there) — see
 `templates/archive.html` and `build.py`'s per-entry render loop. That mechanism is
 separate from the full-mirror approach above and only applies to those legacy years.
 

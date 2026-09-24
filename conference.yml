@@ -837,7 +837,7 @@ past_editions:
 
 # ─────────────────────────────────────────────────────────────
 # Archives — one entry per past edition, rendered as a standalone
-# page (pages/archive-<year>.html) so the conference's history survives
+# page (<year>/index.html) so the conference's history survives
 # even after each year's own site (coinsconf.com/<year>) is retired.
 # Content below was extracted from the original per-year sites.
 # Add a new entry here once a year's edition has concluded; the

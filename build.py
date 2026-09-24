@@ -183,9 +183,24 @@ for tmpl, out in pages:
     render(tmpl, DIST / "pages" / out)
 
 # ── archive pages (one per past edition with recorded content) ─
+# Each lives in its own year folder (<year>/index.html), like the frozen
+# 2026 snapshot does, so every edition has a /<year>/ URL.
+REDIRECT = """<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<title>Redirecting…</title>
+<link rel="canonical" href="{target}">
+<meta http-equiv="refresh" content="0; url={target}">
+</head><body><p>This page has moved to <a href="{target}">{target}</a>.</p></body></html>
+"""
 archives = conf.get("archives", [])
 for entry in archives:
-    render("archive.html", DIST / "pages" / f"archive-{entry['year']}.html", {"archive": entry})
+    year = entry["year"]
+    if (DIST / str(year)).exists():
+        raise SystemExit(f"archives[{year}] collides with the frozen snapshot folder {year}/")
+    render("archive.html", DIST / str(year) / "index.html", {"archive": entry})
+    # keep the old pages/archive-<year>.html address working
+    (DIST / "pages" / f"archive-{year}.html").write_text(
+        REDIRECT.format(target=f"../{year}/index.html"), encoding="utf-8")
 
 print(f"\n✅  Build complete → {DIST}\n")
 print(f"    Pages generated: {len(pages)+1+len(archives)}")
