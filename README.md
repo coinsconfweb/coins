@@ -54,6 +54,7 @@ coins-website/
 | Competitions | `competitions[]` |
 | PhD Forum chairs | `phd_forum.chairs[]` |
 | Committee members | `committee[]` |
+| Steering Committee (shown on every edition; per-year affiliations via `earlier_affiliations`) | `steering_committee[]` |
 | Panelists (Program page) | `panelists[]` |
 | Track topics | `cfp.clusters[].tracks[]` |
 | Registration rates | `registration.rates[]` |

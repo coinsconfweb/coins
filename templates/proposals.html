@@ -17,7 +17,7 @@
     <div class="info-box warning">
       <strong>📅 Proposal Deadline: {{ conf.cfp.proposal_deadline }}</strong>
       <p>All proposals are submitted via <a href="{{ conf.meta.easychair_url }}" target="_blank">EasyChair</a> — select the matching proposal track (Workshop / Tutorial / Special Session / Panel) when submitting. Questions? Contact the Program Chairs:
-        {% for pc in conf.cfp.program_chairs %}<strong>{{ pc.name }}</strong> ({{ pc.affiliation }}) — <a href="mailto:{{ pc.email }}">{{ pc.email }}</a>{% if not loop.last %} · {% endif %}{% endfor %}
+        {% for pc in conf.cfp.program_chairs %}<strong>{{ pc.name }}</strong> ({{ pc.affiliation }}){% if pc.email %} — <a href="mailto:{{ pc.email }}">{{ pc.email }}</a>{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}
       </p>
     </div>
 
@@ -84,7 +84,7 @@
     <div class="info-box" style="margin-top:2.5rem">
       <strong>📧 How to Submit</strong>
       <p>Submit your proposal as a PDF via <a href="{{ conf.meta.easychair_url }}" target="_blank">EasyChair</a>, selecting the track that matches your proposal type (Workshop / Tutorial / Special Session / Panel). For questions, contact the Program Chairs:
-        {% for pc in conf.cfp.program_chairs %}{{ pc.name }} — <a href="mailto:{{ pc.email }}">{{ pc.email }}</a>{% if not loop.last %}, {% endif %}{% endfor %}.
+        {% for pc in conf.cfp.program_chairs %}{{ pc.name }}{% if pc.email %} — <a href="mailto:{{ pc.email }}">{{ pc.email }}</a>{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}.
       </p>
       <div style="margin-top:1rem">
         <a href="{{ conf.meta.easychair_url }}" class="btn btn-primary btn-sm" target="_blank">Submit via EasyChair →</a>

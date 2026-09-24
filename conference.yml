@@ -39,40 +39,40 @@ dates:
   # `key` is a stable identifier used to look up a specific deadline from
   # templates (via the `deadline('key')` helper) — keep it even if you
   # reorder, add, or reword the list below.
-  # All deadlines below are TBA — only the conference dates themselves are
-  # confirmed so far. Fill in real dates (and flip `status` to "open" /
-  # "upcoming" as appropriate) once the CFP timeline is finalized.
+  # Timeline confirmed: notification is set >=2 months before the conference
+  # (66 days) so accepted authors have time to register, arrange travel, and
+  # (where needed) apply for a visa. Modeled on the 2025 edition's cadence.
   deadlines:
     - key: "submission"
       label: "Full Paper Submission"
       note: "Via EasyChair — double-blind, fully anonymized"
-      date: "TBA"
-      iso: ""
-      status: "future"
+      date: "April 23, 2027"
+      iso: "2027-04-23"
+      status: "upcoming"
     - key: "proposals"
       label: "Special Session / Workshop / Tutorial Proposals"
       note: "Via EasyChair — select the matching proposal track"
-      date: "TBA"
-      iso: ""
-      status: "future"
+      date: "March 19, 2027"
+      iso: "2027-03-19"
+      status: "upcoming"
     - key: "notification"
       label: "Acceptance Notification"
       note: "Authors notified of review decisions"
-      date: "TBA"
-      iso: ""
-      status: "future"
+      date: "May 28, 2027"
+      iso: "2027-05-28"
+      status: "upcoming"
     - key: "camera_ready"
       label: "Camera-Ready Submission"
       note: "Final manuscript and IEEE copyright form"
-      date: "TBA"
-      iso: ""
-      status: "future"
+      date: "June 18, 2027"
+      iso: "2027-06-18"
+      status: "upcoming"
     - key: "conference"
       label: "Conference"
       note: "University of Stavanger, Norway"
       date: "August 2–4, 2027"
       iso: "2027-08-02"
-      status: "future"
+      status: "upcoming"
 
 venue:
   # Exact building/room on campus is still TBA — "Campus Ullandhaug" is UiS's
@@ -86,7 +86,7 @@ venue:
   maps_embed_url: "https://www.google.com/maps?q=Kjell+Arholms+gate+41,+4021+Stavanger,+Norway&output=embed"
   official_url: "https://www.uis.no/en"
   # Short clause appended after the institution name on the homepage venue teaser
-  # (e.g. "...at the University of Bologna — one of the world's oldest universities.").
+  # (e.g. "...at the University of Stavanger — Norway's fastest-growing research university.").
   # Leave "" to omit the clause entirely.
   highlight: ""
   # Shown in the "Booking Note" info box on the Venue page — set this to whatever
@@ -105,8 +105,33 @@ venue:
     It combines a historic wooden old town (Gamle Stavanger) with a compact, walkable city
     centre. Early August typically brings mild summer weather, ideal for exploring the
     fjords and coastline between sessions.
-  photos: []
-  hotels: []
+  photos:
+    - url: "https://cdn.sanity.io/images/nxpteyfv/goguides/49a23b45fef736e1bc5165097c37c21889049ba3-1600x1066.jpg"
+      caption: "Norwegian fjords near Stavanger"
+    - url: "https://www.fjords.com/wp-content/uploads/photo-gallery/FJORDS_Rogaland/DSC_9971.jpg?bwg=1577103120"
+      caption: "Rogaland fjords"
+    - url: "https://dam.thon.com/transform/753f95ea-1851-48d0-9894-dcad0cdd09b2/Thon_Hotels_Stavanger_Preikestolen"
+      caption: "Preikestolen (Pulpit Rock)"
+    - url: "https://wp.innocode-cdn.com/nebstar.eu/uploads/2023/03/University-of-Stavanger-1-scaled.jpg"
+      caption: "University of Stavanger campus"
+  hotels:
+    # Star rating unconfirmed by an official source — booking sites disagree
+    # between 3★ and 4★; going with 4★ per the hotel's own "Premium" branding.
+    - name: "Ydalir Hotel"
+      stars: 4
+      distance: "2 min walk"
+      note: "On campus at Ullandhaug"
+      url: "https://ydalir.no/"
+    - name: "Clarion Hotel® Energy"
+      stars: 4
+      distance: "~25 min walk, or a short bus/taxi ride"
+      note: "Near DNB Arena"
+      url: "https://www.strawberry.no/hotell/norge/stavanger/clarion-hotel-energy/"
+    - name: "Thon Hotel Stavanger Forum"
+      stars: 4
+      distance: "~25 min walk, or a short bus/taxi ride"
+      note: ""
+      url: "https://www.thonhotels.no/hoteller/norge/stavanger/thon-hotel-stavanger-forum/"
 
 # VISA information — entirely regime/host-country specific. Rewrite this whole
 # block (not the visa.html template) if the conference moves to a country outside
@@ -130,9 +155,9 @@ visa:
     url: "https://ec.europa.eu/home-affairs/policies/schengen-borders-and-visa/schengen-visa_en"
 
 sponsors:
-  - name: "University of Bologna"
+  - name: "University of Stavanger"
     role: "Co-Sponsor"
-    url: "https://www.unibo.it/en"
+    url: "https://www.uis.no/en"
     logo: "/static/img/logos/1.png"
   - name: "IEEE Italy Section"
     role: "Co-Sponsor"
@@ -224,23 +249,24 @@ stats:
     label: "Technical Tracks"
   - number: "4"
     label: "Thematic Clusters"
-  - number: "500+"
+  - number: "100+"
     label: "Expected Attendees"
   - number: "50+"
     label: "Countries Represented"
 
 committee:
-  # 2027 committee is only partially confirmed so far — remaining roles
-  # (steering committee, local/publication/registration chairs, track
-  # chairs, etc.) are intentionally left undefined until known. Add
-  # role groups back in the same shape as the 2026 edition once confirmed.
   - role: "General Chairs"
     members:
       - name: "Florenc Demrozi"
         affiliation: "University of Stavanger, Norway"
         initials: "FD"
         photo: ""
-        email: "coins@coinsconf.com"
+        email: "florenc.demrozi@uis.no"
+      - name: "Sudeep Pasricha"
+        affiliation: "Colorado State University, USA"
+        initials: "SP"
+        photo: ""
+        email: "sudeep@colostate.edu"
   - role: "Program Chairs"
     color: "accent"
     members:
@@ -248,7 +274,168 @@ committee:
         affiliation: "University of Bologna, Italy"
         initials: "FZ"
         photo: ""
-        email: "coins@coinsconf.com"
+        email: "federica.zonzini@unibo.it"
+      - name: "Position Open"
+        affiliation: "To be announced"
+        initials: "?"
+        photo: ""
+        email: ""
+  - role: "Finance Chair"
+    members:
+      - name: "Jimmy Chen"
+        affiliation: "National Yang Ming Chiao Tung University, Taiwan"
+        initials: "JC"
+        photo: ""
+        email: "kcchen@nycu.edu.tw"
+  - role: "Publication Chairs"
+    members:
+      - name: "Francesco Barchi"
+        affiliation: "University of Bologna, Italy"
+        initials: "FB"
+        photo: ""
+        email: "francesco.barchi@unibo.it"
+      - name: "Position Open"
+        affiliation: "To be announced"
+        initials: "?"
+        photo: ""
+        email: ""
+  - role: "Registration Chairs"
+    members:
+      - name: "Luigi Capogrosso"
+        affiliation: "Interdisciplinary Transformation University of Austria (IT:U), Austria"
+        initials: "LC"
+        photo: ""
+        email: "luigi.capogrosso@it-u.at"
+      - name: "Position Open"
+        affiliation: "To be announced"
+        initials: "?"
+        photo: ""
+        email: ""
+  - role: "Local Chair"
+    members:
+      - name: "Kjersti Engan"
+        affiliation: "University of Stavanger, Norway"
+        initials: "KE"
+        photo: ""
+        email: ""
+  - role: "Diversity & Inclusion Chairs"
+    members:
+      - name: "Bahar Farahani"
+        affiliation: "Shahid Beheshti University (SBU), Iran"
+        initials: "BF"
+        photo: ""
+        email: "farahani.ict@gmail.com"
+      - name: "Mina Farmanbar"
+        affiliation: "University of Stavanger, Norway"
+        initials: "MF"
+        photo: ""
+        email: ""
+  - role: "Industrial Chairs"
+    members:
+      - name: "Antorweep Chakravorty — Norway"
+        affiliation: "University of Stavanger, Norway"
+        initials: "AC"
+        photo: ""
+        email: ""
+      - name: "Position Open — International"
+        affiliation: "To be announced"
+        initials: "?"
+        photo: ""
+        email: ""
+  - role: "Publicity Chairs"
+    members:
+      - name: "Position Open — Norway"
+        affiliation: "To be announced"
+        initials: "?"
+        photo: ""
+        email: ""
+      - name: "Position Open — North America"
+        affiliation: "To be announced"
+        initials: "?"
+        photo: ""
+        email: ""
+      - name: "Position Open — South America"
+        affiliation: "To be announced"
+        initials: "?"
+        photo: ""
+        email: ""
+      - name: "Nicolò Bellarmino — Europe"
+        affiliation: "Politecnico di Torino, Italy"
+        initials: "NB"
+        photo: ""
+        email: ""
+      - name: "Position Open — Asia"
+        affiliation: "To be announced"
+        initials: "?"
+        photo: ""
+        email: ""
+      - name: "Position Open — Middle East/Africa"
+        affiliation: "To be announced"
+        initials: "?"
+        photo: ""
+        email: ""
+  - role: "Special Session Chair"
+    members:
+      - name: "Position Open"
+        affiliation: "To be announced"
+        initials: "?"
+        photo: ""
+        email: ""
+  - role: "Tutorial Chair"
+    members:
+      - name: "Position Open"
+        affiliation: "To be announced"
+        initials: "?"
+        photo: ""
+        email: ""
+  - role: "PhD Forum Chair"
+    members:
+      - name: "Position Open"
+        affiliation: "To be announced"
+        initials: "?"
+        photo: ""
+        email: ""
+  - role: "Competition Chair"
+    members:
+      - name: "Position Open"
+        affiliation: "To be announced"
+        initials: "?"
+        photo: ""
+        email: ""
+  - role: "Web Chair"
+    members:
+      - name: "Matteo Iervasi"
+        affiliation: "University of Stavanger, Norway"
+        initials: "MI"
+        photo: ""
+        email: ""
+
+# Steering Committee (Board) — shared across all editions. Rendered on the
+# current committee page and on every archive page. `affiliation` is the
+# current one; `earlier_affiliations` overrides it for editions up to and
+# including `until` (see sc_affiliation() in build.py).
+steering_committee:
+  - name: "Krishnendu Chakrabarty"
+    affiliation: "Arizona State University"
+    note: "Co-Founder & Steering Committee Co-Chair"
+  - name: "Farshad Firouzi"
+    affiliation: "Johns Hopkins University"
+    earlier_affiliations:
+      - until: 2025
+        affiliation: "Duke University | Arizona State University"
+    note: "Co-Founder & Steering Committee Co-Chair"
+  - name: "Jan M. Rabaey"
+    affiliation: "UC Berkeley"
+  - name: "David Z. Pan"
+    affiliation: "University of Texas at Austin"
+  - name: "Majid Sarrafzadeh"
+    affiliation: "UCLA"
+  - name: "Mahmoud Daneshmand"
+    affiliation: "Stevens Institute of Technology"
+  - name: "Honggang Wang"
+    affiliation: "University of Massachusetts Dartmouth"
+  - name: "Bahar Farahani"
+    affiliation: "Cyberspace Institute"
 
 # Keynotes, tutorials, and competitions are not yet confirmed for 2027 —
 # each page shows its own "to be announced" state automatically when its
@@ -327,11 +514,44 @@ featured_activities:
 program:
   status: "draft"
   status_note: "Detailed program will be published after the paper review process."
-  days: []
+  # Room plan for 2027: Room A hosts every plenary activity (keynotes, panels,
+  # ceremonies); Rooms B–E run parallel technical & special paper sessions.
+  rooms:
+    - id: "A"
+      name: "Room A"
+      role: "Plenary"
+    - id: "B"
+      name: "Room B"
+      role: "Technical & Special Sessions"
+    - id: "C"
+      name: "Room C"
+      role: "Technical & Special Sessions"
+    - id: "D"
+      name: "Room D"
+      role: "Technical & Special Sessions"
+    - id: "E"
+      name: "Room E"
+      role: "Technical & Special Sessions"
+  # Day scaffolding only (real conference dates) — no sessions assigned yet.
+  # Detailed slot-by-slot content is added by hand once the program is
+  # finalized after review, the same way the 2026 edition's page was built.
+  days:
+    - id: "mon"
+      code: "Mon"
+      short: "Monday, Aug 2"
+      label: "Monday, August 2, 2027"
+    - id: "tue"
+      code: "Tue"
+      short: "Tuesday, Aug 3"
+      label: "Tuesday, August 3, 2027"
+    - id: "wed"
+      code: "Wed"
+      short: "Wednesday, Aug 4"
+      label: "Wednesday, August 4, 2027"
 
 cfp:
-  submission_deadline: "TBA"
-  proposal_deadline: "TBA"
+  submission_deadline: "April 23, 2027"
+  proposal_deadline: "March 19, 2027"
   # No CFP PDF published yet for 2027 — the download link is hidden automatically
   # while this is empty (see templates/cfp.html).
   cfp_pdf_url: ""
@@ -343,7 +563,7 @@ cfp:
   program_chairs:
     - name: "Federica Zonzini"
       affiliation: "University of Bologna, Italy"
-      email: "coins@coinsconf.com"
+      email: "federica.zonzini@unibo.it"
   clusters:
     - id: "c1"
       number: "Cluster 1"
@@ -521,7 +741,7 @@ registration:
   rates:
     - type: "IEEE Member — Early"
       category: "member"
-      price: 550
+      price: TBD
       currency: "$"
       note: "Early registration — deadline TBA"
       featured: false
@@ -532,7 +752,7 @@ registration:
         - "Conference bag & materials"
     - type: "IEEE Member — Regular"
       category: "member"
-      price: 650
+      price: TBD
       currency: "$"
       note: "After the early registration deadline"
       featured: true
@@ -543,7 +763,7 @@ registration:
         - "Conference bag & materials"
     - type: "Non-Member — Early"
       category: "nonmember"
-      price: 700
+      price: TBD
       currency: "$"
       note: "Early registration — deadline TBA"
       featured: false
@@ -554,7 +774,7 @@ registration:
         - "Conference bag & materials"
     - type: "Non-Member — Regular"
       category: "nonmember"
-      price: 800
+      price: TBD
       currency: "$"
       note: "After the early registration deadline"
       featured: false
@@ -565,7 +785,7 @@ registration:
         - "Conference bag & materials"
     - type: "Student (IEEE Member)"
       category: "student"
-      price: 350
+      price: TBD
       currency: "$"
       note: "Valid student ID required"
       featured: false
@@ -576,7 +796,7 @@ registration:
         - "PhD Forum & student grant eligibility"
     - type: "Listener / Attendee Only"
       category: "listener"
-      price: 300
+      price: TBD
       currency: "$"
       note: "No paper required"
       featured: false
@@ -625,6 +845,146 @@ past_editions:
 # instead of out to the (eventually offline) original site.
 # ─────────────────────────────────────────────────────────────
 archives:
+  - year: 2025
+    edition_ordinal: "7th"
+    location: "Madison, Wisconsin, USA"
+    dates_display: "August 4–6, 2025"
+    format: "Hybrid (in-person & virtual)"
+    tagline: "International Conference on Omni-layer Intelligent Systems"
+    about: >
+      The 7th IEEE International Conference on Omni-Layer Intelligent Systems was hosted at
+      the Pyle Center, University of Wisconsin–Madison, bringing together experts in Digital
+      Transformation — from AI and IoT to Cloud, Blockchain, Cybersecurity, and Robotics —
+      with a multi-disciplinary program of technical research papers, panels, workshops, and
+      tutorials on the latest developments across the IoT & AI ecosystem.
+    venue:
+      name: "Pyle Center, University of Wisconsin–Madison"
+      institution: "University of Wisconsin–Madison"
+      address: "702 Langdon St"
+      city: "Madison"
+      zip: "53706"
+      country: "United States"
+    general_chairs:
+      - name: "Prof. Umit Yusuf Ogras"
+        affiliation: "Gene Amdahl Professor, University of Wisconsin-Madison"
+      - name: "Prof. Amit Singh"
+        affiliation: "University of Essex"
+    program_chairs:
+      - name: "Prof. Fatemeh Afghah"
+        affiliation: "Clemson University"
+      - name: "Prof. Priya Panda"
+        affiliation: "Yale University"
+    other_chairs:
+      - role: "Publication Chairs"
+        people: "Prof. Florenc Demrozi (University of Stavanger, Norway) & Prof. Kexin Li (Arizona State University)"
+      - role: "Registration Chairs"
+        people: "Prof. Setareh Behroozi (University of Wisconsin-Madison) & Prof. Federica Zonzini (University of Bologna)"
+      - role: "Workshop and Special Session Chairs"
+        people: "Ganapati Bhat (Washington State University) & Arman Roohi (University of Illinois Chicago)"
+      - role: "Publicity Chairs"
+        people: "Aly Sabri Abdalla (Mississippi State University), Nicola Dall' Ora (University of Verona, Italy), Jaehyun Park (Ulsan University), Jaeha Kung (Korea University), Sumit K Mandal (IISC Bangalore), Oktay Cetinkaya (University of Newcastle) & Aritra Ray (Microsoft)"
+      - role: "Treasurer"
+        people: "Prof. Kun-Chih Chen (National Yang Ming Chiao Tung University, Taiwan)"
+      - role: "Local Chair"
+        people: "Prof. Tsung-Wei Huang (University of Wisconsin-Madison)"
+      - role: "Women in Engineering Chairs"
+        people: "Prof. Bahar Farahani (Cyberspace Research Institute) & Prof. Peipei Zhou (Brown University)"
+      - role: "International Liaison Chair"
+        people: "Prof. Leila Ismail (United Arab Emirates University)"
+    track_chairs:
+      - track: "Digital Healthcare and Well-being"
+        people: "Luigi Borzì (Politecnico di Torino) & Behnaz Ghoraani (Florida Atlantic University)"
+      - track: "Circuit and System Design for AIoT"
+        people: "Kun-Chih Chen (National Yang Ming Chiao Tung University) & Amit Trivedi (University of Illinois Chicago)"
+      - track: "Sensing Devices and Systems for AIoT"
+        people: "Florenc Demrozi (University of Stavanger) & Eyuphan Bulut (Virginia Commonwealth University)"
+      - track: "Internet of Things (IoT)"
+        people: "Minxian Xu (Shenzhen Institutes of Advanced Technology, CAS) & Maryam Parsa (George Mason University)"
+      - track: "Tiny ML and Embedded AI"
+        people: "Sathwika Bavikadi (Rochester Institute of Technology) & Caiwen Ding (University of Minnesota)"
+      - track: "Low Power Design and Automation"
+        people: "Peipei Zhou (Brown University) & Jeff Zhang (Arizona State University)"
+      - track: "Security & Privacy"
+        people: "Francesco Regazzoni (University of Amsterdam) & Aydin Aysu (North Carolina State University)"
+      - track: "Communications and Networking for AIoT"
+        people: "Tolunay Seyfi (Clemson University) & Mehdi Sookhak (Texas A&M University)"
+      - track: "Intelligent Robots and Systems"
+        people: "Truong X. Nghiem (University of Central Florida) & Hongmei He (University of Salford)"
+      - track: "Artificial Intelligence & Machine Learning"
+        people: "Deliang Fan (Arizona State University) & Souvik Kundu (Intel, USA)"
+      - track: "Emerging Technologies on Intelligent Systems"
+        people: "Mian Ahmad Jan (Abdul Wali Khan University Mardan)"
+      - track: "Generative AI: Systems, Architectures, and Applications"
+        people: "Bahar Farahani (Cyberspace Institute)"
+      - track: "Industry 4.0 and Smart Manufacturing"
+        people: "Gerhard Hancke (City University of Hong Kong) & Gabor Sziebig (SINTEF Manufacturing)"
+      - track: "Smart Infrastructure"
+        people: "Marcin Plociennik (EOSC) & Ioanna Roussaki (National Technical University of Athens)"
+    keynotes:
+      - name: "Diana Marculescu"
+        affiliation: "Department Chair and Cockrell Family Chair for Engineering Leadership, University of Texas at Austin"
+        title: "Energy Efficient Generative AI from Cloud to Edge"
+        summary: >
+          Addressed the gap between ML model accuracy and actual energy efficiency, latency,
+          and battery lifetime, discussing platform-specific power models and hardware-aware
+          design for efficient transformer and diffusion models across modalities.
+      - name: "Mondira (Mandy) Deb Pant"
+        affiliation: "TA-Chief of Staff, Lead Technologist, Intel Design Engineering Group"
+        title: "Moore's Law in the AI era"
+        summary: >
+          Explored Moore's Law's impact on technological breakthroughs and its role in
+          today's AI landscape, addressing workforce development challenges and
+          environmental impacts affecting future AI progress.
+      - name: "Vivek Prasad"
+        affiliation: "Design Ecosystem Enablement, Natcast (operator of the National Semiconductor Technology Center)"
+        title: "Chips Act & Systems of Support for US Semiconductor Ecosystem"
+        summary: >
+          Detailed NSTC's implementation of the US CHIPS and Science Act, focusing on design
+          enablement, silicon aggregation, and wraparound support for semiconductor research
+          and startups.
+      - name: "Randall Berry"
+        affiliation: "Chair and John A. Dever Professor, Department of Electrical and Computer Engineering, Northwestern University"
+        title: "Meeting the Spectrum Needs of Next Generation Wireless Systems"
+        summary: >
+          Analyzed spectrum allocation trade-offs for the 3 GHz and 7-8 GHz bands using
+          game-theoretic models to evaluate the impact on commercial wireless services.
+    topics:
+      - "Internet of Things (IoT): From Edge to Cloud"
+      - "Circuit and System Design for AIoT"
+      - "Communications and Networking for AIoT"
+      - "Data-centric Engineering"
+      - "Artificial Intelligence & Machine Learning"
+      - "Distributed Ledger Technologies & Blockchain"
+      - "Security & Privacy"
+      - "Low Power Design and Automation"
+      - "Intelligent Robots and Systems"
+      - "Sensing Devices and Systems for AIoT"
+      - "Smart City"
+      - "Smart Mobility, Transportation, and Logistics"
+      - "Industry 4.0 and Smart Manufacturing"
+      - "Energy and Smart Grids"
+      - "Digital Healthcare and Well-being"
+      - "Smart Agriculture"
+      - "Cyber-physical Systems"
+      - "Emerging Technologies on Intelligent Systems"
+      - "European Projects on Intelligent Systems"
+      - "Unleashing the Intelligent Edge"
+      - "TinyML, IoT, and Monitoring Environment (TIME)"
+    program_note: >
+      The program included four keynote lectures alongside technical paper sessions,
+      workshops, special sessions, and a PhD Forum.
+    proceedings_note: >
+      Accepted papers (max. 6 pages, double-column, 10pt, with page charges beyond 6 up to an
+      8-page limit) were submitted to the IEEE Xplore Digital Library, copyright held by IEEE.
+    sponsors:
+      - "IEEE"
+      - "IEEE Robotics and Automation Society (RAS)"
+      - "IEEE Technical Committee on Data Engineering (TCDE)"
+      - "IEEE Council on Electronic Design Automation (CEDA)"
+      - "University of Wisconsin–Madison"
+    source_url: "https://coinsconf.com/2025"
+    archived_note: "Content preserved from the original coinsconf.com/2025 site ahead of its retirement."
+
   - year: 2024
     edition_ordinal: "6th"
     location: "London, UK"
@@ -666,13 +1026,36 @@ archives:
       - role: "Diversity & Inclusion Chairs"
         people: "Prof. Bahar Farahani & Prof. Nagham Saeed"
       - role: "Registration Chairs"
-        people: "Prof. Federica Zonzini & Dr. Amna Anwar"
+        people: "Prof. Federica Zonzini (University of Bologna) & Dr. Amna Anwar (Nottingham Trent University)"
       - role: "Tutorial Chairs"
         people: "Prof. Naghmeh Karimi & Prof. Dilip K Prasad"
       - role: "Workshop Chairs"
         people: "Prof. Xiaojun Zhai & Prof. Dhaval Thakker"
       - role: "Special Session Chairs"
         people: "Prof. Toktam Mahmoodi, Prof. Sharad Sinha & Prof. Shreejith Shanker"
+    track_chairs:
+      - track: "Internet of Things (IoT): From Edge to Cloud"
+        people: "Sukhpal Singh Gill (Queen Mary University of London) & Minxian Xu (Shenzhen Institutes of Advanced Technology, CAS)"
+      - track: "Circuits and Systems (CAS) Designs for AIoT"
+        people: "Jimmy Chen (National Yang Ming Chiao Tung University) & Elisa Donati (Universität Zürich)"
+      - track: "Digital Healthcare and Well-being"
+        people: "Amir Aminifar (Lund University), Rodrigo Aviles (University of Sussex), Elisabetta Farella (Fondazione Bruno Kessler) & Behnaz Ghoraani (Florida Atlantic University)"
+      - track: "Intelligent Robots and Systems"
+        people: "Mary He (IEEE UK and Ireland Robotics & Autonomous Systems Chapter) & Elizabeth Rendon-Morales (University of Sussex)"
+      - track: "Communications and Networking for AIoT"
+        people: "Syed Ali Raza Zaidi (University of Leeds) & Mohammed El-Hajjar (University of Southampton)"
+      - track: "Emerging Technologies on Intelligent Systems"
+        people: "Mian Ahmad Jan (University of Sharjah), Fazl Ullah (University of Nottingham Ningbo) & Sohail Abbas (University of Sharjah)"
+      - track: "Sensing Devices and Systems for AIoT"
+        people: "Domenico Balsamo (Newcastle University) & Michele Magno (ETH Zurich)"
+      - track: "Security and Privacy"
+        people: "Francesco Regazzoni (University of Amsterdam) & Alexandra Dmitrienko (University of Würzburg)"
+      - track: "Artificial Intelligence, Machine Learning, and Cognitive Computing"
+        people: "Tatiana Kalganova (Brunel University) & Elhadj Benkhelifa (Staffordshire University)"
+      - track: "Embedded AI"
+        people: "Alex Serb (University of Edinburgh) & Tinoosh Mohsenin (Johns Hopkins University)"
+      - track: "Industry 4.0 and Smart Manufacturing"
+        people: "Gerhard Hancke (City University of Hong Kong) & Gabor Sziebig (SINTEF Manufacturing)"
     keynotes:
       - name: "Nikil Dutt"
         affiliation: "University of California, Irvine, USA"
@@ -687,19 +1070,34 @@ archives:
           Addressed reliability challenges in wireless sensor networks and IoT, and how to
           improve robustness in real-world networked deployments.
       - name: "Partha Maji"
-        affiliation: "Tenstorrent Inc."
+        affiliation: "Tenstorrent Inc., Cambridge, UK"
         title: "Speeding Up Generative AI"
         summary: >
           Examined hardware accelerator architectures and optimization strategies for deploying
           large language models on emerging spatial computing platforms.
     topics:
-      - "Internet of Things"
-      - "Big Data"
-      - "Artificial Intelligence"
-      - "Cloud Computing"
-      - "Blockchain"
-      - "Cybersecurity"
-      - "Robotics"
+      - "Internet of Things (IoT): From Edge to Cloud"
+      - "Circuit and System Design for AIoT"
+      - "Communications and Networking for AIoT"
+      - "Data-centric Engineering"
+      - "Artificial Intelligence & Machine Learning"
+      - "Distributed Ledger Technologies & Blockchain"
+      - "Security & Privacy"
+      - "Low Power Design and Automation"
+      - "Intelligent Robots and Systems"
+      - "Sensing Devices and Systems for AIoT"
+      - "Smart City"
+      - "Smart Mobility, Transportation, and Logistics"
+      - "Industry 4.0 and Smart Manufacturing"
+      - "Energy and Smart Grids"
+      - "Digital Healthcare and Well-being"
+      - "Smart Agriculture"
+      - "Cyber-physical Systems"
+      - "Emerging Technologies on Intelligent Systems"
+      - "European Projects on Intelligent Systems"
+      - "Unleashing the Intelligent Edge"
+      - "TinyML, IoT, and Monitoring Environment (TIME)"
+      - "Use of Microelectronics in IoT and AI Ecosystem Sustainability"
     program_note: >
       The program included technical paper sessions, special sessions, workshops, a PhD Forum,
       and a Diversity & Inclusion track alongside the three keynote lectures.
@@ -770,6 +1168,27 @@ archives:
         summary: >
           Covered global IPv6 deployment trends and its applications across 5G/6G, IoT, cloud
           computing, Web3, AI, and peer-to-peer blockchain.
+    topics:
+      - "Internet of Things (IoT): From Device, to Fog, and Cloud"
+      - "Circuit and System Design for IoT, AI and Big Data"
+      - "Communication, Connectivity, & Networking"
+      - "Big Data"
+      - "Artificial Intelligence & Machine Learning"
+      - "Distributed Ledger Technologies & Blockchain"
+      - "Security & Privacy"
+      - "Design Automation in AI & IoT Era: From Chips to Systems"
+      - "Intelligent Robots and Systems"
+      - "Sensors and Sensing Systems"
+      - "Applications and Services"
+      - "Smart City"
+      - "Smart Mobility & Transportation"
+      - "Industry 4.0"
+      - "Smart Energy"
+      - "Digital Healthcare"
+      - "Agriculture"
+      - "Emerging Technologies on Intelligent Systems"
+      - "European Projects on Intelligent Systems"
+      - "Cyber-physical Systems"
     program_note: >
       The program featured two keynote lectures, a Blockchain International Industry Panel, a
       Women in Engineering (WIE) Panel, and four parallel paper sessions offered in short
@@ -790,6 +1209,7 @@ archives:
     edition_ordinal: "4th"
     location: "Barcelona, Spain"
     dates_display: "August 1–3, 2022"
+    format: "Hybrid (in-person & virtual)"
     tagline: "Digital Transformation — from AI and IoT to Cloud, Blockchain, Cybersecurity, and Robotics"
     about: >
       The 4th IEEE International Conference on Omni-Layer Intelligent Systems was hosted at the
@@ -830,17 +1250,39 @@ archives:
         people: "Jose Ayala (University of Madrid, Spain)"
       - role: "International Liaison Chair"
         people: "Leila Fayez Ismail (UAE University)"
+      - role: "Industry Forum and Exhibits Chair"
+        people: "Jaime Lloret Mauri (Universitat Politecnica de Valencia, Spain)"
+    keynotes:
+      - name: "Prof. Honggang Wang"
+        affiliation: "UMass Dartmouth, USA"
+        title: "IoT for Smart and Connected Health"
     topics:
-      - "Internet of Things"
-      - "Big Data"
-      - "Artificial Intelligence"
-      - "Cloud Computing"
-      - "Blockchain"
-      - "Cybersecurity"
-      - "Robotics"
+      - "Internet of Things: From Device, to Edge, and Cloud"
+      - "Sensors and Sensing Systems"
+      - "Circuits and Systems for Artificial Intelligence, and Internet of Things"
+      - "Communications, Connectivity, and Networking"
+      - "Big Data, Data Engineering, and Data Analytics"
+      - "Artificial Intelligence, Machine Learning, and Cognitive Computing"
+      - "Distributed Ledger Technologies and Blockchain"
+      - "Design Automation in AI & IoT Era: From Chips to Systems"
+      - "Hardware/Cyber Security and Privacy"
+      - "Intelligent Robots and Systems"
+      - "Applications, Processes, and Services"
+      - "Smart City"
+      - "Industry 4.0"
+      - "e-Health and Wearable IoT"
+      - "Agriculture"
+      - "Mobility"
+      - "Energy"
+      - "Smart Transportation"
+      - "Critical System Design"
+      - "European Projects on Intelligent Systems"
+      - "Emerging Technologies on Intelligent Systems"
+      - "Cyber-physical system"
+      - "Work in Progress"
     program_note: >
-      The program included technical paper sessions, workshops, tutorials, special sessions, and
-      a PhD Forum.
+      The program included a keynote lecture, technical paper sessions with on-site and virtual
+      presentations, workshops, tutorials, special sessions, and a PhD Forum.
     proceedings_note: >
       Accepted papers (max. 6 pages, double-column, 10pt, with page charges beyond 6 up to an
       8-page limit) were published in IEEE proceedings and distributed via IEEE Xplore, copyright
@@ -857,16 +1299,30 @@ archives:
   - year: 2021
     edition_ordinal: "3rd"
     location: "Virtual"
-    dates_display: "August 23–25, 2021"
+    dates_display: "August 23–26, 2021"
     format: "Virtual"
+    about: >
+      The 3rd IEEE International Conference on Omni-Layer Intelligent Systems was held as a
+      fully virtual event, with free registration for attendees.
+    keynotes:
+      - name: "Prof. Marian Verhelst"
+        affiliation: "KU Leuven University"
+        title: "Exploiting AI in Embedded Devices"
+      - name: "Prof. Latif Ladid"
+        affiliation: "University of Luxembourg"
+        title: "IPv6-based New Internet empowering Super IoT and Next Generation Wireless (5G/6G) and P2P Blockchain"
+      - name: "Prof. A. Senhaji Hafid"
+        affiliation: "University of Montreal"
+        title: "Scaling Blockchains"
+    program_note: >
+      The virtual program featured three keynote lectures alongside technical paper sessions;
+      registration was free of charge.
     source_url: "https://coinsconf.com/2021"
     archived_note: >
-      Limited record: the original coinsconf.com/2021 pages (home, committee, program) were
-      found to actually contain leftover COINS 2020 content (verbatim 2020 dates, committee,
-      and program), not 2021-specific material — likely a site/URL mix-up by the organizers
-      that was never corrected. Dates and location above are confirmed instead via the
-      official EasyChair CFP and WikiCFP listings for IEEE COINS 2021. No reliable
-      2021-specific committee, keynote, program, or sponsor details could be found.
+      Limited record: the coinsconf.com/2021 pages mostly carry leftover COINS 2020 content.
+      Dates and keynotes above come from the official 2021 general program
+      (Program-General-S7-2021.pdf); no reliable 2021-specific committee or sponsor details
+      could be found.
 
   - year: 2020
     edition_ordinal: "2nd"
@@ -885,6 +1341,21 @@ archives:
         affiliation: "Duke University, USA"
       - name: "Prof. Krishnendu Chakrabarty"
         affiliation: "Duke University, USA"
+    program_chairs:
+      - name: "Bahar Farahani, PhD"
+        affiliation: ""
+      - name: "Prof. William Fornaciari"
+        affiliation: "Politecnico di Milano, Italy"
+      - name: "Vasilis Pavlidis, PhD"
+        affiliation: "University of Manchester, UK (IEEE CEDA)"
+    other_chairs:
+      - role: "Local Chairs"
+        people: "Jose Ayala (University of Madrid, Spain) & Marina Zapater Sancho (EPFL, Switzerland)"
+      - role: "Publication Chair"
+        people: "Vassos Soteriou (Cyprus University of Technology, Cyprus)"
+    keynotes:
+      - name: "Prof. Latif Ladid"
+        affiliation: "IPv6 Forum / University of Luxembourg"
     topics:
       - "Internet of Things"
       - "Edge/Fog Computing"
@@ -903,12 +1374,13 @@ archives:
       - "IEEE"
       - "IEEE Communications Society"
     source_url: "https://2020.coinsconf.com"
-    archived_note: "The original 2020.coinsconf.com site was already unreachable (HTTP 500) at archiving time; content was reconstructed from IEEE ComSoc's call-for-papers mirror, the IEEE Xplore proceedings listing, and public web sources."
+    archived_note: "The original 2020.coinsconf.com site was already unreachable (HTTP 500) at archiving time; content was reconstructed from IEEE ComSoc's call-for-papers mirror, the IEEE Xplore proceedings listing, and the 2020 committee page still served under coinsconf.com/2021/."
 
   - year: 2019
     edition_ordinal: "1st"
     location: "Crete, Greece"
     dates_display: "May 5–7, 2019"
+    format: "In-person"
     tagline: "IoT | Artificial Intelligence | Machine Learning | Big Data | Cloud | Sensor | Embedded Systems | Computer Architecture | EDA"
     about: >
       The inaugural IEEE International Conference on Omni-Layer Intelligent Systems was held at
@@ -939,8 +1411,13 @@ archives:
         people: "Prof. Paris Kitsos (Technological Educational Institute of Western Greece)"
       - role: "Publicity Chair"
         people: "Prof. Nicolas Sklavos (University of Patras, Greece)"
-      - role: "Conference Board"
-        people: "Prof. Krishnendu Chakrabarty (Duke University), Prof. Jan M. Rabaey (UC Berkeley), Prof. David Z. Pan (University of Texas at Austin), Prof. Majid Sarrafzadeh (UCLA) & Dr.-Ing. Farshad Firouzi (mVISE AG)"
+    track_chairs:
+      - people: "Jörg Henkel (KIT, Germany), Akash Kumar (TU Dresden, Germany), Jiang Li (Shanghai Jiaotong University, China), Mehrnoush Shamsfard (SBU, Iran), Davide Brunelli (University of Trento, Italy), Pasi Liljeberg (University of Turku, Finland), Fereidoon Shams Aliee (SBU, Iran), Maria K. Michael (University of Cyprus, Cyprus), Matthias König (FH-Bielefeld University, Germany), Luís Ferreira Pires (University of Twente, Netherlands), Federica Cena (Università di Torino, Italy), Chung-Wei Lin (National Taiwan University, Taiwan), Smail Niar (Université de Valenciennes, France), Xing Liu (Kwantlen Polytechnic University, Canada), Kim Grüttner (OFFIS, Germany), William Fornaciari (Politecnico di Milano, Italy), Dip Goswami (TU Eindhoven, Netherlands), Wanli Chang (University of York, UK) & Farzad Samie (KIT, Germany)"
+    keynotes:
+      - name: "Sani Nassif"
+        affiliation: "Radyalis, USA"
+      - name: "Prof. Jan M. Rabaey"
+        affiliation: "University of California, Berkeley, USA"
     topics:
       - "Internet of Things: Device to Edge and Cloud"
       - "Omni-Layer Security, Privacy, and Trust"

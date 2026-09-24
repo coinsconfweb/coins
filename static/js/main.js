@@ -18,6 +18,22 @@ document.querySelectorAll('.dropdown > button, .dropdown > a').forEach(el => {
   });
 });
 
+// Color theme switch: IEEE blue & white is the default; the switch turns on
+// the secondary "classic" COINS navy & gold theme. The saved choice is
+// applied before first paint by an inline script in base.html's <head>.
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+  const root = document.documentElement;
+  const sync = () => themeToggle.setAttribute('aria-checked', root.dataset.theme === 'classic');
+  sync();
+  themeToggle.addEventListener('click', () => {
+    const classic = root.dataset.theme !== 'classic';
+    if (classic) root.dataset.theme = 'classic'; else delete root.dataset.theme;
+    try { localStorage.setItem('coins-theme', classic ? 'classic' : 'default'); } catch (e) {}
+    sync();
+  });
+}
+
 // Active nav link
 const currentPage = location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.nav-links a').forEach(a => {

@@ -82,6 +82,34 @@
     {% endif %}
     {% endif %}
 
+    {% if archive.track_chairs %}
+    <h2 style="font-family:'Fraunces',serif;font-size:1.6rem;margin-top:3rem;margin-bottom:1.25rem">Track Chairs</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:0.75rem 2rem">
+      {% for tc in archive.track_chairs %}
+      <div style="font-size:0.88rem;padding:0.6rem 0;border-bottom:1px solid var(--gray-light)">
+        {% if tc.track %}<strong>{{ tc.track }}:</strong> {% endif %}<span style="color:var(--gray-dark)">{{ tc.people }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if conf.steering_committee %}
+    <h2 style="font-family:'Fraunces',serif;font-size:1.6rem;margin-top:3rem;margin-bottom:1.25rem">Steering Committee</h2>
+    <div class="committee-section">
+      <div class="committee-role">
+        <div class="people-grid">
+          {% for person in conf.steering_committee %}
+          <div class="person-card">
+            <div class="person-avatar">{{ initials(person.name) }}</div>
+            <div class="person-name">{{ person.name }}</div>
+            <div class="person-affil">{{ sc_affiliation(person, archive.year) }}{% if person.note %}<br><span style="font-size:0.78rem;color:var(--teal)">{{ person.note }}</span>{% endif %}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
     {% if archive.keynotes %}
     <h2 style="font-family:'Fraunces',serif;font-size:1.6rem;margin-top:3rem;margin-bottom:1.25rem">Keynote Speakers</h2>
     <div class="keynote-grid">

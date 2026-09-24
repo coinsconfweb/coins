@@ -18,7 +18,7 @@
     {% if conf.program.status == 'draft' %}
     <div class="info-box warning">
       <strong>⏳ {{ conf.program.status_note }}</strong>
-      <p>The structure below represents the planned schedule. Full paper titles and presenter details will be added after acceptance notifications.</p>
+      <p>The room plan below is confirmed. Session-by-session content (papers, keynotes, panels) is added here once the technical program is finalized after review — the same way past editions' final schedules were published.</p>
     </div>
     {% endif %}
 
@@ -30,29 +30,160 @@
       <a href="phd-forum.html" class="btn btn-outline btn-sm" style="border-color:var(--gray-light);color:var(--text)">🎓 PhD Forum</a>
     </div>
 
-    <div class="program-day-tabs">
-      {% for day in conf.program.days %}
-      <button class="day-tab {% if loop.first %}active{% endif %}" data-target="{{ day.id }}">{{ day.short }}</button>
-      {% endfor %}
-    </div>
+    <style>
+    .coins-prog *{box-sizing:border-box;}
+    .coins-prog{font-family:Arial,sans-serif;font-size:14px;color:#222;max-width:1200px;margin:0 auto;padding:10px 0;}
+    .coins-prog h2{font-size:22px;font-weight:700;color:#0a1f44;margin:0 0 6px;}
+    .coins-prog .subtitle{font-size:13px;color:#666;margin-bottom:20px;}
+    .coins-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;}
+    .coins-tab{padding:8px 20px;border-radius:4px;cursor:pointer;background:#e8edf5;color:#0a1f44;font-size:13px;font-weight:700;border:2px solid transparent;transition:.2s;}
+    .coins-tab:hover{background:#c8d4e8;}
+    .coins-tab.active{background:#0a1f44;color:#fff;}
+    .coins-day{display:none;}.coins-day.active{display:block;}
+    .coins-row{display:grid;gap:4px;margin-bottom:3px;align-items:stretch;}
+    .coins-r2{grid-template-columns:90px 1fr;}
+    .coins-r3{grid-template-columns:90px 1fr 1fr;}
+    .coins-r4{grid-template-columns:90px 1fr 1fr 1fr;}
+    .coins-r5{grid-template-columns:90px 1fr 1fr 1fr 1fr;}
+    .coins-r6{grid-template-columns:90px 1fr 1fr 1fr 1fr 1fr;}
+    .coins-cell{padding:7px 10px;border-radius:4px;font-size:12px;min-height:36px;display:flex;flex-direction:column;justify-content:center;}
+    .coins-full{grid-column:2/-1;}
+    .coins-time{background:#f0f2f6;color:#555;font-weight:700;font-size:10px;text-align:center;border:1px solid #dde;}
+    .coins-hdr{background:#0a1f44;color:#fff;font-weight:700;font-size:11px;text-align:center;letter-spacing:.3px;}
+    .coins-hdr .room-role{display:block;font-weight:600;font-size:9px;letter-spacing:.2px;opacity:.75;margin-top:2px;}
+    .coins-hdr[onclick]{cursor:pointer;transition:.15s;}
+    .coins-hdr[onclick]:hover{background:#173568;}
+    .coins-zoom-panel{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+    .coins-zoom-card{flex:1;min-width:150px;border:1px solid #dde;border-radius:6px;padding:9px 12px;background:#f8f9fc;}
+    .coins-zoom-room{font-size:11px;font-weight:700;color:#0a1f44;margin-bottom:4px;}
+    .coins-zoom-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#1a56db;text-decoration:none;cursor:pointer;}
+    .coins-zoom-link:hover{text-decoration:underline;}
+    .coins-zoom-missing{font-size:11px;color:#999;font-style:italic;}
+    .coins-break{background:#f5f5f5;color:#888;text-align:center;font-style:italic;font-size:12px;}
+    .coins-keynote{background:#e8f0fc;border-left:4px solid #1a56db;cursor:pointer;transition:.15s;}
+    .coins-keynote:hover{background:#d7e5fb;}
+    .coins-ikeynote{background:#ede9f8;border-left:4px solid #5521b5;cursor:pointer;transition:.15s;}
+    .coins-ikeynote:hover{background:#e0d8f5;}
+    .kn-speaker{font-size:13px;font-weight:700;color:#0a1f44;margin-bottom:2px;}
+    .kn-aff{font-size:11px;color:#666;margin-bottom:10px;}
+    .kn-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#1a56db;margin:12px 0 4px;}
+    .kn-bio{font-size:12px;color:#333;line-height:1.55;}
+    .kn-title{font-size:13px;font-weight:700;color:#0a1f44;margin-bottom:4px;}
+    .kn-abstract{font-size:12px;color:#333;line-height:1.55;}
+    .coins-panel{background:#fce8f3;border-left:4px solid #9f1239;}
+    .coins-tutorial{background:#fef3c7;border-left:4px solid #d97706;}
+    .coins-ss{background:#fce4ec;border-left:3px solid #c2185b;}
+    .coins-award{background:#fefce8;border-left:4px solid #ca8a04;text-align:center;font-weight:700;}
+    .coins-social{background:#e0f2fe;border-left:4px solid #0e7490;}
+    .coins-paper{background:#fff;border:1px solid #dde;border-left:4px solid #0a1f44;cursor:pointer;transition:.15s;}
+    .coins-paper:hover{background:#f0f4ff;transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.1);}
+    .ev-name{font-weight:700;font-size:12px;line-height:1.3;}
+    .ev-sub{font-size:10px;color:#666;margin-top:2px;}
+    .slot-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#1a56db;margin-bottom:2px;}
+    .slot-title{font-size:12px;font-weight:700;color:#0a1f44;line-height:1.3;}
+    .slot-meta{font-size:10px;color:#777;margin-top:2px;}
+    .coins-legend{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+    .coins-legend-item{display:flex;align-items:center;gap:4px;font-size:11px;color:#444;background:#f5f7fa;border-radius:4px;padding:3px 8px;}
+    .coins-legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+    .coins-modal-bg{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center;}
+    .coins-modal-bg.open{display:flex;}
+    .coins-modal{background:#fff;border-radius:8px;max-width:700px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.25);}
+    .coins-modal-hdr{background:#0a1f44;color:#fff;padding:16px 20px;border-radius:8px 8px 0 0;display:flex;justify-content:space-between;align-items:flex-start;}
+    .coins-modal-hdr h3{font-size:15px;font-weight:700;margin:0;flex:1;}
+    .coins-modal-close{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;line-height:1;padding:0 0 0 10px;}
+    .coins-modal-body{padding:16px 20px;}
+    .coins-modal-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+    .coins-tag{display:inline-block;padding:3px 9px;border-radius:10px;font-size:11px;font-weight:600;background:#e8f0fc;color:#1a56db;}
+    .coins-paper-item{padding:12px 14px;margin-bottom:8px;border-radius:6px;border-left:4px solid #0a1f44;background:#f8f9fc;}
+    .coins-paper-item.short{border-left-color:#d97706;}
+    .coins-paper-item.bpc-paper{border-left-color:#d97706;background:#fffdf5;}
+    .coins-paper-item.noshow-paper{border-left-color:#b91c1c;background:#fef2f2;}
+    .coins-paper-id{font-size:10px;font-weight:700;color:#888;font-family:monospace;margin-bottom:3px;}
+    .coins-paper-title{font-size:13px;font-weight:700;color:#0a1f44;margin-bottom:4px;line-height:1.4;}
+    .coins-paper-authors{font-size:11px;color:#555;font-style:italic;margin-bottom:5px;}
+    .coins-paper-badges{display:flex;gap:5px;flex-wrap:wrap;}
+    .badge-reg{background:#dcfce7;color:#166534;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;}
+    .badge-sh{background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;}
+    .badge-ip{background:#dbeafe;color:#1e40af;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;}
+    .badge-ol{background:#f3e8ff;color:#6b21a8;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;}
+    .badge-bpc{background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;border:1px solid #d97706;display:inline-block;}
+    .badge-bpc-id{background:#fef3c7;color:#92400e;padding:1px 6px;border-radius:6px;font-size:10px;font-weight:700;border:1px solid #d97706;}
+    .badge-noshow{background:#fee2e2;color:#991b1b;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;border:1px solid #b91c1c;display:inline-block;}
+    .badge-noshow-id{background:#fee2e2;color:#991b1b;padding:1px 6px;border-radius:6px;font-size:10px;font-weight:700;border:1px solid #b91c1c;}
+    @media(max-width:650px){
+      .coins-r3,.coins-r4,.coins-r5,.coins-r6{grid-template-columns:70px 1fr;}
+      .coins-hdr:not(:first-child){display:none;}
+      .coins-paper,.coins-ss,.coins-tutorial,.coins-panel{grid-column:2/-1 !important;}
+    }
+    .coins-search-wrap{margin-bottom:16px;}
+    .coins-search-box{width:100%;max-width:500px;padding:9px 14px 9px 36px;border:2px solid #dde;border-radius:6px;font-size:13px;outline:none;transition:.2s;background:#fff;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23999' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.868-3.833zm-5.242 1.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:10px center;}
+    .coins-search-box:focus{border-color:#0a1f44;}
+    .coins-search-results{margin-top:8px;display:none;}
+    .coins-search-results.open{display:block;}
+    .coins-search-count{font-size:12px;color:#666;margin-bottom:8px;}
+    .coins-search-item{padding:11px 14px;margin-bottom:6px;border-radius:6px;border-left:4px solid #0a1f44;background:#f8f9fc;cursor:pointer;transition:.15s;}
+    .coins-search-item:hover{background:#e8f0fc;}
+    .coins-search-item.ss-item{border-left-color:#c2185b;background:#fdf4f7;}
+    .coins-search-item.ss-item:hover{background:#fce4ec;}
+    .coins-search-pid{font-size:10px;font-weight:700;color:#888;font-family:monospace;margin-bottom:3px;}
+    .coins-search-title{font-size:13px;font-weight:700;color:#0a1f44;line-height:1.3;margin-bottom:3px;}
+    .coins-search-authors{font-size:11px;color:#555;font-style:italic;margin-bottom:4px;}
+    .coins-search-where{font-size:10px;color:#666;}
+    .coins-search-badge{display:inline-block;padding:1px 6px;border-radius:6px;font-size:10px;font-weight:600;margin-right:4px;}
+    .no-results{font-size:13px;color:#888;padding:10px 0;}
+    .coins-chair-bar strong{color:#0a1f44;}
+    .coins-ss-desc{font-size:12px;color:#444;line-height:1.55;margin:0 0 12px 0;}
+    .coins-paper-speaker{font-size:11px;color:#1e40af;margin-top:3px;}
+    .coins-paper-speaker span{font-weight:700;text-decoration:underline;color:#0a1f44;}
+    .ev-moderator{font-size:11px;color:#72243e;margin-top:5px;font-weight:700;}
+    .ev-panelists{font-size:11px;color:#555;margin-top:4px;line-height:1.7;}
+    .ev-panelist{display:block;}
+    .ev-topic{font-size:11px;font-weight:700;color:#72243e;margin-top:6px;margin-bottom:2px;}
+    .ev-topic-abstract{font-size:10.5px;color:#666;line-height:1.5;margin-bottom:4px;}
+    .ev-chair-note{font-size:11px;color:#888;margin-top:4px;font-style:italic;}
+    </style>
 
-    {% for day in conf.program.days %}
-    <div class="day-content {% if loop.first %}active{% endif %}" id="{{ day.id }}">
-      <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;color:var(--gray-dark);margin-bottom:1.25rem;padding-top:0.25rem">{{ day.label }}</h3>
-      {% for s in day.sessions %}
-      <div class="session-block">
-        <div class="session-time">{{ s.time }}</div>
-        <div class="session-card {{ s.type }}">
-          <div class="session-title">
-            {% if s.type == 'keynote' and 'Keynote' in s.title %}🎤 {% endif %}
-            {{ s.title }}
-          </div>
-          {% if s.detail %}<div class="session-speaker">{{ s.detail }}</div>{% endif %}
+    <div class="coins-prog">
+      <h2>{{ conf.meta.short_name }} &mdash; Technical Programme</h2>
+      <p class="subtitle">{{ conf.dates.conference_display }} &middot; {{ conf.venue.city }}, {{ conf.venue.country }} &middot; Room A hosts all plenary activities &middot; Rooms B&ndash;E run parallel technical &amp; special sessions</p>
+
+      <div class="coins-search-wrap">
+        <input class="coins-search-box" id="coins-search" type="text" placeholder="Search by title, author, or paper ID..." oninput="coinsSearch(this.value)" autocomplete="off">
+        <div class="coins-search-results" id="coins-search-results">
+          <div class="coins-search-count" id="coins-search-count"></div>
+          <div id="coins-search-list"></div>
         </div>
+      </div>
+
+      <div class="coins-legend">
+        <div class="coins-legend-item"><div class="coins-legend-dot" style="background:#1a56db"></div>Keynote</div>
+        <div class="coins-legend-item"><div class="coins-legend-dot" style="background:#5521b5"></div>Industrial Keynote</div>
+        <div class="coins-legend-item"><div class="coins-legend-dot" style="background:#0a1f44"></div>Paper Session</div>
+        <div class="coins-legend-item"><div class="coins-legend-dot" style="background:#c2185b"></div>Special Session</div>
+        <div class="coins-legend-item"><div class="coins-legend-dot" style="background:#d97706"></div>Tutorial</div>
+        <div class="coins-legend-item"><div class="coins-legend-dot" style="background:#9f1239"></div>Panel</div>
+        <div class="coins-legend-item"><div class="coins-legend-dot" style="background:#0e7490"></div>Social Event</div>
+      </div>
+
+      <div id="coins-zoom-panel" class="coins-zoom-panel"></div>
+
+      <div class="coins-tabs">
+        {% for day in conf.program.days %}
+        <button class="coins-tab {% if loop.first %}active{% endif %}" onclick="coinsDay('{{ day.id }}',this)">{{ day.short }}</button>
+        {% endfor %}
+      </div>
+
+      {% for day in conf.program.days %}
+      <div id="coins-{{ day.id }}" class="coins-day {% if loop.first %}active{% endif %}">
+        <div class="coins-row coins-r6">
+          {% for r in conf.program.rooms %}
+          <div class="coins-cell coins-hdr">{{ r.name }}{% if r.role %}<span class="room-role">{{ r.role }}</span>{% endif %}</div>
+          {% endfor %}
+        </div>
+        <div class="coins-row coins-r2"><div class="coins-cell coins-time">&nbsp;</div><div class="coins-cell coins-break coins-full">Session schedule for {{ day.label }} will be published here once the technical program is finalized.</div></div>
       </div>
       {% endfor %}
     </div>
-    {% endfor %}
 
     {% if conf.panelists %}
     <div style="margin-top:3rem">
@@ -71,15 +202,226 @@
     </div>
     {% endif %}
 
-    <!-- Legend -->
-    <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
-      <span style="font-size:0.78rem;color:var(--gray-dark);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:0.08em">Legend:</span>
-      <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem"><span style="width:10px;height:10px;border-radius:2px;background:var(--accent);display:inline-block"></span> Keynote / Social</div>
-      <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem"><span style="width:10px;height:10px;border-radius:2px;background:var(--blue);display:inline-block"></span> Technical Session</div>
-      <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem"><span style="width:10px;height:10px;border-radius:2px;background:var(--teal);display:inline-block"></span> Special Session</div>
-      <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem"><span style="width:10px;height:10px;border-radius:2px;background:var(--gray);display:inline-block"></span> Break</div>
-    </div>
-
   </div>
 </section>
+
+<div id="coins-modal-bg" class="coins-modal-bg" onclick="coinsClose(event)">
+  <div class="coins-modal">
+    <div class="coins-modal-hdr">
+      <h3 id="coins-modal-title"></h3>
+      <button class="coins-modal-close" onclick="coinsClose()">&#215;</button>
+    </div>
+    <div class="coins-modal-body">
+      <div id="coins-modal-meta" class="coins-modal-meta"></div>
+      <div id="coins-modal-papers"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+var COINS_DATA={"sessions": []};
+var COINS_SESS={};
+COINS_DATA.sessions.forEach(function(s){COINS_SESS[s.id]=s;});
+var DAYS={ {% for day in conf.program.days %}{{ day.code | tojson }}:{{ day.label | tojson }}{{ "," if not loop.last }}{% endfor %} };
+
+var COINS_ROOMS={ {% for r in conf.program.rooms %}{{ r.id | tojson }}:{{ (r.name ~ (' (' ~ r.role ~ ')' if r.role else '')) | tojson }}{{ "," if not loop.last }}{% endfor %} };
+var COINS_ZOOM={};
+
+function coinsJoinZoom(room){
+  var url=COINS_ZOOM[room];
+  if(url){ window.open(url,'_blank','noopener'); }
+  else{ alert('The Zoom link for Room '+room+' ('+COINS_ROOMS[room]+') has not been published yet. Please check back closer to the event.'); }
+}
+
+function coinsRenderZoomPanel(){
+  var el=document.getElementById('coins-zoom-panel');
+  if(!el) return;
+  var html='';
+  Object.keys(COINS_ROOMS).forEach(function(room){
+    var url=COINS_ZOOM[room];
+    html+='<div class="coins-zoom-card">'+
+      '<div class="coins-zoom-room">Room '+room+' &middot; '+COINS_ROOMS[room]+'</div>'+
+      (url
+        ? '<a class="coins-zoom-link" href="'+url+'" target="_blank" rel="noopener">&#128421; Join on Zoom &#8599;</a>'
+        : '<span class="coins-zoom-missing">Zoom link coming soon</span>')+
+      '</div>';
+  });
+  el.innerHTML=html;
+}
+coinsRenderZoomPanel();
+
+var COINS_KEYNOTES={};
+var COINS_PHD_FORUM=[];
+
+function coinsShowPhdForum(){
+  document.getElementById('coins-modal-title').textContent='PhD Forum — Presenting Students';
+  var meta=document.getElementById('coins-modal-meta');
+  meta.innerHTML='<span class="coins-tag">'+COINS_PHD_FORUM.length+' presenters</span>';
+  var body=document.getElementById('coins-modal-papers');
+  var html='';
+  COINS_PHD_FORUM.forEach(function(st,i){
+    html+='<div class="coins-paper-item">'+
+      '<div class="coins-paper-title">'+(i+1)+'. '+st.first+' '+st.last+'</div>'+
+      '<div class="coins-paper-authors">'+st.aff+'</div>'+
+      '<div class="coins-paper-speaker">PhD Project: <span>'+st.title+'</span></div>'+
+      '</div>';
+  });
+  body.innerHTML=html;
+  document.getElementById('coins-modal-bg').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function coinsShowKeynote(kid){
+  var k=COINS_KEYNOTES[kid];
+  if(!k) return;
+  document.getElementById('coins-modal-title').textContent=k.kind+': '+k.speaker;
+  var meta=document.getElementById('coins-modal-meta');
+  var dayLabel=DAYS[k.day]||k.day;
+  meta.innerHTML='<span class="coins-tag">'+dayLabel+'</span>'+
+    '<span class="coins-tag">'+k.time+'</span>'+
+    '<span class="coins-tag">'+k.mins+' min</span>'+
+    (k.room?'<span class="coins-tag">'+k.room+'</span>':'');
+  var body=document.getElementById('coins-modal-papers');
+  var chairHtml='<div class="coins-chair-bar" style="background:#f0f4ff;border-left:3px solid #1a56db;padding:7px 14px;font-size:11px;margin:0 0 10px 0;border-radius:4px;"><strong>Chair:</strong> '+k.chair+'</div>';
+  body.innerHTML=chairHtml+
+    '<div class="kn-speaker">'+k.speaker+'</div>'+
+    '<div class="kn-aff">'+k.aff+'</div>'+
+    '<div class="kn-label">Speaker Bio</div>'+
+    '<div class="kn-bio">'+k.bio.replace(/\n\n/g,'</div><div class="kn-bio" style="margin-top:8px">')+'</div>'+
+    '<div class="kn-label">'+k.kind+' Title</div>'+
+    '<div class="kn-title">'+k.title+'</div>'+
+    '<div class="kn-label">Abstract</div>'+
+    '<div class="kn-abstract">'+k.abstract.replace(/\n\n/g,'</div><div class="kn-abstract" style="margin-top:8px">')+'</div>';
+  document.getElementById('coins-modal-bg').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function coinsDay(d,btn){
+  document.querySelectorAll('.coins-day').forEach(function(el){el.classList.remove('active');});
+  document.querySelectorAll('.coins-tab').forEach(function(el){el.classList.remove('active');});
+  document.getElementById('coins-'+d).classList.add('active');
+  btn.classList.add('active');
+}
+
+function coinsShow(sid){
+  var s=COINS_SESS[sid];
+  if(!s) return;
+  document.getElementById('coins-modal-title').textContent=s.title;
+  var meta=document.getElementById('coins-modal-meta');
+  var dayLabel=DAYS[s.day]||s.day;
+  var chairHtml='';
+  var isOrg=s.id.indexOf('SS')===0;
+  if(s.organizers && s.organizers.length){
+    chairHtml='<div class="coins-chair-bar" style="background:#fff8e1;border-left:3px solid #d97706;padding:7px 14px;font-size:11px;margin:0 0 10px 0;border-radius:4px;">'+
+      '<strong>Proposed by:</strong> '+s.organizers.map(function(o){return o.first+' '+o.last+' &mdash; '+o.aff;}).join('; ')+
+      '</div>';
+  } else if(s.chair){
+    var chairStyle=isOrg
+      ?'background:#fff8e1;border-left:3px solid #d97706;'
+      :'background:#f0f4ff;border-left:3px solid #1a56db;';
+    chairHtml='<div class="coins-chair-bar" style="'+chairStyle+'padding:7px 14px;font-size:11px;margin:0 0 10px 0;border-radius:4px;">'+
+      '<strong>'+(isOrg?'Session Organiser:':'Session Chair:')+'</strong> '+
+      s.chair.title+' '+s.chair.first+' '+s.chair.last+' &mdash; '+s.chair.aff+'</div>';
+  }
+  var descHtml=s.description?'<div class="coins-ss-desc">'+s.description+'</div>':'';
+  meta.innerHTML='<span class="coins-tag">'+dayLabel+'</span>'+
+    '<span class="coins-tag">'+s.time+'</span>'+
+    '<span class="coins-tag">Room '+s.room+'</span>';
+  var body=document.getElementById('coins-modal-papers');
+  body.innerHTML=chairHtml+descHtml;
+  s.papers.forEach(function(p,i){
+    var isOnline=(p.sp_type||p.fmt)!=='In-Person';
+    var fmtBadge=isOnline?'<span class="badge-ol">Online</span>':'<span class="badge-ip">In-Person</span>';
+    var decBadge=p.dec==='Regular'?'<span class="badge-reg">Regular</span>':'<span class="badge-sh">Short</span>';
+    var bpcBadge=p.bpc?'<span class="badge-bpc">&#9733; Best Paper Candidate</span>':'';
+    var bpcId=p.bpc?' <span class="badge-bpc-id">&#9733; BPC</span>':'';
+    var noshowBadge=p.noshow?'<span class="badge-noshow">&#9888; Potential No-Show</span>':'';
+    var noshowId=p.noshow?' <span class="badge-noshow-id">&#9888; No-Show?</span>':'';
+    var cls='coins-paper-item'+(p.dec==='Short'?' short':'')+(p.bpc?' bpc-paper':'')+(p.noshow?' noshow-paper':'');
+    var speakerHtml='';
+    if(p.sp_first){
+      speakerHtml='<div class="coins-paper-speaker">Presenter: <span>'+
+        (p.sp_title?p.sp_title+' ':'')+p.sp_first+' '+p.sp_last+'</span>'+
+        (p.sp_aff?' &mdash; '+p.sp_aff:'')+' '+fmtBadge+'</div>';
+    }
+    body.innerHTML+=
+      '<div class="'+cls+'">'+
+        '<div class="coins-paper-id">#'+p.id+bpcId+noshowId+'</div>'+
+        '<div class="coins-paper-title">'+(i+1)+'. '+p.title+'</div>'+
+        '<div class="coins-paper-authors">'+p.authors+'</div>'+
+        speakerHtml+
+        '<div class="coins-paper-badges">'+bpcBadge+noshowBadge+decBadge+'</div>'+
+      '</div>';
+  });
+  document.getElementById('coins-modal-bg').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function coinsClose(e){
+  if(e && e.target!==document.getElementById('coins-modal-bg')) return;
+  document.getElementById('coins-modal-bg').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function coinsSearch(q) {
+  var wrap = document.getElementById('coins-search-results');
+  var list = document.getElementById('coins-search-list');
+  var count = document.getElementById('coins-search-count');
+  q = q.trim().toLowerCase();
+  if (q.length < 2) { wrap.classList.remove('open'); list.innerHTML=''; return; }
+  var results = [];
+  COINS_DATA.sessions.forEach(function(s) {
+    s.papers.forEach(function(p, i) {
+      var idStr = String(p.id);
+      var titleL = p.title.toLowerCase();
+      var authL = p.authors.toLowerCase();
+      if (idStr === q.replace(/^0+/,'') || idStr.includes(q) || titleL.includes(q) || authL.includes(q)) {
+        results.push({p:p, s:s, pos:i+1});
+      }
+    });
+  });
+  wrap.classList.add('open');
+  if (results.length === 0) {
+    list.innerHTML = '<div class="no-results">No papers found matching that query.</div>';
+    count.textContent = '';
+    return;
+  }
+  count.textContent = results.length + ' paper' + (results.length>1?'s':'') + ' found';
+  var out = '';
+  results.forEach(function(r) {
+    var p = r.p; var s = r.s;
+    var isss = s.id.indexOf('SS') === 0;
+    var cls = isss ? 'coins-search-item ss-item' : 'coins-search-item';
+    var bpcBadge = p.bpc ? '<span class="coins-search-badge" style="background:#fef3c7;color:#92400e;border:1px solid #d97706">&#9733; BPC</span>' : '';
+    var fmtBadge = p.fmt==='In-Person' ? '<span class="coins-search-badge" style="background:#dbeafe;color:#1e40af">In-Person</span>' : '<span class="coins-search-badge" style="background:#f3e8ff;color:#6b21a8">Online</span>';
+    var decBadge = p.dec==='Regular' ? '<span class="coins-search-badge" style="background:#dcfce7;color:#166534">Regular</span>' : '<span class="coins-search-badge" style="background:#fef3c7;color:#92400e">Short</span>';
+    var sessLabel = isss ? s.id + ' — ' : 'Session ' + s.slot + ' — ';
+    var where = sessLabel + s.title + ' · ' + (DAYS[s.day]||s.day) + ' · ' + s.time + ' · Room ' + s.room;
+    out += '<div class="' + cls + '" onclick="coinsShowFromSearch(\'' + s.id + '\',' + (r.pos-1) + ')">';
+    out += '<div class="coins-search-pid">#' + p.id + '</div>';
+    out += '<div class="coins-search-title">' + p.title + '</div>';
+    out += '<div class="coins-search-authors">' + p.authors + '</div>';
+    out += '<div class="coins-search-where">' + where + '</div>';
+    out += '<div style="margin-top:5px">' + bpcBadge + decBadge + fmtBadge + '</div>';
+    out += '</div>';
+  });
+  list.innerHTML = out;
+}
+
+function coinsShowFromSearch(sid, paperIdx) {
+  document.getElementById('coins-search').value = '';
+  document.getElementById('coins-search-results').classList.remove('open');
+  coinsShow(sid);
+  setTimeout(function() {
+    var items = document.querySelectorAll('.coins-paper-item');
+    if (items[paperIdx]) items[paperIdx].scrollIntoView({behavior:'smooth', block:'center'});
+  }, 200);
+}
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.coins-search-wrap')) {
+    var r = document.getElementById('coins-search-results');
+    if (r) r.classList.remove('open');
+  }
+});
+</script>
 {% endblock %}

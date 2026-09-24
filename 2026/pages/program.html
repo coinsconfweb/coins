@@ -55,7 +55,7 @@
       <li class="dropdown">
         <button>Past Events ▾</button>
         <div class="dropdown-menu">
-          <a href="https://coinsconf.com/2025" target="_blank">COINS 2025 — Madison</a>
+          <a href="../pages/archive-2025.html">COINS 2025 — Madison</a>
           <a href="../pages/archive-2024.html">COINS 2024 — London</a>
           <a href="../pages/archive-2023.html">COINS 2023 — Berlin</a>
           <a href="../pages/archive-2022.html">COINS 2022 — Barcelona</a>
@@ -87,9 +87,9 @@
 <section class="section">
   <div class="section-inner">
 
-    <div class="info-box warning">
-      <strong>⏳ Detailed program finalized after acceptance notifications (June 2, 2026).</strong>
-      <p>The structure below represents the planned schedule. Full paper titles and presenter details will be added after acceptance notifications.</p>
+    <div class="info-box">
+      <strong>✅ Final program — IEEE COINS 2026, Bologna, Italy.</strong>
+      <p>Session details, paper titles, and presenter information below reflect the final conference schedule. Click any session, keynote, or the PhD Forum coffee-break banner to view full details.</p>
     </div>
 
     <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;margin-bottom:0.25rem">
@@ -100,320 +100,491 @@
       <a href="phd-forum.html" class="btn btn-outline btn-sm" style="border-color:var(--gray-light);color:var(--text)">🎓 PhD Forum</a>
     </div>
 
-    <div class="program-day-tabs">
-      <button class="day-tab active" data-target="day1">Mon Sep 7</button>
-      <button class="day-tab " data-target="day2">Tue Sep 8</button>
-      <button class="day-tab " data-target="day3">Wed Sep 9</button>
-    </div>
+<style>
+.coins-prog *{box-sizing:border-box;}
+.coins-prog{font-family:Arial,sans-serif;font-size:14px;color:#222;max-width:1200px;margin:0 auto;padding:10px 0;}
+.coins-prog h2{font-size:22px;font-weight:700;color:#0a1f44;margin:0 0 6px;}
+.coins-prog .subtitle{font-size:13px;color:#666;margin-bottom:20px;}
+.coins-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;}
+.coins-tab{padding:8px 20px;border-radius:4px;cursor:pointer;background:#e8edf5;color:#0a1f44;font-size:13px;font-weight:700;border:2px solid transparent;transition:.2s;}
+.coins-tab:hover{background:#c8d4e8;}
+.coins-tab.active{background:#0a1f44;color:#fff;}
+.coins-day{display:none;}.coins-day.active{display:block;}
+.coins-row{display:grid;gap:4px;margin-bottom:3px;align-items:stretch;}
+.coins-r2{grid-template-columns:90px 1fr;}
+.coins-r3{grid-template-columns:90px 1fr 1fr;}
+.coins-r4{grid-template-columns:90px 1fr 1fr 1fr;}
+.coins-r5{grid-template-columns:90px 1fr 1fr 1fr 1fr;}
+.coins-cell{padding:7px 10px;border-radius:4px;font-size:12px;min-height:36px;display:flex;flex-direction:column;justify-content:center;}
+.coins-full{grid-column:2/-1;}
+.coins-time{background:#f0f2f6;color:#555;font-weight:700;font-size:10px;text-align:center;border:1px solid #dde;}
+.coins-hdr{background:#0a1f44;color:#fff;font-weight:700;font-size:11px;text-align:center;letter-spacing:.3px;}
+.coins-hdr[onclick]{cursor:pointer;transition:.15s;}
+.coins-hdr[onclick]:hover{background:#173568;}
+.coins-zoom-panel{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.coins-zoom-card{flex:1;min-width:150px;border:1px solid #dde;border-radius:6px;padding:9px 12px;background:#f8f9fc;}
+.coins-zoom-room{font-size:11px;font-weight:700;color:#0a1f44;margin-bottom:4px;}
+.coins-zoom-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#1a56db;text-decoration:none;cursor:pointer;}
+.coins-zoom-link:hover{text-decoration:underline;}
+.coins-zoom-missing{font-size:11px;color:#999;font-style:italic;}
+.coins-break{background:#f5f5f5;color:#888;text-align:center;font-style:italic;font-size:12px;}
+.coins-keynote{background:#e8f0fc;border-left:4px solid #1a56db;cursor:pointer;transition:.15s;}
+.coins-keynote:hover{background:#d7e5fb;}
+.coins-ikeynote{background:#ede9f8;border-left:4px solid #5521b5;cursor:pointer;transition:.15s;}
+.coins-ikeynote:hover{background:#e0d8f5;}
+.kn-speaker{font-size:13px;font-weight:700;color:#0a1f44;margin-bottom:2px;}
+.kn-aff{font-size:11px;color:#666;margin-bottom:10px;}
+.kn-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#1a56db;margin:12px 0 4px;}
+.kn-bio{font-size:12px;color:#333;line-height:1.55;}
+.kn-title{font-size:13px;font-weight:700;color:#0a1f44;margin-bottom:4px;}
+.kn-abstract{font-size:12px;color:#333;line-height:1.55;}
+.coins-panel{background:#fce8f3;border-left:4px solid #9f1239;}
+.coins-tutorial{background:#fef3c7;border-left:4px solid #d97706;}
+.coins-ss{background:#fce4ec;border-left:3px solid #c2185b;}
+.coins-award{background:#fefce8;border-left:4px solid #ca8a04;text-align:center;font-weight:700;}
+.coins-social{background:#e0f2fe;border-left:4px solid #0e7490;}
+.coins-paper{background:#fff;border:1px solid #dde;border-left:4px solid #0a1f44;cursor:pointer;transition:.15s;}
+.coins-paper:hover{background:#f0f4ff;transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.1);}
+.ev-name{font-weight:700;font-size:12px;line-height:1.3;}
+.ev-sub{font-size:10px;color:#666;margin-top:2px;}
+.slot-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#1a56db;margin-bottom:2px;}
+.slot-title{font-size:12px;font-weight:700;color:#0a1f44;line-height:1.3;}
+.slot-meta{font-size:10px;color:#777;margin-top:2px;}
+.coins-legend{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.coins-legend-item{display:flex;align-items:center;gap:4px;font-size:11px;color:#444;background:#f5f7fa;border-radius:4px;padding:3px 8px;}
+.coins-legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+.coins-modal-bg{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center;}
+.coins-modal-bg.open{display:flex;}
+.coins-modal{background:#fff;border-radius:8px;max-width:700px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.25);}
+.coins-modal-hdr{background:#0a1f44;color:#fff;padding:16px 20px;border-radius:8px 8px 0 0;display:flex;justify-content:space-between;align-items:flex-start;}
+.coins-modal-hdr h3{font-size:15px;font-weight:700;margin:0;flex:1;}
+.coins-modal-close{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;line-height:1;padding:0 0 0 10px;}
+.coins-modal-body{padding:16px 20px;}
+.coins-modal-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.coins-tag{display:inline-block;padding:3px 9px;border-radius:10px;font-size:11px;font-weight:600;background:#e8f0fc;color:#1a56db;}
+.coins-paper-item{padding:12px 14px;margin-bottom:8px;border-radius:6px;border-left:4px solid #0a1f44;background:#f8f9fc;}
+.coins-paper-item.short{border-left-color:#d97706;}
+.coins-paper-item.bpc-paper{border-left-color:#d97706;background:#fffdf5;}
+.coins-paper-item.noshow-paper{border-left-color:#b91c1c;background:#fef2f2;}
+.coins-paper-id{font-size:10px;font-weight:700;color:#888;font-family:monospace;margin-bottom:3px;}
+.coins-paper-title{font-size:13px;font-weight:700;color:#0a1f44;margin-bottom:4px;line-height:1.4;}
+.coins-paper-authors{font-size:11px;color:#555;font-style:italic;margin-bottom:5px;}
+.coins-paper-badges{display:flex;gap:5px;flex-wrap:wrap;}
+.badge-reg{background:#dcfce7;color:#166534;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;}
+.badge-sh{background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;}
+.badge-ip{background:#dbeafe;color:#1e40af;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;}
+.badge-ol{background:#f3e8ff;color:#6b21a8;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;}
+.badge-bpc{background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;border:1px solid #d97706;display:inline-block;}
+.badge-bpc-id{background:#fef3c7;color:#92400e;padding:1px 6px;border-radius:6px;font-size:10px;font-weight:700;border:1px solid #d97706;}
+.badge-noshow{background:#fee2e2;color:#991b1b;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;border:1px solid #b91c1c;display:inline-block;}
+.badge-noshow-id{background:#fee2e2;color:#991b1b;padding:1px 6px;border-radius:6px;font-size:10px;font-weight:700;border:1px solid #b91c1c;}
+@media(max-width:650px){
+  .coins-r3,.coins-r4,.coins-r5{grid-template-columns:70px 1fr;}
+  .coins-hdr:not(:first-child){display:none;}
+  .coins-paper,.coins-ss,.coins-tutorial,.coins-panel{grid-column:2/-1 !important;}
+}
 
-    <div class="day-content active" id="day1">
-      <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;color:var(--gray-dark);margin-bottom:1.25rem;padding-top:0.25rem">Monday, September 7</h3>
-      <div class="session-block">
-        <div class="session-time">08:00 – 09:00</div>
-        <div class="session-card break">
-          <div class="session-title">
-            Registration &amp; Welcome Coffee
-          </div>
-<div class="session-speaker">Main Lobby</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">09:00 – 09:30</div>
-        <div class="session-card keynote">
-          <div class="session-title">
-            Opening Ceremony
-          </div>
-<div class="session-speaker">General Chairs · Sponsor Representatives</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">09:00 – 10:00</div>
-        <div class="session-card keynote">
-          <div class="session-title">
-🎤             Keynote: Luca Benini — Designing Digital Platforms for Wearable Contextual Intelligence
-          </div>
-<div class="session-speaker">University of Bologna / ETH Zurich</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">10:00 – 10:30</div>
-        <div class="session-card break">
-          <div class="session-title">
-            Coffee Break
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">10:30 – 12:30</div>
-        <div class="session-card technical">
-          <div class="session-title">
-            Session 1A: AI Hardware, Circuits &amp; Devices (Track 1)
-          </div>
-<div class="session-speaker">Papers TBA</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">10:30 – 12:30</div>
-        <div class="session-card technical">
-          <div class="session-title">
-            Session 1B: AI-Native Connectivity &amp; Networks (Track 4)
-          </div>
-<div class="session-speaker">Parallel Track</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">12:30 – 14:00</div>
-        <div class="session-card break">
-          <div class="session-title">
-            Lunch Break
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">14:00 – 16:00</div>
-        <div class="session-card technical">
-          <div class="session-title">
-            Session 2A: AI Architectures &amp; Systems Design (Track 3)
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">14:00 – 16:00</div>
-        <div class="session-card technical">
-          <div class="session-title">
-            Session 2B: IoT &amp; Cyber-Physical Intelligence (Track 6)
-          </div>
-<div class="session-speaker">Parallel Track</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">16:00 – 16:30</div>
-        <div class="session-card break">
-          <div class="session-title">
-            Coffee Break
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">16:30 – 18:00</div>
-        <div class="session-card special">
-          <div class="session-title">
-            Special Session: Emerging Technology Enablers for IoT-AI Ecosystems
-          </div>
-<div class="session-speaker">Chair: Mian Ahmad Jan, University of Sharjah</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">19:00 – 22:00</div>
-        <div class="session-card social">
-          <div class="session-title">
-            Welcome Reception
-          </div>
-<div class="session-speaker">Historic Bologna venue — included in full registration</div>        </div>
-      </div>
-    </div>
-    <div class="day-content " id="day2">
-      <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;color:var(--gray-dark);margin-bottom:1.25rem;padding-top:0.25rem">Tuesday, September 8</h3>
-      <div class="session-block">
-        <div class="session-time">08:30 – 09:00</div>
-        <div class="session-card break">
-          <div class="session-title">
-            Morning Coffee
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">09:00 – 10:00</div>
-        <div class="session-card keynote">
-          <div class="session-title">
-🎤             Keynote: Vijay Janapa Reddi — From Omni Layer AI to AI Engineering
-          </div>
-<div class="session-speaker">Harvard University, USA</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">10:00 – 10:30</div>
-        <div class="session-card break">
-          <div class="session-title">
-            Coffee Break
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">10:30 – 12:30</div>
-        <div class="session-card technical">
-          <div class="session-title">
-            Session 3A: AI-Driven Design Automation (Track 2)
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">10:30 – 12:30</div>
-        <div class="session-card technical">
-          <div class="session-title">
-            Session 3B: Secure &amp; Trustworthy AI (Track 7)
-          </div>
-<div class="session-speaker">Parallel Track</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">12:30 – 13:00</div>
-        <div class="session-card break">
-          <div class="session-title">
-            Lunch Break
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">13:00 – 13:45</div>
-        <div class="session-card keynote">
-          <div class="session-title">
-🎤             Industrial Keynote: Valeria Tomaselli — TBA
-          </div>
-<div class="session-speaker">STMicroelectronics</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">14:00 – 15:30</div>
-        <div class="session-card special">
-          <div class="session-title">
-            Tutorial: From TinyML to EdgeAI
-          </div>
-<div class="session-speaker">Danilo Pau, STMicroelectronics</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">14:00 – 15:30</div>
-        <div class="session-card special">
-          <div class="session-title">
-            Tutorial: RISC-V Architectures and Ecosystem
-          </div>
-<div class="session-speaker">University of Bologna — ETH Zurich</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">15:30 – 16:00</div>
-        <div class="session-card break">
-          <div class="session-title">
-            Coffee Break
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">16:00 – 17:30</div>
-        <div class="session-card special">
-          <div class="session-title">
-            Special Session: Emerging Blockchain Technologies for IoT and AI
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">17:30 – 18:30</div>
-        <div class="session-card special">
-          <div class="session-title">
-            PhD &amp; Student Forum — Poster Session
-          </div>
-<div class="session-speaker">1-slide, 1-minute oral introductions + poster viewing</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">19:30 – 23:00</div>
-        <div class="session-card social">
-          <div class="session-title">
-            Conference Gala Dinner
-          </div>
-<div class="session-speaker">Traditional Bolognese dinner · Best Paper Awards</div>        </div>
-      </div>
-    </div>
-    <div class="day-content " id="day3">
-      <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;color:var(--gray-dark);margin-bottom:1.25rem;padding-top:0.25rem">Wednesday, September 9</h3>
-      <div class="session-block">
-        <div class="session-time">08:30 – 09:00</div>
-        <div class="session-card break">
-          <div class="session-title">
-            Morning Coffee
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">09:00 – 10:00</div>
-        <div class="session-card keynote">
-          <div class="session-title">
-🎤             Keynote: Elisa Ricci — Trustworthy AI
-          </div>
-<div class="session-speaker">University of Trento — Fondazione Bruno Kessler, Italy</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">10:00 – 10:30</div>
-        <div class="session-card break">
-          <div class="session-title">
-            Coffee Break
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">10:30 – 12:30</div>
-        <div class="session-card technical">
-          <div class="session-title">
-            Session 5A: Foundational, Generative &amp; Cognitive AI (Track 9)
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">10:30 – 12:30</div>
-        <div class="session-card technical">
-          <div class="session-title">
-            Session 5B: Agentic &amp; Robotic AI (Track 8)
-          </div>
-<div class="session-speaker">Parallel Track</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">12:30 – 14:00</div>
-        <div class="session-card break">
-          <div class="session-title">
-            Lunch Break
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">14:00 – 16:00</div>
-        <div class="session-card technical">
-          <div class="session-title">
-            Session 6A: Human-Centered &amp; Responsible AI (Tracks 10–11)
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">14:00 – 16:00</div>
-        <div class="session-card technical">
-          <div class="session-title">
-            Session 6B: Vertical Applications (Track 12)
-          </div>
-<div class="session-speaker">Parallel Track</div>        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">16:00 – 16:30</div>
-        <div class="session-card break">
-          <div class="session-title">
-            Coffee Break
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">16:30 – 17:30</div>
-        <div class="session-card special">
-          <div class="session-title">
-            Special Session: Emerging Edge AI and Generative AI — On-Device LLMs
-          </div>
-        </div>
-      </div>
-      <div class="session-block">
-        <div class="session-time">17:30 – 18:15</div>
-        <div class="session-card keynote">
-          <div class="session-title">
-            Closing Ceremony &amp; Best Paper Awards
-          </div>
-<div class="session-speaker">General Chairs · COINS 2027 Announcement</div>        </div>
-      </div>
-    </div>
+.coins-search-wrap{margin-bottom:16px;}
+.coins-search-box{width:100%;max-width:500px;padding:9px 14px 9px 36px;border:2px solid #dde;border-radius:6px;font-size:13px;outline:none;transition:.2s;background:#fff;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23999' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.868-3.833zm-5.242 1.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:10px center;}
+.coins-search-box:focus{border-color:#0a1f44;}
+.coins-search-results{margin-top:8px;display:none;}
+.coins-search-results.open{display:block;}
+.coins-search-count{font-size:12px;color:#666;margin-bottom:8px;}
+.coins-search-item{padding:11px 14px;margin-bottom:6px;border-radius:6px;border-left:4px solid #0a1f44;background:#f8f9fc;cursor:pointer;transition:.15s;}
+.coins-search-item:hover{background:#e8f0fc;}
+.coins-search-item.ss-item{border-left-color:#c2185b;background:#fdf4f7;}
+.coins-search-item.ss-item:hover{background:#fce4ec;}
+.coins-search-pid{font-size:10px;font-weight:700;color:#888;font-family:monospace;margin-bottom:3px;}
+.coins-search-title{font-size:13px;font-weight:700;color:#0a1f44;line-height:1.3;margin-bottom:3px;}
+.coins-search-authors{font-size:11px;color:#555;font-style:italic;margin-bottom:4px;}
+.coins-search-where{font-size:10px;color:#666;}
+.coins-search-badge{display:inline-block;padding:1px 6px;border-radius:6px;font-size:10px;font-weight:600;margin-right:4px;}
+.no-results{font-size:13px;color:#888;padding:10px 0;}
+.coins-chair-bar strong{color:#0a1f44;}
+.coins-ss-desc{font-size:12px;color:#444;line-height:1.55;margin:0 0 12px 0;}
+.coins-paper-speaker{font-size:11px;color:#1e40af;margin-top:3px;}
+.coins-paper-speaker span{font-weight:700;text-decoration:underline;color:#0a1f44;}
 
-
-    <!-- Legend -->
-    <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
-      <span style="font-size:0.78rem;color:var(--gray-dark);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:0.08em">Legend:</span>
-      <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem"><span style="width:10px;height:10px;border-radius:2px;background:var(--accent);display:inline-block"></span> Keynote / Social</div>
-      <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem"><span style="width:10px;height:10px;border-radius:2px;background:var(--blue);display:inline-block"></span> Technical Session</div>
-      <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem"><span style="width:10px;height:10px;border-radius:2px;background:var(--teal);display:inline-block"></span> Special Session</div>
-      <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem"><span style="width:10px;height:10px;border-radius:2px;background:var(--gray);display:inline-block"></span> Break</div>
+.ev-moderator{font-size:11px;color:#72243e;margin-top:5px;font-weight:700;}
+.ev-panelists{font-size:11px;color:#555;margin-top:4px;line-height:1.7;}
+.ev-panelist{display:block;}
+.ev-topic{font-size:11px;font-weight:700;color:#72243e;margin-top:6px;margin-bottom:2px;}
+.ev-topic-abstract{font-size:10.5px;color:#666;line-height:1.5;margin-bottom:4px;}
+.ev-chair-note{font-size:11px;color:#888;margin-top:4px;font-style:italic;}
+</style>
+<div class="coins-prog">
+  <h2>IEEE COINS 2026 &mdash; Technical Programme</h2>
+  <p class="subtitle">September 7&ndash;9, 2026 &middot; Bologna, Italy &middot; Click any session to view papers &middot; Regular & Special Sessions: 20&prime;+5&prime; Q&amp;A &nbsp;|&nbsp; Short: 13&prime;+2&prime; Q&amp;A</p>
+  <div class="coins-search-wrap">
+    <input class="coins-search-box" id="coins-search" type="text" placeholder="Search by title, author, or paper ID..." oninput="coinsSearch(this.value)" autocomplete="off">
+    <div class="coins-search-results" id="coins-search-results">
+      <div class="coins-search-count" id="coins-search-count"></div>
+      <div id="coins-search-list"></div>
     </div>
+  </div>
+  <div class="coins-legend">
+    <div class="coins-legend-item"><div class="coins-legend-dot" style="background:#1a56db"></div>Keynote</div>
+    <div class="coins-legend-item"><div class="coins-legend-dot" style="background:#5521b5"></div>Industrial Keynote</div>
+    <div class="coins-legend-item"><div class="coins-legend-dot" style="background:#0a1f44"></div>Paper Session</div>
+    <div class="coins-legend-item"><div class="coins-legend-dot" style="background:#c2185b"></div>Special Session</div>
+    <div class="coins-legend-item"><div class="coins-legend-dot" style="background:#d97706"></div>Tutorial</div>
+    <div class="coins-legend-item"><div class="coins-legend-dot" style="background:#9f1239"></div>Panel</div>
+    <div class="coins-legend-item"><div class="coins-legend-dot" style="background:#0e7490"></div>Social Event</div>
+  </div>
+  <div id="coins-zoom-panel" class="coins-zoom-panel"></div>
+  <div class="coins-tabs">
+    <button class="coins-tab active" onclick="coinsDay('mon',this)">Monday, Sept 7</button>
+    <button class="coins-tab" onclick="coinsDay('tue',this)">Tuesday, Sept 8</button>
+    <button class="coins-tab" onclick="coinsDay('wed',this)">Wednesday, Sept 9</button>
+  </div>
+  <!-- MONDAY -->
+  <div id="coins-mon" class="coins-day active">
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">8:00&ndash;8:30</div><div class="coins-cell coins-break coins-full">Registration</div></div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">8:30&ndash;9:00</div><div class="coins-cell coins-break coins-full">Welcome Ceremony &middot; Room A - Prodi</div></div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">9:00&ndash;10:00</div><div class="coins-cell coins-keynote coins-full" onclick="coinsShowKeynote('K1')"><div class="ev-name">&#127908; Keynote 1: Luca Benini &mdash; Designing Digital Platforms for Wearable Contextual Intelligence</div><div class="ev-sub">60 min &middot; Room A - Prodi</div><div class="ev-chair-note">&#127908; Chair: Prof. Andrea Acquaviva</div></div></div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">10:00&ndash;10:20</div><div class="coins-cell coins-break coins-full" onclick="coinsShowPhdForum()" style="cursor:pointer">&#9749; Coffee Break &nbsp;&middot;&nbsp; &#127891; PhD Forum <span style="text-decoration:underline">(click for presenters)</span></div></div>
+    <div class="coins-row coins-r5"><div class="coins-cell coins-hdr">10:20&ndash;12:00</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('A')">Room A - Prodi</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('B')">Room B - Capitani</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('C')">Room C - Gambi</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('D')">Room D - Fumagalli</div></div>
+    <div class="coins-row coins-r5">
+      <div class="coins-cell coins-time">Slot 1 &middot; 100&prime;</div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S1.A')"><div class="slot-label">Session 1.A &nbsp;<span style="color:#d97706;font-size:9px;">&#9733; BPC</span></div><div class="slot-title">AI Hardware, Design Automation & EDA</div><div class="slot-meta">3R+1S</div></div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S1.B')"><div class="slot-label">Session 1.B</div><div class="slot-title">AI Architectures, Edge Systems & Connectivity</div><div class="slot-meta">3R+1S</div></div>
+      <div class="coins-cell coins-ss" onclick="coinsShow('SS1')" style="cursor:pointer"><div class="ev-name">Special Session 1</div><div class="ev-sub" style="font-size:10px;margin-top:2px">Edge AI: Embedded Inference, Robustness and Neur...</div><div class="ev-sub">Room C - Gambi &middot; 4 papers</div></div>
+      <div class="coins-cell coins-ss" onclick="coinsShow('SS2')" style="cursor:pointer"><div class="ev-name">Special Session 2</div><div class="ev-sub" style="font-size:10px;margin-top:2px">AI-Native Wireless Networks: From 5G to Intellig...</div><div class="ev-sub">Room D - Fumagalli &middot; 4 papers</div></div>
+    </div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">12:00&ndash;13:00</div><div class="coins-cell coins-break coins-full">&#127860; Lunch</div></div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">13:00&ndash;13:45</div><div class="coins-cell coins-panel coins-full"><div class="ev-name">&#127897; Panel 1 &mdash; What is &ldquo;edge&rdquo; in Edge ML? Many Shades of Edge&hellip;</div><div class="ev-sub">45 min &middot; Room A - Prodi</div><div class="ev-moderator">&#127897; Moderator: Prof. Michele Magno &mdash; ETH Z&uuml;rich</div><div class="ev-panelists"><span class="ev-panelist">&#8226; Prof. Luca Benini &mdash; University of Bologna &amp; ETH Z&uuml;rich</span><span class="ev-panelist">&#8226; Prof. Vijay Janapa Reddi &mdash; Harvard University</span><span class="ev-panelist">&#8226; Dr. Valeria Tomaselli &mdash; STMicroelectronics</span><span class="ev-panelist">&#8226; Prof. Sebastiano Panichella &mdash; AI4I - The Italian Institute of Artificial Intelligence for Industry</span></div></div></div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">13:45&ndash;14:30</div><div class="coins-cell coins-ikeynote coins-full" onclick="coinsShowKeynote('IK1')"><div class="ev-name">&#127981; Industrial Keynote 1: Sebastiano Panichella &mdash; From Testing to Runtime Intelligence: Closing the DevOps Loop for Trustworthy AI-enabled Cyber-Physical Systems</div><div class="ev-sub">45 min &middot; Room A - Prodi</div><div class="ev-chair-note">&#127981; Chair: Prof. Florenc Demrozi</div></div></div>
+    <div class="coins-row coins-r5"><div class="coins-cell coins-hdr">14:30&ndash;16:10</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('A')">Room A - Prodi</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('B')">Room B - Capitani</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('C')">Room C - Gambi</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('D')">Room D - Fumagalli</div></div>
+    <div class="coins-row coins-r5">
+      <div class="coins-cell coins-time">Slot 2 &middot; 100&prime;</div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S2.A')"><div class="slot-label">Session 2.A &nbsp;<span style="color:#d97706;font-size:9px;">&#9733; BPC</span></div><div class="slot-title">AI Architectures & Accelerators I</div><div class="slot-meta">4R</div></div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S2.B')"><div class="slot-label">Session 2.B &nbsp;<span style="color:#d97706;font-size:9px;">&#9733; BPC</span></div><div class="slot-title">IoT & Cyber-Physical Intelligence I</div><div class="slot-meta">4R</div></div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S2.C')"><div class="slot-label">Session 2.C &nbsp;<span style="color:#d97706;font-size:9px;">&#9733; BPC</span></div><div class="slot-title">Human-Centered AI & Explainability</div><div class="slot-meta">4R</div></div>
+      <div class="coins-cell coins-tutorial"><div class="ev-name">&#128218; Tutorial 1: Danilo Pau</div><div class="ev-sub">From TinyML to EdgeAI &middot; Room D - Fumagalli</div></div>
+    </div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">16:10&ndash;16:30</div><div class="coins-cell coins-break coins-full" onclick="coinsShowPhdForum()" style="cursor:pointer">&#9749; Coffee Break &nbsp;&middot;&nbsp; &#127891; PhD Forum <span style="text-decoration:underline">(click for presenters)</span></div></div>
+    <div class="coins-row coins-r5"><div class="coins-cell coins-hdr">16:30&ndash;18:10</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('A')">Room A - Prodi</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('B')">Room B - Capitani</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('C')">Room C - Gambi</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('D')">Room D - Fumagalli</div></div>
+    <div class="coins-row coins-r5">
+      <div class="coins-cell coins-time">Slot 3 &middot; 100&prime;</div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S3.A')"><div class="slot-label">Session 3.A</div><div class="slot-title">IoT & Cyber-Physical Intelligence II</div><div class="slot-meta">4R</div></div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S3.B')"><div class="slot-label">Session 3.B</div><div class="slot-title">Connectivity, Cloud & Edge Intelligence</div><div class="slot-meta">2R+2S</div></div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S3.C')"><div class="slot-label">Session 3.C &nbsp;<span style="color:#d97706;font-size:9px;">&#9733; BPC</span></div><div class="slot-title">Agentic & Robotic AI Systems</div><div class="slot-meta">3R+2S</div></div>
+      <div class="coins-cell coins-ss" onclick="coinsShow('SS3')" style="cursor:pointer"><div class="ev-name">Special Session 3</div><div class="ev-sub" style="font-size:10px;margin-top:2px">LLMs and AI-Assisted Tools for Hardware Design, ...</div><div class="ev-sub">Room D - Fumagalli &middot; 4 papers</div></div>
+    </div>
+  </div>
 
+  <!-- TUESDAY -->
+  <div id="coins-tue" class="coins-day">
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">8:30&ndash;9:00</div><div class="coins-cell coins-break coins-full">Registration</div></div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">9:00&ndash;10:00</div><div class="coins-cell coins-keynote coins-full" onclick="coinsShowKeynote('K2')"><div class="ev-name">&#127908; Keynote 2: Vijay Janapa Reddi &mdash; Architecture 2.0: Foundations for AI Agents in Computer System Design</div><div class="ev-sub">60 min &middot; Room A - Prodi</div><div class="ev-chair-note">&#127908; Chair: Prof. Michele Magno</div></div></div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">10:00&ndash;10:20</div><div class="coins-cell coins-break coins-full" onclick="coinsShowPhdForum()" style="cursor:pointer">&#9749; Coffee Break &nbsp;&middot;&nbsp; &#127891; PhD Forum <span style="text-decoration:underline">(click for presenters)</span></div></div>
+    <div class="coins-row coins-r5"><div class="coins-cell coins-hdr">10:20&ndash;12:00</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('A')">Room A - Prodi</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('B')">Room B - Capitani</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('C')">Room C - Gambi</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('D')">Room D - Fumagalli</div></div>
+    <div class="coins-row coins-r5">
+      <div class="coins-cell coins-time">Slot 4 &middot; 100&prime;</div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S4.A')"><div class="slot-label">Session 4.A</div><div class="slot-title">Secure & Trustworthy AI Systems I</div><div class="slot-meta">4R</div></div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S4.B')"><div class="slot-label">Session 4.B</div><div class="slot-title">Embedded AI, IoT Systems & Edge Autonomy</div><div class="slot-meta">1R+2S</div></div>
+      <div class="coins-cell coins-ss" onclick="coinsShow('SS4')" style="cursor:pointer"><div class="ev-name">Special Session 4</div><div class="ev-sub" style="font-size:10px;margin-top:2px">Human-Robot Teaming: Haptics, Wearables and Trus...</div><div class="ev-sub">Room C - Gambi &middot; 4 papers</div></div>
+      <div class="coins-cell coins-ss" onclick="coinsShow('SS5')" style="cursor:pointer"><div class="ev-name">Special Session 5</div><div class="ev-sub" style="font-size:10px;margin-top:2px">Emerging AI Systems: Space Computing, Federated ...</div><div class="ev-sub">Room D - Fumagalli &middot; 4 papers</div></div>
+    </div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">12:00&ndash;13:00</div><div class="coins-cell coins-break coins-full">&#127860; Lunch</div></div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">13:00&ndash;13:45</div><div class="coins-cell coins-ikeynote coins-full" onclick="coinsShowKeynote('IK2')"><div class="ev-name">&#127981; Industrial Keynote 2: Valeria Tomaselli &mdash; The Rise of Physical AI</div><div class="ev-sub">45 min &middot; Room A - Prodi</div><div class="ev-chair-note">&#127981; Chair: Prof. Danilo Pau</div></div></div>
+    <div class="coins-row coins-r3"><div class="coins-cell coins-hdr">13:45&ndash;15:25</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('A')">Room A - Prodi </div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('B')">Room B - Capitani</div></div>
+    <div class="coins-row coins-r3">
+      <div class="coins-cell coins-time">Slot 5 &middot; 100&prime;</div>
+      <div class="coins-cell coins-panel"><div class="ev-name">&#127897; Panel 2 &mdash; Diversity &amp; Inclusion</div><div class="ev-sub">Room A (Rooms B&ndash;C reserved for audience) &middot; 100 min</div><div class="ev-moderator">&#127897; Moderator: Prof. Sara Vinco &mdash; Politecnico di Torino</div><div class="ev-topic">Topic 1 &mdash; Navigating an Engineering Career as a Woman: Insights and Lessons Learned</div><div class="ev-topic-abstract">This panel will provide a platform for leading women in technology, engineering, and research to share their experiences, perspectives, and lessons learned across academia, industry, and the innovation ecosystem. Panelists will reflect on their successes and challenges in navigating the tech industry and research environment, offering insights into the role of practical, technical, entrepreneurial, and relational skills in building sustainable careers. The panel will also create an open dialogue on visibility, mentorship, career development, leadership, and relationship building, while emphasizing the central role that women engineers and researchers play in shaping the future of intelligent technologies.</div><div class="ev-panelists"><span class="ev-panelist">&#8226; Prof. Cecilia Metra &mdash; University of Bologna, Italy</span><span class="ev-panelist">&#8226; Maria Cristina Borelli &mdash; Silicon Catalyst, Italy</span><span class="ev-panelist">&#8226; Dr. Annachiara Ruospo &mdash; Politecnico di Torino, Italy</span><span class="ev-panelist">&#8226; Dr. Valeria Tomaselli &mdash; STMicroelectronics, Italy</span></div><div class="ev-topic">Topic 2 &mdash; Responsible AI by Design: Perspectives from Research and Industry</div><div class="ev-topic-abstract">As artificial intelligence becomes increasingly embedded in everyday technologies, the design of intelligent systems must account not only for performance, but also for trust, accessibility, fairness, robustness, and real-world impact. This panel will explore how choices made throughout the AI lifecycle influence who benefits from AI and how these systems behave in practice. The panel will highlight practical challenges, lessons learned, and concrete actions for building intelligent technologies that serve society responsibly.</div><div class="ev-panelists"><span class="ev-panelist">&#8226; Prof. Leila Ismail &mdash; UAE University, UAE</span><span class="ev-panelist">&#8226; Prof. Michela Milano &mdash; University of Bologna, Italy</span><span class="ev-panelist">&#8226; Dr. Federica Zonzini &mdash; University of Bologna, Italy </span><span class="ev-panelist">&#8226; Maria Cristina Borelli &mdash; Silicon Catalyst, Italy</span></div></div>
+      <div class="coins-cell coins-tutorial"><div class="ev-name">&#128218; Tutorial 2: Davide Rossi</div><div class="ev-sub">Open Computing with RISC-V &middot; Room B - Capitani</div></div>
+    </div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">15:25&ndash;15:45</div><div class="coins-cell coins-break coins-full">&#9749; Coffee Break</div></div>
+    <div class="coins-row coins-r5"><div class="coins-cell coins-hdr">15:45&ndash;17:25</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('A')">Room A - Prodi</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('B')">Room B - Capitani</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('C')">Room C - Gambi</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('D')">Room D - Fumagalli</div></div>
+    <div class="coins-row coins-r5">
+      <div class="coins-cell coins-time">Slot 6 &middot; 100&prime;</div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S6.A')"><div class="slot-label">Session 6.A</div><div class="slot-title">Secure & Trustworthy AI Systems II</div><div class="slot-meta">4R</div></div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S6.B')"><div class="slot-label">Session 6.B</div><div class="slot-title">Foundational, Generative & Cognitive AI</div><div class="slot-meta">2R</div></div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S6.C')"><div class="slot-label">Session 6.C</div><div class="slot-title">AI for Agriculture, Smart Cities & Sustainability</div><div class="slot-meta">4R</div></div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S6.D')"><div class="slot-label">Session 6.D</div><div class="slot-title">AI for Industry & Specialised Domains</div><div class="slot-meta">6S</div></div>
+    </div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">19:00&ndash;23:00</div><div class="coins-cell coins-social coins-full"><div class="ev-name">&#127374; Social Dinner</div><div class="ev-sub">Conference social dinner &mdash; 051 Osteria, Via de' Pignattari, 1f, 40124 Bologna BO, Italy</div></div></div>
+  </div>
+
+  <!-- WEDNESDAY -->
+  <div id="coins-wed" class="coins-day">
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">8:30&ndash;9:00</div><div class="coins-cell coins-break coins-full">Registration</div></div>
+    <div class="coins-row coins-r5"><div class="coins-cell coins-hdr">9:00&ndash;10:40</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('A')">Room A - Prodi</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('B')">Room B - Capitani</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('C')">Room C - Gambi</div><div class="coins-cell coins-hdr" onclick="coinsJoinZoom('D')">Room D - Fumagalli</div></div>
+    <div class="coins-row coins-r5">
+      <div class="coins-cell coins-time">Slot 7 &middot; 100&prime;</div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S7.A')"><div class="slot-label">Session 7.A</div><div class="slot-title">Secure, Trustworthy & Responsible AI</div><div class="slot-meta">2R+3S</div></div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S7.B')"><div class="slot-label">Session 7.B</div><div class="slot-title">AI Cognition, Interaction & Applications</div><div class="slot-meta">3R+1S</div></div>
+      <div class="coins-cell coins-paper" onclick="coinsShow('S7.C')"><div class="slot-label">Session 7.C</div><div class="slot-title">AI for Health & Life Sciences</div><div class="slot-meta">4R</div></div>
+      <div class="coins-cell coins-ss" onclick="coinsShow('SS6')" style="cursor:pointer"><div class="ev-name">Special Session 6</div><div class="ev-sub" style="font-size:10px;margin-top:2px">AI for Digital Health: Multimodal Sensing, TinyM...</div><div class="ev-sub">Room D - Fumagalli &middot; 4 papers</div></div>
+    </div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">10:40&ndash;11:00</div><div class="coins-cell coins-break coins-full">&#9749; Coffee Break</div></div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">11:00&ndash;12:00</div><div class="coins-cell coins-keynote coins-full" onclick="coinsShowKeynote('K3')"><div class="ev-name">&#127908; Keynote 3: Elisa Ricci &mdash; Rethinking Large Multimodal Models: Beyond Accuracy, Towards Trust</div><div class="ev-sub">60 min &middot; Room A - Prodi</div><div class="ev-chair-note">&#127908; Chair: Prof. Federica Zonzini</div></div></div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">12:00&ndash;12:30</div><div class="coins-cell coins-award coins-full">&#127942; Awarding Ceremony &amp; Closing Remarks &middot; Room A - Prodi</div></div>
+    <div class="coins-row coins-r2"><div class="coins-cell coins-time">12:30&ndash;</div><div class="coins-cell coins-break coins-full">&#127860; Lunch</div></div>
+  </div>
+
+</div>
+
+<div id="coins-modal-bg" class="coins-modal-bg" onclick="coinsClose(event)">
+  <div class="coins-modal">
+    <div class="coins-modal-hdr">
+      <h3 id="coins-modal-title"></h3>
+      <button class="coins-modal-close" onclick="coinsClose()">&#215;</button>
+    </div>
+    <div class="coins-modal-body">
+      <div id="coins-modal-meta" class="coins-modal-meta"></div>
+      <div id="coins-modal-papers"></div>
+    </div>
+  </div>
+</div>
+<script>
+var COINS_DATA={"sessions": [{"id": "S1.A", "title": "AI Hardware, Design Automation & EDA", "tracks": "T1, T2", "day": "Mon", "time": "10:20–12:00", "slot": "1.A", "room": "A", "css": "tp-hw", "papers": [{"id": 338, "title": "A Systolic Array Architecture for Nonlinear Activation Functions and Softmax Computation using Chebyshev Polynomials", "authors": "Benedikt Schaible, Anirudh Suresh Bharadwaj, Ulf Schlichtmann and Jiang Hu", "dec": "Regular", "track": "T1", "mins": 25, "fmt": "In-Person", "bpc": true, "sp_first": "Benedikt", "sp_last": "Schaible", "sp_title": "PhD Student", "sp_aff": "Technical University of Munich", "sp_type": "In-Person"}, {"id": 6553, "title": "Benchmarking Large Language Models on HDL Generation of Cryptographic Primitives", "authors": "Tom Slooff, Subhadeep Banik and Francesco Regazzoni", "dec": "Regular", "track": "T2", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Tom", "sp_last": "Slooff", "sp_title": "PhD Student", "sp_aff": "Università della Svizzera italiana", "sp_type": "In-Person"}, {"id": 257, "title": "ToggleGNN: Uncertainty-Aware Vectorless FPGA Activity Estimation", "authors": "Armando Biscontini, Andriy Temko and Emanuel Popovici", "dec": "Regular", "track": "T2", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Armando", "sp_last": "Biscontini", "sp_title": "PhD Student", "sp_aff": "University College Cork", "sp_type": "In-Person"}, {"id": 936, "title": "Leaking Circuit Secrets: Gradient Leakage Attacks on Graph Neural Networks", "authors": "Rupesh Raj Karn, Johann Knechtel and Ozgur Sinanoglu", "dec": "Short", "track": "T2", "mins": 15, "fmt": "In-Person", "bpc": false, "sp_first": "Rupesh Raj", "sp_last": "Karn", "sp_title": "PostDoc Researcher", "sp_aff": "New York University Abu Dhabi", "sp_type": "In-Person"}], "total_mins": 90, "chair": {"first": "Domenico", "last": "Balsamo", "title": "Associate Professor", "aff": "Newcastle University, UK"}}, {"id": "S1.B", "title": "AI Architectures, Edge Systems & Connectivity", "tracks": "T3, T4", "day": "Mon", "time": "10:20–12:00", "slot": "1.B", "room": "B", "css": "tp-hw", "papers": [{"id": 282, "title": "Benchmarking Edge Inference Strategies for Deep Learning Models in Industrial Machine Vision", "authors": "Miguel Gómez", "dec": "Regular", "track": "T3", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Miguel", "sp_last": "Gomez Fernandez", "sp_title": "Research Scientist", "sp_aff": "Smart Systems and Smart Manufacturing, AIMEN", "sp_type": "In-Person"}, {"id": 5503, "title": "Batch-Enabled Tiling of HD Images for Enhanced Real-Time Inference on Embedded GPUs", "authors": "Ian Blake, Ana Perez Grassi and Alejandro Masrur", "dec": "Regular", "track": "T3", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Ian", "sp_last": "Blake", "sp_title": "PhD Student", "sp_aff": "TU Chemnitz", "sp_type": "In-Person"}, {"id": 5072, "title": "Memory Energy Efficiency for Edge LLM Inference in AIoT Platforms", "authors": "Galeano Domingues, André Wolff, Erhon Aragão, Dennis Balreira, Gabriel Nazar and Luigi Carro", "dec": "Short", "track": "T3", "mins": 15, "fmt": "In-Person", "bpc": false, "sp_first": "Luigi", "sp_last": "Carro", "sp_title": "Professor", "sp_aff": "Inf-UFRGS", "sp_type": "In-Person"}, {"id": 2710, "title": "Federated Learning under Sensing Heterogeneity: An Analysis of Smartphone and Smartwatch Data for Automated TUG Assessment", "authors": "Marco Esposito, Sara Raggiunto, Alberto Belli and Paola Pierleoni", "dec": "Regular", "track": "T4", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Marco", "sp_last": "Esposito", "sp_title": "PostDoc Researcher", "sp_aff": "Università Politecnica delle Marche", "sp_type": "In-Person"}], "total_mins": 90, "chair": {"first": "Luca", "last": "Crupi", "title": "PhD Student", "aff": "SUPSI"}}, {"id": "S2.A", "title": "AI Architectures & Accelerators I", "tracks": "T3", "day": "Mon", "time": "14:30–16:10", "slot": "2.A", "room": "A", "css": "tp-hw", "papers": [{"id": 5297, "title": "STEEL: Sparsity-Aware Fused Attention for Energy-Efficient Long-Sequence Inference on AMD’s XDNA™ NPU", "authors": "Victor Jung, Gagandeep Singh, Joseph Melber, Kristof Denolf, Francesco Conti and Luca Benini", "dec": "Regular", "track": "T3", "mins": 25, "fmt": "In-Person", "bpc": true, "sp_first": "Victor", "sp_last": "Jung", "sp_title": "PhD Student", "sp_aff": "ETH Zürich", "sp_type": "In-Person"}, {"id": 3954, "title": "NeuroPAM: Co-optimizing Partitioning and Mapping for DNN Inference on NoC-based Accelerators", "authors": "Jakub Jastrzebski, Piergiulio Mannocci, Lorenzo Cattaneo, Edoardo Cabiati, Artem Glukhov, Hamid Tabani, Orlando Moreira and Daniele Ielmini", "dec": "Regular", "track": "T3", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Jakub", "sp_last": "Jastrzebski", "sp_title": "PhD Student", "sp_aff": "Politecnico di Milano", "sp_type": "In-Person"}, {"id": 8896, "title": "Energy and Area Efficient Systolic Accelerator for Sparse Neural Networks", "authors": "Amirhossein Ilkhani, Rezgar Sadeghi and Marc Reichenbach", "dec": "Regular", "track": "T3", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Amirhossein", "sp_last": "Ilkhani", "sp_title": "Research Scientist", "sp_aff": "University of Rostock", "sp_type": "In-Person"}, {"id": 2836, "title": "Binarized Wake-Up of Conversational Agents on an Industry-Grade High-Performance Microcontroller", "authors": "Sepehr Mohammady, Hadi Ballout, Francesco Bellotti, Luca Lazzaroni, Riccardo Berta, Matteo Fresta, Ammar Saad and Alessandro Pighetti", "dec": "Regular", "track": "T3", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Sepehr", "sp_last": "Mohammady", "sp_title": "PhD Student", "sp_aff": "University of Genoa", "sp_type": "In-Person"}], "total_mins": 100, "chair": {"first": "Luigi", "last": "Carro", "title": "Professor", "aff": "Inf-UFRGS"}}, {"id": "S2.B", "title": "IoT & Cyber-Physical Intelligence I", "tracks": "T6", "day": "Mon", "time": "14:30–16:10", "slot": "2.B", "room": "B", "css": "tp-iot", "papers": [{"id": 7750, "title": "Edge–Cloud Collaborative Event-Driven Intelligence for IoT-Based Energy Management Systems", "authors": "Adewale Ogabi, Geetika Aggarwal, Arooj Mubashara Siddiqui, Gobind Pillai, Munish Rattan and Gurpurneet Kaur", "dec": "Regular", "track": "T6", "mins": 25, "fmt": "Online", "bpc": false, "sp_first": "Adewale", "sp_last": "Ogabi", "sp_title": "Master's Student", "sp_aff": "Teesside University", "sp_type": "Online"}, {"id": 941, "title": "Self-Powered Waste Bin Monitoring Using TEG-Based Ultrasonic Wireless Sensing", "authors": "Domenico Balsamo, Irene Cappelli, Valerio Coppola, Firdaus Ritom, Rishad Shafik and Alessandro Pozzebon", "dec": "Regular", "track": "T6", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Mohd Firdaus", "sp_last": "Hirman Ritom", "sp_title": "PostDoc Researcher", "sp_aff": "Newcastle University", "sp_type": "In-Person"}, {"id": 8925, "title": "Reducing Uplink Bandwidth in Seismic Monitoring Networks through Priority-Aware Packet Classification", "authors": "Marco Esposito, Alberto Belli, Laura Falaschetti, Lorenzo Palma and Paola Pierleoni", "dec": "Regular", "track": "T6", "mins": 25, "fmt": "In-Person", "bpc": true, "sp_first": "Marco", "sp_last": "Esposito", "sp_title": "PostDoc Researcher", "sp_aff": "Università Politecnica delle Marche", "sp_type": "In-Person"}, {"id": 4932, "title": "iORPL:Intermittency-aware Opportunistic Routing for IoT Networks", "authors": "Sara Alsodairi, Alex Weddell, Nawfal Al Hashimy and Geoff Merrett", "dec": "Regular", "track": "T6", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Sara", "sp_last": "Alsodairi", "sp_title": "PhD Student", "sp_aff": "University of Southampton", "sp_type": "In-Person"}], "total_mins": 100, "chair": {"first": "Mattia", "last": "Zauli", "title": "Dr.", "aff": "University of Bologna"}}, {"id": "S3.A", "title": "IoT & Cyber-Physical Intelligence II", "tracks": "T6", "day": "Mon", "time": "16:30–18:10", "slot": "3.A", "room": "A", "css": "tp-iot", "papers": [{"id": 337, "title": "Adaptive AI: Energy Efficient Multi-exit TinyML on Intelligent Vision Systems at the Edge", "authors": "Luca Crupi, Lorenzo Lamberti, Alessandro Giusti and Daniele Palossi", "dec": "Regular", "track": "T6", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Luca", "sp_last": "Crupi", "sp_title": "PhD Student", "sp_aff": "IDSIA USI-SUPSI", "sp_type": "In-Person"}, {"id": 3852, "title": "Enabling LPWAN Co-existence via PHY-layer Packet Filtering in Dense Deployments", "authors": "Muhammad Osama Shahid", "dec": "Regular", "track": "T6", "mins": 25, "fmt": "Online", "bpc": false, "sp_first": "Muhammad Osama", "sp_last": "Shahid", "sp_title": "Assistant Professor", "sp_aff": "Wayne State University", "sp_type": "Online"}, {"id": 2061, "title": "Finding a Needle in a Haystack: Scenario Coverage Verification for Single-UAV Missions Using SMT", "authors": "Qurrat Ul Ain, Abhoy Kole, Muhammad Hassan and Rolf Drechsler", "dec": "Regular", "track": "T6", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Abhoy", "sp_last": "Kole", "sp_title": "PostDoc Researcher", "sp_aff": "German Research Center for Artificial Intelligence (DFKI), Germany", "sp_type": "In-Person"}, {"id": 8048, "title": "DOS Classification, and Virtual Machine Detection via Passive Monitoring through Security Twins", "authors": "Vincenzo Sammartino, Fabrizio Baiardi and Salvatore Ruggieri", "dec": "Regular", "track": "T6", "mins": 25, "fmt": "Online", "bpc": false, "sp_first": "Vincenzo", "sp_last": "Sammartino", "sp_title": "PhD Student", "sp_aff": "Università di Pisa", "sp_type": "Online"}], "total_mins": 100, "chair": {"first": "Marco", "last": "Esposito", "title": "PostDoc Researcher", "aff": "Università Politecnica delle Marche"}}, {"id": "S3.B", "title": "Connectivity, Cloud & Edge Intelligence", "tracks": "T4, T5", "day": "Mon", "time": "16:30–18:10", "slot": "3.B", "room": "B", "css": "tp-cloud", "papers": [{"id": 8653, "title": "WASA: Wavelet Scattering Autoencoders for Unsupervised Offline Detection of Malicious Clients in Federated Learning", "authors": "Alessandro Licciardi", "dec": "Regular", "track": "T4", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Alessandro", "sp_last": "Licciardi", "sp_title": "PhD Student", "sp_aff": "Politecnico di Torino", "sp_type": "In-Person"}, {"id": 8250, "title": "Cloud-on-Demand: Automating Safety-Aware Cloud DNN Invocation for Edge-Cloud Hybrid CPS", "authors": "Cem Baykal, Prateek Ganguli, Tingan Zhu and Samarjit Chakraborty", "dec": "Regular", "track": "T5", "mins": 25, "fmt": "Online", "bpc": false, "sp_first": "Cem", "sp_last": "Baykal", "sp_title": "PhD Student", "sp_aff": "Duke University", "sp_type": "Online"}, {"id": 8137, "title": "FORGE: An Interpretable Framework for LLM-Assisted Log Anomaly Detection", "authors": "Avni Israni and Marjan Asadinia", "dec": "Short", "track": "T5", "mins": 15, "fmt": "Online", "bpc": false, "sp_first": "Avni", "sp_last": "Israni", "sp_title": "Undergraduate", "sp_aff": "California State University, Northridge", "sp_type": "Online"}, {"id": 4281, "title": "Edge GPU Virtualization for Cost-Effective Deep Learning Inference in Retail Deployments", "authors": "Jeronimo Sanchez Garcia, Michelangelo Guaitolini, Raffaele Montella and Sokol Kosta", "dec": "Short", "track": "T5", "mins": 15, "fmt": "In-Person", "bpc": false, "sp_first": "Jerónimo", "sp_last": "Sánchez García", "sp_title": "PhD Student", "sp_aff": "Aalborg University", "sp_type": "In-Person"}], "total_mins": 80, "chair": {"first": "Leila", "last": "Ismail", "title": "Professor", "aff": "UAE University"}}, {"id": "S4.B", "title": "Embedded AI, IoT Systems & Edge Autonomy", "tracks": "T6", "day": "Tue", "time": "10:20–12:00", "slot": "4.B", "room": "B", "css": "tp-iot", "papers": [{"id": 3955, "title": "Design and Implementation of a Collaborative Mobile Dashboard for Waste Sorting Robots", "authors": "Hyuntae Cho, Jehun Koo, Jaejung Shin and Beomjun Kim", "dec": "Short", "track": "T6", "mins": 15, "fmt": "In-Person", "bpc": false, "sp_first": "Hyuntae", "sp_last": "Cho", "sp_title": "Assistant Professor", "sp_aff": "Tongmyong University", "sp_type": "In-Person"}, {"id": 8865, "title": "SNN2MCU: deploying Spiking Neural Networks on commercial microcontrollers using the Neuromorphic Intermediate Representation", "authors": "Andrea Pignata, Simone Delvecchio, Vittorio Fra, Enrico Macii and Gianvito Urgese", "dec": "Short", "track": "T6", "mins": 15, "fmt": "In-Person", "bpc": false, "sp_first": "Andrea", "sp_last": "Pignata", "sp_title": "PhD Student", "sp_aff": "Politecnico di Torino", "sp_type": "In-Person"}, {"id": "ST-TinyML", "title": "ST Edge AI TinyML Contest — Winning Presentation", "authors": "Matteo Zauli and Marco Brina", "dec": "Regular", "track": "T6", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Matteo", "sp_last": "Zauli", "sp_title": "Adjunct Professor", "sp_aff": "University of Bologna", "sp_type": "In-Person"}], "total_mins": 55, "chair": {"first": "Amirhossein", "last": "Ilkhani", "title": "PhD Student", "aff": "University of Rostock"}}, {"id": "S4.A", "title": "Secure & Trustworthy AI Systems I", "tracks": "T7", "day": "Tue", "time": "10:20–12:00", "slot": "4.A", "room": "A", "css": "tp-sec", "papers": [{"id": 8729, "title": "GraphGuard: A Certified Defense Against Topology-based Adversarial Attacks", "authors": "Kerson Boisrond and Junior Harry Boisrond", "dec": "Regular", "track": "T7", "mins": 25, "fmt": "Online", "bpc": false, "sp_first": "Kerson", "sp_last": "Boisrond", "sp_title": "", "sp_aff": "University of Sherbrooke, Canada", "sp_type": "Online"}, {"id": 9453, "title": "Implicit Activation Sparsity for Fault-Tolerant CNNs: A Training-Dynamics Perspective", "authors": "Nicolò Bellarmino, Alberto Bosio, Annachiara Ruospo, Ernesto Sanchez and Riccardo Cantoro", "dec": "Regular", "track": "T7", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Nicolo'", "sp_last": "Bellarmino", "sp_title": "PostDoc Researcher", "sp_aff": "Politecnico di Torino", "sp_type": "In-Person"}, {"id": 8357, "title": "Metadata-Driven Business Email Compromise Detection Under Adversarial Evasion: Robustness Analysis and Adaptive Recovery", "authors": "Oluwatosin Oladiran, Oluwatosin Akande, Afeez Akande, Ganiyat Ibrahim, Taiwo Ogunjobi and Obafemi Fatoba", "dec": "Regular", "track": "T7", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Oluwatosin", "sp_last": "Akande", "sp_title": "Engineer", "sp_aff": "Centre of Intelligence of Things, University of Greater Manchester", "sp_type": "In-Person"}, {"id": 9996, "title": "An Edge AI Industrial Environment Supporting Reliability Assessment and Enhancement", "authors": "Gustavo Vilar de Farias, Celik Abdullah, Josie Esteban Rodriguez Condia, Danilo Pietro Pau and Matteo Sonza Reorda", "dec": "Regular", "track": "T7", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Gustavo", "sp_last": "Vilar De Farias", "sp_title": "PhD Student", "sp_aff": "Politecnico di Torino", "sp_type": "In-Person"}], "total_mins": 100, "chair": {"first": "Andrea Mattia", "last": "Garavagno", "title": "PhD Student", "aff": "ETH Zürich"}}, {"id": "S3.C", "title": "Agentic & Robotic AI Systems", "tracks": "T8", "day": "Mon", "time": "16:30–18:10", "slot": "3.C", "room": "C", "css": "tp-age", "papers": [{"id": 3038, "title": "Fault tolerant terrain-aware locomotion control of a Snake Robot in dynamic environments", "authors": "Syed Kumayl Raza Moosavi, Zeashan Khan, Muhammad Hamza Zafar and Filippo Sanfilippo", "dec": "Regular", "track": "T8", "mins": 25, "fmt": "Online", "bpc": false, "sp_first": "Syed Kumayl Raza", "sp_last": "Moosavi", "sp_title": "PhD Student", "sp_aff": "University of Agder", "sp_type": "Online"}, {"id": 3498, "title": "Edge AI for Monocular Cone Perception in Formula Student Driverless Racing", "authors": "Tommaso Fava, Daniele Berardini, Adriano Mancini, Alessandro Galdelli and Laura Falaschetti", "dec": "Regular", "track": "T8", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Adriano", "sp_last": "Mancini", "sp_title": "Associate Professor", "sp_aff": "Università Politecnica delle Marche, IT", "sp_type": "In-Person"}, {"id": 5476, "title": "Sim-to-Real Validation of Low-Speed Maneuvers of an RC Car in CARLA", "authors": "Ali Zare, Amirmohammad Dalvand, Francesco Bellotti, Luca Lazzaroni, Alessandro Pighetti, Matteo Fresta, Sepehr Mohammady, Vafali Soltanmuradov, Om Lbaneen Audi and Riccardo Berta", "dec": "Regular", "track": "T8", "mins": 25, "fmt": "In-Person", "bpc": true, "sp_first": "Ali", "sp_last": "Zare", "sp_title": "PhD Student", "sp_aff": "University of Genova", "sp_type": "In-Person"}, {"id": 6015, "title": "Extending Affordance Segmentation for Wearable Robots to Multi-Object Images", "authors": "Simone Lugani, Paolo Gastaldo, Rodolfo Zunino, Edoardo Ragusa and Matteo Montani", "dec": "Short", "track": "T8", "mins": 15, "fmt": "In-Person", "bpc": false, "sp_first": "Simone", "sp_last": "Lugani", "sp_title": "PhD Student", "sp_aff": "University of Genoa", "sp_type": "In-Person"}, {"id": 6533, "title": "Floodwater Region Segmentation from Post-Disaster Aerial Imagery", "authors": "Hemish Dalsukhbhai Radadiya, Md Maklachur Rahman, Bright Asare and Tauhidul Alam", "dec": "Short", "track": "T8", "mins": 15, "fmt": "Online", "bpc": false, "sp_first": "Bright", "sp_last": "Asare", "sp_title": "Master's Student", "sp_aff": "Lamar University", "sp_type": "Online"}], "total_mins": 105, "chair": {"first": "Laura", "last": "Falaschetti", "title": "Assistant Professor", "aff": "Università Politecnica delle Marche"}}, {"id": "S2.C", "title": "Human-Centered AI & Explainability", "tracks": "T10", "day": "Mon", "time": "14:30–16:10", "slot": "2.C", "room": "C", "css": "tp-hci", "papers": [{"id": 4391, "title": "edgeGuard: Multimodal On-Device Perception for First Responders in Emergency Scenarios", "authors": "Alice Pagnoux, Marco Giordano, Michele Magno, Victor Kartsch and Luca Benini", "dec": "Regular", "track": "T10", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Alice", "sp_last": "Pagnoux", "sp_title": "PhD Student", "sp_aff": "ETH Zurich", "sp_type": "In-Person"}, {"id": 4079, "title": "The Glass Box Psychiatrist: Grounding LLM Clinical Narratives in Multimodal Transformer Attention Rollouts", "authors": "Umair Talib, Ugonna Oleh, Muhammad Ali Alam and Roman Obermaisser", "dec": "Regular", "track": "T10", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Ugonna", "sp_last": "Oleh", "sp_title": "PhD Student", "sp_aff": "University of Siegen", "sp_type": "In-Person"}, {"id": 3495, "title": "Self-Evolving DSM-5 Annotation Framework for Explainable Depression Prediction", "authors": "Hoang-Loc Cao, Van Pham, Truong Thanh Hung Nguyen, Phuc Truong Loc Nguyen, Phuc Ho, Veronica Whitford and Hung Cao", "dec": "Regular", "track": "T10", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Truong Thanh Hung", "sp_last": "Nguyen", "sp_title": "PhD Student", "sp_aff": "University of New Brunswick", "sp_type": "In-Person"}, {"id": 9424, "title": "Meta-Learning for Data-Efficient Plant Growth Estimation via Vision Transformers and Fuzzy Clustering", "authors": "Sheikh Hasan Elahi, Rusith Chamara Hathurusinghe Dewage, Habib Ullah, Muhammad Salman Siddiqui, Rakibul Islam and Fadi Al Machot", "dec": "Regular", "track": "T12", "mins": 25, "fmt": "Online", "day": "Mon", "time": "14:30–16:10", "room": "C", "slot": "2.C", "bpc": true, "sp_first": "Rusith Chamara", "sp_last": "Hathurusinghe Dewage", "sp_title": "PhD Student", "sp_aff": "Norwegian University of Life Sciences", "sp_type": "Online"}], "total_mins": 100, "chair": {"first": "Florenc", "last": "Demrozi", "title": "Professor", "aff": "University of Stavanger, Norway"}}, {"id": "S6.A", "title": "Secure & Trustworthy AI Systems II", "tracks": "T7", "day": "Tue", "time": "15:45–17:25", "slot": "6.A", "room": "A", "css": "tp-sec", "papers": [{"id": 6492, "title": "NLP-Driven Multi-Agent Orchestration for Secure Enterprise Automation: A Policy-Aware Framework with Adversarial Robustnes", "authors": "Gopalakrishnan Marimuthu and Sriramprabhu Rajendran", "dec": "Regular", "track": "T7", "mins": 25, "fmt": "Online", "bpc": false, "noshow": true, "sp_first": "Gopalakrishnan", "sp_last": "Marimuthu", "sp_title": "", "sp_aff": "Amazon Web Services, United States", "sp_type": "Online"}, {"id": 6646, "title": "Trustworthy Agentic AI Pipelines: Human-in-the-Loop Oversight Architectures for Secure Enterprise Deployment", "authors": "Saroj Mishra", "dec": "Regular", "track": "T7", "mins": 25, "fmt": "Online", "bpc": false, "sp_first": "Saroj", "sp_last": "Mishra", "sp_title": "Industry Professional", "sp_aff": "University of North Dakota", "sp_type": "Online"}, {"id": 7983, "title": "ZT-MCP: A Zero-Trust Security Architecture for MCP-Connected AI Agents", "authors": "Saroj Mishra", "dec": "Regular", "track": "T7", "mins": 25, "fmt": "Online", "bpc": false, "sp_first": "Saroj", "sp_last": "Mishra", "sp_title": "Industry Professional", "sp_aff": "University of North Dakota", "sp_type": "Online"}, {"id": 7186, "title": "New Aging Compensation Scheme for Ring Oscillators-Based PUFs", "authors": "Mirko Magrini, Martin Omana, Marco Grossi and Cecilia Metra", "dec": "Regular", "track": "T7", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Martin", "sp_last": "Omana", "sp_title": "Associate Professor", "sp_aff": "University of Bologna", "sp_type": "In-Person"}], "total_mins": 100, "chair": {"first": "Oluwatosin", "last": "Akande", "title": "Researcher", "aff": "University of Bolton"}}, {"id": "S6.B", "title": "Foundational, Generative & Cognitive AI", "tracks": "T9", "day": "Tue", "time": "15:45–17:25", "slot": "6.B", "room": "B", "css": "tp-gen", "papers": [{"id": 2346, "title": "The Faithfulness Gap: Evaluating Dependency Faithfulness in LLM Reasoning via Minimal Support Recovery", "authors": "Solomon Xu and Marjan Asadinia", "dec": "Regular", "track": "T9", "mins": 25, "fmt": "Online", "bpc": false, "sp_first": "Solomon", "sp_last": "Xu", "sp_title": "Master's Student", "sp_aff": "UCLA", "sp_type": "Online"}, {"id": 2547, "title": "Improving Continual Learning for Gaussian Splatting based Environments Reconstruction on Commercial Off-the-Shelf Edge Devices", "authors": "Ivan Zaino, Matteo Risso, Daniele Jahier Pagliari, Miguel De Prado, Toon Van De Maele, Davide Rossi and Alessio Burrello", "dec": "Regular", "track": "T9", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Ivan", "sp_last": "Zaino", "sp_title": "PhD Student", "sp_aff": "Università di Pavia", "sp_type": "In-Person"}], "total_mins": 50, "chair": {"first": "Batuhan", "last": "Sesli", "title": "PhD Student", "aff": "FAU Erlangen-Nürnberg"}}, {"id": "S7.A", "title": "Secure, Trustworthy & Responsible AI", "tracks": "T7, T11", "day": "Wed", "time": "09:00–10:40", "slot": "7.A", "room": "A", "css": "tp-sec", "papers": [{"id": 381, "title": "ARMOR-IMC: Adaptive Resource Mapping for Operational Robustness via Secure In-Memory Computing", "authors": "Md Muhtasim Alam Chowdhury, Ramtin Zand and Soheil Salehi", "dec": "Short", "track": "T7", "mins": 15, "fmt": "Online", "bpc": false, "sp_first": "Md Muhtasim Alam", "sp_last": "Chowdhury", "sp_title": "PhD Student", "sp_aff": "University of Arizona", "sp_type": "Online"}, {"id": 7017, "title": "Learning Red Agent Policy from Observations for Neurosymbolic Autonomous Cyber Agents", "authors": "Ankita Samaddar, Sandeep Neema, Daniel Balasubramanian and Xenofon Koutsoukos", "dec": "Short", "track": "T7", "mins": 15, "fmt": "Online", "bpc": false, "sp_first": "Ankita", "sp_last": "Samaddar", "sp_title": "PostDoc Researcher", "sp_aff": "Vanderbilt University", "sp_type": "Online"}, {"id": 4716, "title": "Modeling Reliable Autonomous Driving with CARLA-Based Benchmark for Visual SLAM", "authors": "Mohammed Alazzani and Kyusuk Han", "dec": "Short", "track": "T7", "mins": 15, "fmt": "Online", "bpc": false, "sp_first": "Mohammed", "sp_last": "Alazzani", "sp_title": "Other", "sp_aff": "Technology Innovation Institute", "sp_type": "Online"}, {"id": 2877, "title": "Artificial Intelligence Skills and Wage Premiums", "authors": "Frederic Mirindi, Derrick Mirindi, David Sinkhonde and Patrice Mirindi", "dec": "Regular", "track": "T11", "mins": 25, "fmt": "Online", "bpc": false, "noshow": true, "sp_first": "Frédéric", "sp_last": "Mirindi", "sp_title": "PhD Student", "sp_aff": "University of Manitoba", "sp_type": "Online"}, {"id": 9755, "title": "Cognitively Aligned Dual-Task Interaction for Small Object Perception in Highway Surveillance", "authors": "Dian Liu, Yongjie Gong, Zening Zhang and Haoxiang Wang", "dec": "Regular", "track": "T9", "mins": 25, "fmt": "Online", "bpc": false, "sp_first": "Dian", "sp_last": "Liu", "sp_title": "PhD Student", "sp_aff": "South China University of Technology", "sp_type": "Online"}], "total_mins": 95, "chair": {"first": "Ali", "last": "Zare", "title": "PhD Student", "aff": "University of Genova"}}, {"id": "S7.B", "title": "AI Cognition, Interaction & Applications", "tracks": "T9, T12", "day": "Wed", "time": "09:00–10:40", "slot": "7.B", "room": "B", "css": "tp-hci", "papers": [{"id": 8579, "title": "Teaching Cyber Security with Generative AI for the Automated Design of Exercises Using SLM and RAFT", "authors": "Francisco Jose Rodriguez Montes, Diego Rodriguez Gracia, Sam Maesschalck and Jose Antonio Piedra-Fernandez", "dec": "Short", "track": "T9", "mins": 15, "noshow": true, "fmt": "In-Person", "bpc": false, "sp_first": "Francisco Jose", "sp_last": "Rodriguez Montes", "sp_title": "", "sp_aff": "Universidad de Almeria, Spain", "sp_type": "In-Person"}, {"id": 1378, "title": "AI-enabled agroclimatic indicator forecasting in precision agriculture", "authors": "George Routis, Marios Paraskevopoulos and Ioanna Roussaki", "dec": "Regular", "track": "T12", "mins": 25, "fmt": "Online", "bpc": false, "sp_first": "George", "sp_last": "Routis", "sp_title": "PostDoc Researcher", "sp_aff": "EECE National Technical University of Athens", "sp_type": "Online"}, {"id": 8955, "title": "Improving Clinical Reliability of Diffusion-Based Dermatology Image Synthesis Through Synthetic Note Alignment and Post-Generation Filtering", "authors": "Niccolo Marini, Zhaohui Liang, Sivaramakrishnan Rajaraman, Zhiyun Xue and Sameer Antani", "dec": "Regular", "track": "T12", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Niccolò", "sp_last": "Marini", "sp_title": "Research Scientist", "sp_aff": "National Library of Medicine, National Institutes of Health", "sp_type": "In-Person"}, {"id": 7580, "title": "Explanation Consistency as a Trust Signal in Human–AI Teaming", "authors": "Christopher G. Harris", "dec": "Regular", "track": "T10", "mins": 25, "fmt": "Online", "day": "Wed", "time": "10:20–12:00", "room": "B", "slot": "7.B", "bpc": false, "sp_first": "Christopher", "sp_last": "Harris", "sp_title": "Professor", "sp_aff": "University of Northern Colorado", "sp_type": "Online"}], "total_mins": 90, "chair": {"first": "Emil", "last": "Njor", "title": "PhD Student", "aff": "University of Southern Denmark"}}, {"id": "S7.C", "title": "AI for Health & Life Sciences", "tracks": "T12", "day": "Wed", "time": "09:00–10:40", "slot": "7.C", "room": "C", "css": "tp-app", "papers": [{"id": 9468, "title": "An Autonomous Multi-Model Air Quality and Pollen Forecasting System for Smart City Dataspaces", "authors": "Sebastian-Ioan Petruc, Andrei-Stefan Bulzan, Marian-Emanuel Ionascu, Cosmin Cernazanu-Glavan, Razvan Bogdan and Marius Marcu", "dec": "Regular", "track": "T12", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Sebastian", "sp_last": "Petruc", "sp_title": "PhD Student", "sp_aff": "Politehnica University Timisoara", "sp_type": "In-Person"}, {"id": 2504, "title": "From Landmarks to Gestures: Real-Time Lightweight Gesture Recognition at the Edge", "authors": "Rosanna Manzo, Pietro Bonazzi, Francesco Caputo, Marco Giordano, Nicola Moccaldi, Danilo Pau, Pasquale Arpaia and Michele Magno", "dec": "Regular", "track": "T12", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Rosanna", "sp_last": "Manzo", "sp_title": "PhD Student", "sp_aff": "University of Naples Federico II", "sp_type": "In-Person"}, {"id": 1867, "title": "Deep Learning for Precision Viticulture: A YOLOv8 Approach to Automated Pruning Segmentation", "authors": "Lorenzo Manoni, Laura Falaschetti, Eleonora Di Angelo, Alessandro Senesi, Simone Orcioni and Massimo Conti", "dec": "Regular", "track": "T12", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Laura", "sp_last": "Falaschetti", "sp_title": "Assistant Professor", "sp_aff": "Università Politecnica delle Marche", "sp_type": "In-Person"}, {"id": 151, "title": "Smart-Glasses IMU Streams as Cybersecurity Side Channels", "authors": "Siva Adduri, Habiba Elsayed, Sakina Bagalkot, Reham Mohamed Aburas and Imran Zualkernan", "dec": "Regular", "track": "T12", "mins": 25, "fmt": "Online", "bpc": false, "sp_first": "Sakina", "sp_last": "Bagalkot", "sp_title": "Undergraduate", "sp_aff": "American University of Sharjah", "sp_type": "Online"}], "total_mins": 100, "chair": {"first": "Alessandro", "last": "Licciardi", "title": "PhD Student", "aff": "Politecnico di Torino"}}, {"id": "S6.C", "title": "AI for Agriculture, Smart Cities & Sustainability", "tracks": "T12", "day": "Tue", "time": "15:45–17:25", "slot": "6.C", "room": "C", "css": "tp-app", "papers": [{"id": 893, "title": "Weakly Supervised Learning of Oral Cavity Images for Separating Precancer from Cancer", "authors": "Zhiyun Xue, Niccolo Marini, Sivaramakrishnan Rajaraman, Zhaohui Liang and Sameer Antani", "dec": "Regular", "track": "T12", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Zhiyun", "sp_last": "Xue", "sp_title": "Other", "sp_aff": "National Library of Medicine", "sp_type": "In-Person"}, {"id": 5377, "title": "Toward Fair Explainable AI in Medical Imaging: Mask-Aware Benchmarking of Grad-CAM and SHAP for Diabetic Retinopathy", "authors": "Saeed Thabit, Ala Hilal, Muhammad Khan, Yingfeng Wang and Leila Ismail", "dec": "Regular", "track": "T12", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Leila", "sp_last": "Ismail", "sp_title": "Professor", "sp_aff": "College of Information Technology, United Arab Emirates University", "sp_type": "In-Person"}, {"id": 6123, "title": "Safe and Explainable AI for Personalized Insulin Dosing in Type 1 Diabetes", "authors": "Yash Kishorbhai Pansheriya and Marjan Asadinia", "dec": "Regular", "track": "T12", "mins": 25, "fmt": "Online", "bpc": false, "sp_first": "Yash Kishorbhai", "sp_last": "Pansheriya", "sp_title": "Master's Student", "sp_aff": "California State University, Northridge", "sp_type": "Online"}, {"id": 9038, "title": "LiZAD: A Lightweight Zero-Shot Anomaly Detection Framework for Industrial Manufacturing", "authors": "Uzair Khan, Luigi Capogrosso, Muhammad Aqeel, Francesco Setti, Michele Magno and Marco Cristani", "dec": "Regular", "track": "T12", "mins": 25, "fmt": "In-Person", "bpc": false, "sp_first": "Uzair", "sp_last": "Khan", "sp_title": "PhD Student", "sp_aff": "University of Verona", "sp_type": "In-Person"}], "total_mins": 100, "chair": {"first": "Victor", "last": "Jung", "title": "PhD Student", "aff": "ETH Zürich"}}, {"id": "S6.D", "title": "AI for Industry & Specialised Domains", "tracks": "T12", "day": "Tue", "time": "15:45–17:25", "slot": "6.D", "room": "D", "css": "tp-app", "papers": [{"id": 7290, "title": "Smart home battery management for domestic for grid-connected PV sources", "authors": "Luca Corradini, Giorgio Olivieri, Lorenzo Manoni, Laura Falaschetti, Andrea Gentili, Simone Orcioni and Massimo Conti", "dec": "Short", "track": "T12", "mins": 15, "fmt": "In-Person", "bpc": false, "sp_first": "Giorgio", "sp_last": "Olivieri", "sp_title": "PhD Student", "sp_aff": "UNIVPM", "sp_type": "In-Person"}, {"id": 2139, "title": "Design-Space Exploration of an iCEEMDAN-SNN Pipeline for Edge-Based Seizure Detection", "authors": "Carl Lester Fabian, Marc Rosales, Adelson Chua and John Richard Hizon", "dec": "Short", "track": "T12", "mins": 15, "fmt": "In-Person", "bpc": false, "sp_first": "Carl Lester", "sp_last": "Fabian", "sp_title": "Master's Student", "sp_aff": "University of the Philippines Diliman Electrical and Electronics Engineering Institute", "sp_type": "In-Person"}, {"id": 6112, "title": "Few-Shot Adaptation for Anomalous Sound Detection at Low False-Positive Rate", "authors": "Simone Lugani, Christof Pichler, Hannes Wegleiter, Christoph Feilmayr, Rodolfo Zunino and Edoardo Ragusa", "dec": "Short", "track": "T12", "mins": 15, "fmt": "In-Person", "bpc": false, "sp_first": "Simone", "sp_last": "Lugani", "sp_title": "PhD Student", "sp_aff": "University of Genoa", "sp_type": "In-Person"}, {"id": 1257, "title": "A Scalable, Resource-Efficient Multilingual AI Assistant for Global Education: Adaptive Language Learning Across Diverse Linguistic Environments", "authors": "Cunqian You, Weiyi Jiang, Miao Wei, Xueqi Lu, Qing Luo, Xiaojun Wang, Huijuan Lu and Yudong Yao", "dec": "Short", "track": "T12", "mins": 15, "fmt": "Online", "bpc": false, "sp_first": "Cunqian", "sp_last": "You", "sp_title": "Engineer", "sp_aff": "China Jiliang University", "sp_type": "Online"}, {"id": 2458, "title": "Auto-Integrating Agricultural End-Effector Quick-Change System", "authors": "Daniel Byers, Harrison Forsythe, Raphael Sena, Jon Brown and Muhammad Hassan Tanveer", "dec": "Short", "track": "T12", "mins": 15, "fmt": "Online", "bpc": false, "sp_first": "Daniel", "sp_last": "Byers", "sp_title": "PhD Student", "sp_aff": "Kennesaw State University", "sp_type": "Online"}, {"id": 5327, "title": "Ultrasonic Power Transfer and Communication with Stateful Energy Management for Batteryless Sensing in Sealed Metallic Structures", "authors": "Valerio Coppola, Firdaus Ritom, Luca De Marchi, Rishad Shafik and Domenico Balsamo", "dec": "Short", "track": "T12", "mins": 15, "fmt": "In-Person", "bpc": false, "sp_first": "Valerio", "sp_last": "Coppola", "sp_title": "PhD Student", "sp_aff": "University of Bologna - Newcastle University", "sp_type": "In-Person"}], "total_mins": 90, "chair": {"first": "Mohd Firdaus Hirman", "last": "Ritom", "title": "PhD Student", "aff": "Newcastle University"}}, {"id": "SS1", "title": "Edge AI: Embedded Inference, Robustness and Neural Architecture Search", "tracks": "Special Session", "day": "Mon", "time": "10:20–12:00", "slot": "1.C", "room": "C", "total_mins": 100, "papers": [{"id": 1997, "title": "Edge AI Framework for Real-Time Tactile Perception via FBG-Based Artificial Skin", "authors": "Lisa Aurora Bernardo, Daniele Moglia, Mariangela Filosa, David Siorpaes, Alessandro Vaghi", "dec": "Regular", "fmt": "In-Person", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Calogero Maria", "sp_last": "Oddo", "sp_title": "Associate Professor", "sp_aff": "Sant’Anna School of Advanced Studies", "sp_type": "In-Person"}, {"id": 8046, "title": "An EdgeAI Approach for Fast Ball Detection in a Robotic Soccer Table Game", "authors": "Massimo Orazio Spata, Corrado Santoro, Francesco Rundo and Sebastiano Battiato", "dec": "Regular", "fmt": "In-Person", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Corrado", "sp_last": "Santoro", "sp_title": "Professor", "sp_aff": "University of Catania", "sp_type": "In-Person"}, {"id": 9177, "title": "BearingNAS: Obtaining In-Sensor Intelligent Fault Diagnosis Systems for Bearings Using a Laptop", "authors": "Andrea Mattia Garavagno, Edoardo Ragusa, Paolo Gastaldo, Antonio Frisoli and Rodolfo Zunino", "dec": "Regular", "fmt": "In-Person", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Andrea Mattia", "sp_last": "Garavagno", "sp_title": "PostDoc Researcher", "sp_aff": "ETH Zurich and University of Genoa", "sp_type": "In-Person"}, {"id": 5090, "title": "RankNAS: A Pairwise Ranking Model to Accelerate Black-Box Neural Architecture Search", "authors": "Vasilis Moschou, Emil Njor and Xenofon Fafoutis", "dec": "Regular", "fmt": "In-Person", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Emil", "sp_last": "Njor", "sp_title": "Assistant Professor", "sp_aff": "University of Southern Denmark", "sp_type": "In-Person"}], "chair": {"first": "Valeria", "last": "Tomaselli", "title": "Industrial Speaker / SS Organiser", "aff": "STMicroelectronics"}}, {"id": "SS2", "title": "AI-Native Wireless Networks: From 5G to Intelligent IoT Connectivity", "tracks": "Special Session", "day": "Mon", "time": "10:20–12:00", "slot": "1.D", "room": "D", "total_mins": 100, "description": "IoT and next-generation wireless networks are shifting toward AI-native, goal-oriented communication, where intelligence is built directly into protocols and resource allocation rather than added on top. This session covers learning-driven approaches — multi-agent reinforcement learning, protocol learning, and semantic communications — for adaptive, task-aware wireless IoT systems.", "organizers": [{"first": "Prof. Lorenzo Mario", "last": "Amorosa", "aff": "University of Bologna, Italy"}, {"first": "Prof. Luciano", "last": "Miuccio", "aff": "University of Catania, Italy"}, {"first": "Prof. Salvatore", "last": "Riolo", "aff": "University of Catania, Italy"}, {"first": "Prof. Roberto", "last": "Verdone", "aff": "University of Bologna, Italy"}], "papers": [{"id": 2217, "title": "From Wireless SNNs to SN P Systems: A Low-Energy Rule-Based Conversion", "authors": "Pietro Savazzi, Mauro Marchese, Anna Vizziello and Fabio Dell'Acqua", "dec": "Regular", "fmt": "In-Person", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Mauro", "sp_last": "Marchese", "sp_title": "PhD Student", "sp_aff": "University of Pavia", "sp_type": "In-Person"}, {"id": 5801, "title": "Fairness-Aware Deep Reinforcement Learning for Distributed Beamforming in Cellular Networks", "authors": "Anum Abbasi, Luciano Miuccio, Daniela Panno, Raoul Raftopoulos and Salvatore Riolo", "dec": "Regular", "fmt": "Online", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Anum", "sp_last": "Abbasi", "sp_title": "PhD Student", "sp_aff": "University of Catania", "sp_type": "Online"}, {"id": 7960, "title": "Indirect Estimation of SINR via SSB and CSI-RS RSRP in 5G NR", "authors": "Leonardo Spampinato, Mahamadou Togola, Matteo Bernabè, Azim Akhtarshenas and Lorenzo Mario Amorosa", "dec": "Regular", "fmt": "In-Person", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Leonardo", "sp_last": "Spampinato", "sp_title": "PostDoc Researcher", "sp_aff": "iTeam@UPV", "sp_type": "In-Person"}, {"id": 8321, "title": "Proactive URLLC Adaptation for Connected Vehicles Through ML-Based Channel Prediction", "authors": "Andrea Giovannini, Lorenzo Mario Amorosa, Vittorio Todisco, Claudia Campolo and Antonella Molinaro", "dec": "Regular", "fmt": "In-Person", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Andrea", "sp_last": "Giovannini", "sp_title": "Research Scientist", "sp_aff": "Wilab-CNIT", "sp_type": "In-Person"}], "chair": {"first": "Lorenzo Mario", "last": "Amorosa", "title": "SS Organiser", "aff": "University of Bologna"}}, {"id": "SS3", "title": "LLMs and AI-Assisted Tools for Hardware Design, EDA and Security Verification", "tracks": "Special Session", "day": "Mon", "time": "16:30–18:10", "slot": "3.D", "room": "D", "total_mins": 100, "papers": [{"id": 44, "title": "CREST-LLM: Carbon–Reliability–Performance Evaluation Framework for Sustainable LLM Systems", "authors": "Nelson Tito Kimaro, Amit Kumar Singh, Sangeet Saha, Xiaojun Zhai and Klaus D. McDonald-Maier", "dec": "Regular", "fmt": "Online", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Nelson", "sp_last": "Kimaro", "sp_title": "PhD Student", "sp_aff": "University of Essex", "sp_type": "Online"}, {"id": 4270, "title": "H2-GAT: Hierarchical Heterogeneous Graph Attention Networks for AI Model Safety Verification", "authors": "Ikeagwuchi Ekeke, Amit Kumar Singh and Xiaohang Wang", "dec": "Regular", "fmt": "Online", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Ikeagwuchi", "sp_last": "Ekeke", "sp_title": "Other", "sp_aff": "University of Essex", "sp_type": "Online"}, {"id": 4686, "title": "VeriChat: An Agentic Conversational AI Assistant for Hardware Security Verification", "authors": "Dipayan Saha, Khan Thamid Hasan, Shams Tarek, Sujan Saha, Mark Tehranipoor and Farimah Farahmandi", "dec": "Regular", "fmt": "Online", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Hasan", "sp_last": "Khan Thamid", "sp_title": "PhD Student", "sp_aff": "University of Florida", "sp_type": "Online"}, {"id": 3947, "title": "RAPTOR: Robustness Assessment of Patch Transfer and Operational Risk in Edge AI", "authors": "Lefkios Mavroudi, Antonis Savva, Christos Kyrkou and Theocharis Theocharides", "dec": "Regular", "fmt": "Online", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Lefkios", "sp_last": "Mavroudi", "sp_title": "Master's Student", "sp_aff": "KIOS Research and Innovation Center of Excellence, University of Cyprus", "sp_type": "Online"}], "chair": {"first": "Florenc", "last": "Demrozi", "title": "Session Chair", "aff": "University os Stavanger"}}, {"id": "SS4", "title": "Human-Robot Teaming: Haptics, Wearables and Trustworthy Agentic Interaction", "tracks": "Special Session", "day": "Tue", "time": "10:20–12:00", "slot": "4.C", "room": "C", "total_mins": 100, "description": "This special session explores the frontier of collaborative automation, focusing on how physical and psychological elements intersect in human-machine workflows. It bridges tactile engineering and behavioral science through peer-reviewed research on wearable interfaces, tactile feedback mechanisms, and algorithmic frameworks built to establish and restore mutual trust.", "organizers": [{"first": "Prof. Filippo", "last": "Sanfilippo", "aff": "University of Agder, Norway"}, {"first": "Prof. Gionata", "last": "Salvietti", "aff": "University of Siena & Istituto Italiano di Tecnologia (IIT), Italy"}], "papers": [{"id": 656, "title": "Design and Psychophysical Calibration of a Multimodal Pneumatic–Vibrotactile Wearable Interface for Cutaneous Feedback", "authors": "Alessio De Bona and Gionata Salvietti", "dec": "Regular", "fmt": "Online", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Alessio", "sp_last": "De Bona", "sp_title": "PhD Student", "sp_aff": "University of Siena", "sp_type": "Online"}, {"id": 7802, "title": "The Dance of Togetherness: Bachata-Inspired Haptic Control for Intimate Human-Robot Teaming", "authors": "Filippo Sanfilippo, Muhammad Hamza Zafar and Syed Kumayl Raza Moosavi", "dec": "Regular", "fmt": "In-Person", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Filippo", "sp_last": "Sanfilippo", "sp_title": "Professor", "sp_aff": "University of Agder", "sp_type": "In-Person"}, {"id": 8928, "title": "NASP-T: A Fuzzy Neuro-Symbolic Transformer for Logic-Constrained Aviation Safety Report Classification", "authors": "Fadi Al Machot and Fidaa Al Machot", "dec": "Regular", "fmt": "Online", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Fadi", "sp_last": "Al Machot", "sp_title": "Associate Professor", "sp_aff": "Norwegian University for Life Sciences", "sp_type": "Online"}, {"id": 928, "title": "Agentic AI Trustworthiness Is a Full-Stack Problem: A Framework from Hardware to Application", "authors": "Bahar Farahani, Mohammad Rouintan, Parichehr Vahidicia and Farshad Firouzi", "dec": "Regular", "fmt": "Online", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Mohammad", "sp_last": "Rouintan", "sp_title": "Master's Student", "sp_aff": "Sharif University of Technology", "sp_type": "Online"}], "chair": {"first": "Filippo", "last": "Sanfilippo", "title": "Professor / SS Organiser", "aff": "University of Agder"}}, {"id": "SS5", "title": "Emerging AI Systems: Space Computing, Federated Learning and Trustworthy Intelligence", "tracks": "Special Session", "day": "Tue", "time": "10:20–12:00", "slot": "4.D", "room": "D", "total_mins": 100, "papers": [{"id": 4704, "title": "Space Microelectronics for the Commercial Era: A Cross-Layer View from Orbit", "authors": "Nathaniel Bleier", "dec": "Regular", "fmt": "In-Person", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Nathan", "sp_last": "Bleier", "sp_title": "Assistant Professor", "sp_aff": "University of Michigan", "sp_type": "In-Person"}, {"id": 5846, "title": "Space Data Centers (SDC): Rethinking Computing Infrastructure Beyond Earth", "authors": "Soyed Tuhin Ahmed, Bahar Farahani, Krishnendu Chakrabarty and Farshad Firouzi", "dec": "Regular", "fmt": "Online", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Soyed", "sp_last": "Tuhin AHMED", "sp_title": "PostDoc Researcher", "sp_aff": "ASU", "sp_type": "Online"}, {"id": 7499, "title": "MoE Router-Guided Clustering for Heterogeneous Federated Instruction Tuning", "authors": "Ankita Sharma, Bahar Farahani, Sanaz Rahimi Moosavi, Amir Rahmani, Farshad Firouzi and  Krishnendu Chakrabarty", "dec": "Regular", "fmt": "In-Person", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Ankita", "sp_last": "Sharma", "sp_title": "", "sp_aff": "Arizona State University, USA", "sp_type": "In-Person"}, {"id": 1681, "title": "Towards Reliable LLM-Assisted Verification Artifact Generation in EDA", "authors": "Khushboo Qayyum, Qurrat Ul Ain, Muhammad Hassan, Asjad Afnan and Rolf Drechsler", "dec": "Regular", "fmt": "In-Person", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Khushboo", "sp_last": "Qayyum", "sp_title": "PhD Student", "sp_aff": "DFKI", "sp_type": "In-Person"}], "chair": {"first": "Calogero Maria", "last": "Oddo", "title": "Session Chair", "aff": "Sant’Anna School of Advanced Studies"}}, {"id": "SS6", "title": "AI for Digital Health: Multimodal Sensing, TinyML and Clinical Fairness", "tracks": "Special Session", "day": "Wed", "time": "09:00–10:40", "slot": "7.D", "room": "D", "total_mins": 75, "papers": [{"id": 5637, "title": "Multimodal ECG Reconstruction: A Comparative Study of ECG-PPG Fusion and Single-Lead Approaches", "authors": "Pedro Rangel Rangel, Sanaz Rahimi Moosavi, Alex Jeter, Elahe Khatibi, Ziyu Wang and Amir Rahmani", "dec": "Regular", "fmt": "Online", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Pedro", "sp_last": "Rangel", "sp_title": "Master's Student", "sp_aff": "California State University, Dominguez Hills", "sp_type": "Online"}, {"id": 7310, "title": "Co-Designing TinyML-powered Digital Health Applications for FPGA-based Wearables", "authors": "Batuhan Sesli, José Juan Hernández Morales, Georgios Mentzos, Frank Hannig and Georgios Zervakis", "dec": "Regular", "fmt": "In-Person", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Batuhan", "sp_last": "Sesli", "sp_title": "PhD Student", "sp_aff": "Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)", "sp_type": "In-Person"}, {"id": 6254, "title": "Fair Teacher, Fair Student? Fairness Transfer in Clinical LLMs", "authors": "Amirhossein Mahmoudi and Bahar Farahani", "dec": "Regular", "fmt": "Online", "track": "SS", "mins": 25, "bpc": false, "sp_first": "Amirhossein", "sp_last": "Mahmoudi", "sp_title": "Master's Student", "sp_aff": "Shahid Beheshti University", "sp_type": "Online"},{ "id": 8652, "title": "Towards Extreme Energy Efficiency in Edge AI with 2D Materials and In-Memory Computing", "authors": "Sergi Abadal", "dec": "Regular", "track": "Edge AI", "mins": 25, "fmt": "Online", "bpc": false, "sp_first": "Sergi", "sp_last": "Abadal", "sp_title": "Associate Professor", "sp_aff": "Universitat Politècnica de Catalunya (UPC)", "sp_type": "Online" }], "chair": {"first": "Batuhan", "last": "Sesli", "title": "SS Organiser", "aff": "Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)"}}]};
+var COINS_SESS={};
+COINS_DATA.sessions.forEach(function(s){COINS_SESS[s.id]=s;});
+var DAYS={Mon:'Monday, September 7th',Tue:'Tuesday, September 8th',Wed:'Wednesday, September 9th'};
+
+var COINS_ROOMS={A:'Prodi',B:'Capitani',C:'Gambi',D:'Fumagalli'};
+var COINS_ZOOM={
+  A:'https://us05web.zoom.us/j/81311642634', // Zoom link for Room A - Prodi
+  B:'https://us05web.zoom.us/j/89829138572', // Zoom link for Room B - Capitani
+  C:'https://us04web.zoom.us/j/71247004975', // Zoom link for Room C - Gambi
+  D:'https://us05web.zoom.us/j/89606032165'  // Zoom link for Room D - Fumagalli
+};
+
+function coinsJoinZoom(room){
+  var url=COINS_ZOOM[room];
+  if(url){ window.open(url,'_blank','noopener'); }
+  else{ alert('The Zoom link for Room '+room+' ('+COINS_ROOMS[room]+') has not been published yet. Please check back closer to the event.'); }
+}
+
+function coinsRenderZoomPanel(){
+  var el=document.getElementById('coins-zoom-panel');
+  if(!el) return;
+  var html='';
+  ['A','B','C','D'].forEach(function(room){
+    var url=COINS_ZOOM[room];
+    html+='<div class="coins-zoom-card">'+
+      '<div class="coins-zoom-room">Room '+room+' &middot; '+COINS_ROOMS[room]+'</div>'+
+      (url
+        ? '<a class="coins-zoom-link" href="'+url+'" target="_blank" rel="noopener">&#128421; Join on Zoom &#8599;</a>'
+        : '<span class="coins-zoom-missing">Zoom link coming soon</span>')+
+      '</div>';
+  });
+  el.innerHTML=html;
+}
+coinsRenderZoomPanel();
+
+var COINS_KEYNOTES={
+  K1:{kind:'Keynote',icon:'&#127908;',day:'Mon',time:'9:00–10:00',mins:60,room:'Room A - Prodi',chair:'Prof. Andrea Acquaviva',
+    speaker:'Prof. Luca Benini',aff:'ETHZ & Università di Bologna',
+    bio:"Luca Benini holds the chair of digital Circuits and systems at ETHZ and is Full Professor at the Università di Bologna. His research interests are in energy-efficient parallel computing systems, smart sensing micro-systems and machine learning hardware. He is a Fellow of the IEEE, of the ACM, a member of the Academia Europaea and a founding member of the Italian Academy of Engineering and Technology.",
+    title:'Designing Digital Platforms for Wearable Contextual Intelligence',
+    abstract:"Wearable devices are evolving toward smart, context-aware digital assistants by leveraging rapidly increasing generative AI capabilities on device, at the extreme edge. Running multimodal generative AI models on a wearable device requires tackling major challenges in model distillation, as well as in energy and latency aware hardware-software platform design. In this talk I will explore model-to-chip design for wearable contextual intelligence, focusing on brain inspired heterogeneous computing with multi-domain acceleration."},
+  IK1:{kind:'Industrial Keynote',icon:'&#127981;',day:'Mon',time:'13:45–14:30',mins:45,room:'Room A - Prodi',chair:'Prof. Florenc Demrozi',
+    speaker:'Prof. Sebastiano Panichella',aff:'The Italian Institute of Artificial Intelligence (AI4I)',
+    bio:"Sebastiano Panichella is a Computer Science Researcher at the University of Bern and Head of the IDeaLS Lab (Intelligent Development and Large-Scale Systems Lab) at the Italian Institute of Artificial Intelligence for Industry (AI4I). His research focuses on the intersection of Artificial Intelligence, Software Engineering, Data Science, and Cyber-Physical Systems, with particular emphasis on AI-enabled software systems, intelligent testing, DevOps and MLOps, robotics, and trustworthy autonomous systems.\n\nHis research aims to understand how intelligent systems can be engineered to operate reliably, safely, and adaptively in complex real-world environments. His work spans the development, testing, validation, evolution, and operation of AI-enabled and autonomous systems, including autonomous vehicles, unmanned aerial vehicles, robotics, smart infrastructure, and other safety-critical applications. He is particularly interested in connecting advances in AI with rigorous software engineering and system engineering principles.\n\nPanichella has authored more than 110 peer-reviewed scientific publications in leading international journals and conferences, including ICSE, FSE, ASE, ICST, ICSME, MSR, TOSEM, and EMSE. His work has received multiple international recognitions, including Most Influential Paper Awards at ICSME 2025 and ICST 2025. He actively promotes collaboration between academia, industry, and interdisciplinary research communities. His research has been supported by major European and Swiss funding programmes, including the European Commission, SNSF, Innosuisse, and the Hasler Foundation. He serves on editorial boards and program committees of leading software engineering venues and has supervised numerous researchers across Software Engineering, AI, and autonomous systems.\n\nFor more details: https://spanichella.github.io/",
+    title:'From Testing to Runtime Intelligence: Closing the DevOps Loop for Trustworthy AI-enabled Cyber-Physical Systems',
+    abstract:"AI-enabled Cyber-Physical Systems (ACPS), such as autonomous vehicles, UAVs, and intelligent IoT infrastructures, are transforming critical domains where safety, reliability, and adaptability are paramount. While DevOps practices have significantly accelerated software delivery in traditional systems, their adoption in CPS/ACPS remains challenging due to the tight integration of software, hardware, and learning-enabled components operating in dynamic and uncertain environments.\n\nThis keynote revisits the DevOps lifecycle for AI-enabled CPS through the lens of runtime intelligence, emphasizing the need to tightly integrate testing and operational monitoring to achieve continuous trust. Traditional pre-deployment testing alone is no longer sufficient; instead, it must be complemented by runtime monitoring, feedback-driven adaptation, and AI-enabled mechanisms that support continuous validation and self-healing in the field.\n\nDrawing on recent research and industrial collaborations, the keynote presents: key challenges in deployment and field testing of autonomous CPS; approaches for integrating simulation-based testing, Hardware-in-the-Loop (HiL), and runtime verification; the role of AI and machine learning in enabling runtime intelligence, including adaptive testing, anomaly detection, and continuous validation; and emerging architectures and toolchains supporting the seamless transition from testing to monitoring and feedback-driven DevOps loops.\n\nFinally, the talk outlines future research directions toward scalable, trustworthy, and sustainable DevOps pipelines for ACPS."},
+  K2:{kind:'Keynote',icon:'&#127908;',day:'Tue',time:'9:00–10:00',mins:60,room:'Room A - Prodi',chair:'Prof. Michele Magno',
+    speaker:'Prof. Vijay Janapa Reddi',aff:'Harvard University',
+    bio:"Dr. Vijay Janapa Reddi is the Gordon McKay Professor of Electrical Engineering at Harvard University, where his research focuses on the intersection of computer architecture, machine learning systems, and autonomous agents. His work advances efficient and intelligent computing across scales, from mobile and edge platforms to large-scale cloud infrastructure and Internet of Things systems. Prior to joining Harvard, he was an Associate Professor in the Department of Electrical and Computer Engineering at the University of Texas at Austin.\n\nBeyond academia, Dr. Janapa Reddi plays a leading role in shaping the future of machine learning and edge AI technologies. He serves as Vice President and co-founder of MLCommons, a nonprofit organization dedicated to accelerating machine learning innovation. He oversees MLCommons Research, sits on its board of directors, and co-led the development of the MLPerf benchmarks, which evaluate machine learning systems from megawatt to microwatt scales. He also serves on the board of directors of the EDGE AI Foundation, fostering academic and industry collaboration at the edge of AI.\n\nDr. Janapa Reddi is the creator of the open-source textbook Machine Learning Systems (mlsysbook.ai), widely adopted in universities and industry, and the founder of the Tiny Machine Learning edX series, a global course that has trained over 100,000 learners. He has received numerous honors, including the Gilbreth Lecturer Award from the National Academy of Engineering, the IEEE TCCA Young Computer Architect Award, the Intel Early Career Award, multiple Google Faculty Research Awards, and Best Paper awards at DAC, MICRO, and HPCA. He is a member of both the MICRO Hall of Fame and the HPCA Hall of Fame. Dr. Janapa Reddi earned his Ph.D. in computer science from Harvard University, an M.S. in electrical and computer engineering from the University of Colorado at Boulder, and a B.S. in computer engineering from Santa Clara University.",
+    title:'Architecture 2.0: Foundations for AI Agents in Computer System Design',
+    abstract:"Intelligent systems now span the full computing stack, from compute in memory devices and chiplet based accelerators to cloud scale foundation models, agentic autonomy, and safety critical deployment. Conferences such as COINS reflect this reality by organizing research across enabling hardware, connected infrastructure, trusted autonomy, and human aligned applications. Yet while AI has become omni layer in scope, its intellectual foundations remain fragmented. Hardware researchers optimize power, performance, and area. Systems researchers scale training and serving. Agentic AI researchers advance reasoning and control. Responsible AI researchers address governance and sustainability. Each layer progresses rapidly, but the field lacks shared abstractions, lifecycle thinking, and cross layer evaluation principles that connect low level design decisions to real world impact.\n\nThe next phase of progress requires more than cross layer co design. It requires AI Engineering as a discipline. AI Engineering integrates hardware, systems, models, autonomy, and governance under common evaluation frameworks, reproducibility standards, and deployment aware design principles. It treats intelligent systems not as isolated artifacts, but as engineered infrastructures with measurable societal, economic, and environmental consequences.\n\nDrawing on examples from edge intelligence, cloud scale model serving, and autonomous systems, this talk outlines the core pillars of AI Engineering: cross layer abstractions, rigorous evaluation across the stack, lifecycle aware benchmarking, and education that prepares practitioners to reason across layers rather than within silos. The goal is not simply to build more capable models or faster accelerators, but to establish the foundations for trustworthy, scalable, and sustainable intelligent systems. As omni layer intelligence becomes the norm, the central question is no longer whether AI can be deployed everywhere, but whether we can engineer it responsibly, coherently, and at scale."},
+  IK2:{kind:'Industrial Keynote',icon:'&#127981;',day:'Tue',time:'13:00–13:45',mins:45,room:'Room A - Prodi',chair:'Prof. Danilo Pau',
+    speaker:'Dr. Valeria Tomaselli',aff:'STMicroelectronics',
+    bio:"Valeria Tomaselli is a Principal Engineer at STMicroelectronics in Catania, where she leads the development of edge AI and sensor-intelligent systems on embedded platforms. Her expertise spans image processing, computer vision, and artificial intelligence, and she has contributed to numerous national and international research projects, as well as patents and papers in her field. She leads teams building AI-enabled microcontroller solutions and is an active contributor to the edge-compute community. She serves on the Technical Program Committee for Edge AI EMEA and regularly engages with the broader research and industry ecosystem.",
+    title:'The Rise of Physical AI',
+    abstract:"AI is moving from the cloud into the physical world, enabling intelligent robots, connected devices, and human-centric systems. This shift is making physical intelligence low-latency, privacy-preserving, energy-efficient, and sustainable. Physical AI can support natural, responsive, and privacy-aware interaction. We have the opportunity and the responsibility to build technologies that do not simply automate tasks, but augment people, respect their privacy, and support a more sustainable future. The future of AI will not only be more intelligent; it will be more physical, distributed, and, if we design it well, more human."},
+  K3:{kind:'Keynote',icon:'&#127908;',day:'Wed',time:'11:00–12:00',mins:60,room:'Room A - Prodi',chair:'Prof. Federica Zonzini',
+    speaker:'Prof. Elisa Ricci',aff:'University of Trento & Fondazione Bruno Kessler',
+    bio:"Elisa Ricci is Professor at the University of Trento and Head of the Deep Visual Learning Research Unit at Fondazione Bruno Kessler. Her research focuses on computer vision, deep learning, and robotics perception, with an emphasis on learning from visual and multimodal data in open-world settings. She has co-authored over 200 scientific publications. She has served as General Co-Chair of ACM ICMR 2025, IEEE AVSS 2026 and Program Co-Chair of ACM MM 2022 and ECCV 2024. She is an ELLIS and IAPR Fellow.",
+    title:'Rethinking Large Multimodal Models: Beyond Accuracy, Towards Trust',
+    abstract:"The rapid adoption of Large Multimodal Models is reshaping smart technologies while raising fundamental questions about trust, safety, and accountability. Moving beyond traditional performance metrics, real-world deployment requires a deeper understanding of model behavior under uncertainty, bias, and privacy constraints. This talk presents a perspective on Trustworthy AI for vision-language systems, focusing on three key challenges: explainable AI to make multimodal decisions transparent, scalable approaches for discovering and mitigating bias, and uncertainty quantification as a foundation for reliable decision-making."}
+};
+
+var COINS_PHD_FORUM=[
+  {first:'Giorgio',last:'Olivieri',aff:'Università Politecnica delle Marche, Ancona, Italy',title:'AI-Based Strategy for Energy Forecasting and Smart Grid Efficiency'},
+  {first:'Vincenzo',last:'Sammartino',aff:'Department of Computer Science, Università di Pisa, Italy',title:'Non-Intrusive Security Twins for Proactive Cyber Defense of Cyber-Physical Systems'},
+  {first:'Dennis',last:'Rapaccini',aff:'Università Politecnica delle Marche, Ancona, Italy',title:'Smart Management of Lithium-ion Batteries through Modeling and Edge Artificial Intelligence Embedded on Microcontroller Platforms'},
+  {first:'Jakub',last:'Jastrzebski',aff:'Politecnico di Milano, Italy',title:'NeuroPAM: Co-optimizing Partitioning and Mapping for DNN Inference on NoC-based Accelerators'},
+  {first:'Edoardo',last:'Oldrini',aff:'University of Genoa, Italy',title:'Toward Reliable Image Forgery Detection: Local Evidence, Generalization, and Robustness'},
+  {first:'Andrea',last:'Pignata',aff:'Politecnico di Torino, Italy',title:'Framework for developing Neuromorphic AIoT applications'},
+  {first:'Alessandro',last:'Licciardi',aff:'Politecnico di Torino, Italy',title:'Advances in Robust Federated Learning: Privacy-Preserving Spectral Methods for Heterogeneous and Adversarial Settings'}
+];
+
+function coinsShowPhdForum(){
+  document.getElementById('coins-modal-title').textContent='PhD Forum — Presenting Students';
+  var meta=document.getElementById('coins-modal-meta');
+  meta.innerHTML='<span class="coins-tag">'+COINS_PHD_FORUM.length+' presenters</span>';
+  var body=document.getElementById('coins-modal-papers');
+  var html='';
+  COINS_PHD_FORUM.forEach(function(st,i){
+    html+='<div class="coins-paper-item">'+
+      '<div class="coins-paper-title">'+(i+1)+'. '+st.first+' '+st.last+'</div>'+
+      '<div class="coins-paper-authors">'+st.aff+'</div>'+
+      '<div class="coins-paper-speaker">PhD Project: <span>'+st.title+'</span></div>'+
+      '</div>';
+  });
+  body.innerHTML=html;
+  document.getElementById('coins-modal-bg').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function coinsShowKeynote(kid){
+  var k=COINS_KEYNOTES[kid];
+  if(!k) return;
+  document.getElementById('coins-modal-title').textContent=k.kind+': '+k.speaker;
+  var meta=document.getElementById('coins-modal-meta');
+  var dayLabel=DAYS[k.day]||k.day;
+  meta.innerHTML='<span class="coins-tag">'+dayLabel+'</span>'+
+    '<span class="coins-tag">'+k.time+'</span>'+
+    '<span class="coins-tag">'+k.mins+' min</span>'+
+    (k.room?'<span class="coins-tag">'+k.room+'</span>':'');
+  var body=document.getElementById('coins-modal-papers');
+  var chairHtml='<div class="coins-chair-bar" style="background:#f0f4ff;border-left:3px solid #1a56db;padding:7px 14px;font-size:11px;margin:0 0 10px 0;border-radius:4px;"><strong>Chair:</strong> '+k.chair+'</div>';
+  body.innerHTML=chairHtml+
+    '<div class="kn-speaker">'+k.speaker+'</div>'+
+    '<div class="kn-aff">'+k.aff+'</div>'+
+    '<div class="kn-label">Speaker Bio</div>'+
+    '<div class="kn-bio">'+k.bio.replace(/\n\n/g,'</div><div class="kn-bio" style="margin-top:8px">')+'</div>'+
+    '<div class="kn-label">'+k.kind+' Title</div>'+
+    '<div class="kn-title">'+k.title+'</div>'+
+    '<div class="kn-label">Abstract</div>'+
+    '<div class="kn-abstract">'+k.abstract.replace(/\n\n/g,'</div><div class="kn-abstract" style="margin-top:8px">')+'</div>';
+  document.getElementById('coins-modal-bg').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function coinsDay(d,btn){
+  document.querySelectorAll('.coins-day').forEach(function(el){el.classList.remove('active');});
+  document.querySelectorAll('.coins-tab').forEach(function(el){el.classList.remove('active');});
+  document.getElementById('coins-'+d).classList.add('active');
+  btn.classList.add('active');
+}
+
+function coinsShow(sid){
+  var s=COINS_SESS[sid];
+  if(!s) return;
+  document.getElementById('coins-modal-title').textContent=s.title;
+  var meta=document.getElementById('coins-modal-meta');
+  var dayLabel=DAYS[s.day]||s.day;
+  var chairHtml='';
+  var isOrg=s.id.indexOf('SS')===0;
+  if(s.organizers && s.organizers.length){
+    chairHtml='<div class="coins-chair-bar" style="background:#fff8e1;border-left:3px solid #d97706;padding:7px 14px;font-size:11px;margin:0 0 10px 0;border-radius:4px;">'+
+      '<strong>Proposed by:</strong> '+s.organizers.map(function(o){return o.first+' '+o.last+' &mdash; '+o.aff;}).join('; ')+
+      '</div>';
+  } else if(s.chair){
+    var chairStyle=isOrg
+      ?'background:#fff8e1;border-left:3px solid #d97706;'
+      :'background:#f0f4ff;border-left:3px solid #1a56db;';
+    chairHtml='<div class="coins-chair-bar" style="'+chairStyle+'padding:7px 14px;font-size:11px;margin:0 0 10px 0;border-radius:4px;">'+
+      '<strong>'+(isOrg?'Session Organiser:':'Session Chair:')+'</strong> '+
+      s.chair.title+' '+s.chair.first+' '+s.chair.last+' &mdash; '+s.chair.aff+'</div>';
+  }
+  var descHtml=s.description?'<div class="coins-ss-desc">'+s.description+'</div>':'';
+  meta.innerHTML='<span class="coins-tag">'+dayLabel+'</span>'+
+    '<span class="coins-tag">'+s.time+'</span>'+
+    '<span class="coins-tag">Room '+s.room+'</span>';
+  var body=document.getElementById('coins-modal-papers');
+  body.innerHTML=chairHtml+descHtml;
+  s.papers.forEach(function(p,i){
+    var isOnline=(p.sp_type||p.fmt)!=='In-Person';
+    var fmtBadge=isOnline?'<span class="badge-ol">Online</span>':'<span class="badge-ip">In-Person</span>';
+    var decBadge=p.dec==='Regular'?'<span class="badge-reg">Regular</span>':'<span class="badge-sh">Short</span>';
+    var bpcBadge=p.bpc?'<span class="badge-bpc">&#9733; Best Paper Candidate</span>':'';
+    var bpcId=p.bpc?' <span class="badge-bpc-id">&#9733; BPC</span>':'';
+    var noshowBadge=p.noshow?'<span class="badge-noshow">&#9888; Potential No-Show</span>':'';
+    var noshowId=p.noshow?' <span class="badge-noshow-id">&#9888; No-Show?</span>':'';
+    var cls='coins-paper-item'+(p.dec==='Short'?' short':'')+(p.bpc?' bpc-paper':'')+(p.noshow?' noshow-paper':'');
+    var speakerHtml='';
+    if(p.sp_first){
+      speakerHtml='<div class="coins-paper-speaker">Presenter: <span>'+
+        (p.sp_title?p.sp_title+' ':'')+p.sp_first+' '+p.sp_last+'</span>'+
+        (p.sp_aff?' &mdash; '+p.sp_aff:'')+' '+fmtBadge+'</div>';
+    }
+    body.innerHTML+=
+      '<div class="'+cls+'">'+
+        '<div class="coins-paper-id">#'+p.id+bpcId+noshowId+'</div>'+
+        '<div class="coins-paper-title">'+(i+1)+'. '+p.title+'</div>'+
+        '<div class="coins-paper-authors">'+p.authors+'</div>'+
+        speakerHtml+
+        '<div class="coins-paper-badges">'+bpcBadge+noshowBadge+decBadge+'</div>'+
+      '</div>';
+  });
+  document.getElementById('coins-modal-bg').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function coinsClose(e){
+  if(e && e.target!==document.getElementById('coins-modal-bg')) return;
+  document.getElementById('coins-modal-bg').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function coinsSearch(q) {
+  var wrap = document.getElementById('coins-search-results');
+  var list = document.getElementById('coins-search-list');
+  var count = document.getElementById('coins-search-count');
+  q = q.trim().toLowerCase();
+  if (q.length < 2) { wrap.classList.remove('open'); list.innerHTML=''; return; }
+  var days = {Mon:'Monday, Sept 7', Tue:'Tuesday, Sept 8', Wed:'Wednesday, Sept 9'};
+  var results = [];
+  COINS_DATA.sessions.forEach(function(s) {
+    s.papers.forEach(function(p, i) {
+      var idStr = String(p.id);
+      var titleL = p.title.toLowerCase();
+      var authL = p.authors.toLowerCase();
+      if (idStr === q.replace(/^0+/,'') || idStr.includes(q) || titleL.includes(q) || authL.includes(q)) {
+        results.push({p:p, s:s, pos:i+1});
+      }
+    });
+  });
+  wrap.classList.add('open');
+  if (results.length === 0) {
+    list.innerHTML = '<div class="no-results">No papers found matching that query.</div>';
+    count.textContent = '';
+    return;
+  }
+  count.textContent = results.length + ' paper' + (results.length>1?'s':'') + ' found';
+  var out = '';
+  results.forEach(function(r) {
+    var p = r.p; var s = r.s;
+    var isss = s.id.indexOf('SS') === 0;
+    var cls = isss ? 'coins-search-item ss-item' : 'coins-search-item';
+    var bpcBadge = p.bpc ? '<span class="coins-search-badge" style="background:#fef3c7;color:#92400e;border:1px solid #d97706">&#9733; BPC</span>' : '';
+    var fmtBadge = p.fmt==='In-Person' ? '<span class="coins-search-badge" style="background:#dbeafe;color:#1e40af">In-Person</span>' : '<span class="coins-search-badge" style="background:#f3e8ff;color:#6b21a8">Online</span>';
+    var decBadge = p.dec==='Regular' ? '<span class="coins-search-badge" style="background:#dcfce7;color:#166534">Regular</span>' : '<span class="coins-search-badge" style="background:#fef3c7;color:#92400e">Short</span>';
+    var sessLabel = isss ? s.id + ' — ' : 'Session ' + s.slot + ' — ';
+    var where = sessLabel + s.title + ' · ' + (days[s.day]||s.day) + ' · ' + s.time + ' · Room ' + s.room;
+    out += '<div class="' + cls + '" onclick="coinsShowFromSearch(\'' + s.id + '\',' + (r.pos-1) + ')">';
+    out += '<div class="coins-search-pid">#' + p.id + '</div>';
+    out += '<div class="coins-search-title">' + p.title + '</div>';
+    out += '<div class="coins-search-authors">' + p.authors + '</div>';
+    out += '<div class="coins-search-where">' + where + '</div>';
+    out += '<div style="margin-top:5px">' + bpcBadge + decBadge + fmtBadge + '</div>';
+    out += '</div>';
+  });
+  list.innerHTML = out;
+}
+
+function coinsShowFromSearch(sid, paperIdx) {
+  document.getElementById('coins-search').value = '';
+  document.getElementById('coins-search-results').classList.remove('open');
+  coinsShow(sid);
+  setTimeout(function() {
+    var items = document.querySelectorAll('.coins-paper-item');
+    if (items[paperIdx]) items[paperIdx].scrollIntoView({behavior:'smooth', block:'center'});
+  }, 200);
+}
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.coins-search-wrap')) {
+    var r = document.getElementById('coins-search-results');
+    if (r) r.classList.remove('open');
+  }
+});
+
+</script>
   </div>
 </section>
 

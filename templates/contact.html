@@ -28,7 +28,7 @@
             <div>
               <div style="font-weight:600;font-size:0.92rem;margin-bottom:0.25rem">Technical Program</div>
               {% for pc in conf.cfp.program_chairs %}
-              <div style="font-size:0.88rem">{{ pc.name }} — <a href="mailto:{{ pc.email }}" style="color:var(--blue-bright)">{{ pc.email }}</a></div>
+              <div style="font-size:0.88rem">{{ pc.name }}{% if pc.email %} — <a href="mailto:{{ pc.email }}" style="color:var(--blue-bright)">{{ pc.email }}</a>{% endif %}</div>
               <div style="font-size:0.78rem;color:var(--gray-dark)">{{ pc.affiliation }}</div>
               {% endfor %}
             </div>

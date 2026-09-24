@@ -48,7 +48,7 @@
     </div>
 
     <h2 style="font-family:'Fraunces',serif;font-size:1.6rem;margin-top:3rem;margin-bottom:1.25rem">Recommended Hotels</h2>
-    <p style="color:var(--gray-dark);font-size:0.9rem;margin-bottom:1.5rem">All hotels below are within walking distance of the venue.</p>
+    <p style="color:var(--gray-dark);font-size:0.9rem;margin-bottom:1.5rem">Ydalir Hotel is right on campus; the others are a short drive or bus ride from the venue.</p>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
       <div>
@@ -57,8 +57,8 @@
           {% for h in conf.venue.hotels if h.stars >= 4 %}
           <div class="hotel-item">
             <div>
-              <strong style="font-size:0.9rem">{{ h.name }}</strong>
-              <div style="font-size:0.78rem;color:var(--gray-dark)">{{ h.walk_min }} min walk{% if h.note %} · {{ h.note }}{% endif %}</div>
+              {% if h.url %}<a href="{{ h.url }}" target="_blank" style="font-size:0.9rem;font-weight:600;color:var(--text)">{{ h.name }}</a>{% else %}<strong style="font-size:0.9rem">{{ h.name }}</strong>{% endif %}
+              <div style="font-size:0.78rem;color:var(--gray-dark)">{{ h.distance }}{% if h.note %} · {{ h.note }}{% endif %}</div>
             </div>
             <span class="hotel-stars">{{ '★' * h.stars }}{{ h.suffix if h.suffix else '' }}</span>
           </div>
@@ -71,8 +71,8 @@
           {% for h in conf.venue.hotels if h.stars == 3 %}
           <div class="hotel-item">
             <div>
-              <strong style="font-size:0.9rem">{{ h.name }}</strong>
-              <div style="font-size:0.78rem;color:var(--gray-dark)">{{ h.walk_min }} min walk{% if h.note %} · {{ h.note }}{% endif %}</div>
+              {% if h.url %}<a href="{{ h.url }}" target="_blank" style="font-size:0.9rem;font-weight:600;color:var(--text)">{{ h.name }}</a>{% else %}<strong style="font-size:0.9rem">{{ h.name }}</strong>{% endif %}
+              <div style="font-size:0.78rem;color:var(--gray-dark)">{{ h.distance }}{% if h.note %} · {{ h.note }}{% endif %}</div>
             </div>
             <span class="hotel-stars">{{ '★' * h.stars }}</span>
           </div>

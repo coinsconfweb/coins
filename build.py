@@ -4,9 +4,10 @@ IEEE COINS Website Builder
 Usage: python build.py
 Reads conference.yml, renders Jinja2 templates → dist/
 """
-import os, sys, shutil, yaml
+import os, sys, shutil, yaml, json
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+from markupsafe import Markup
 
 # Windows consoles often default to a legacy codepage (cp1252) that can't
 # encode the ✓ / ✅ characters below — force UTF-8 stdout so builds don't crash.
@@ -29,6 +30,16 @@ env = Environment(
     trim_blocks=True,
     lstrip_blocks=True,
 )
+# Safely embed Python values as JS literals inside <script> blocks (e.g. the
+# program page's COINS_DATA/DAYS/COINS_ROOMS objects). Escaping </>&' guards
+# against a value ever containing "</script>" and closing the tag early.
+def to_js(value):
+    encoded = json.dumps(value)
+    for ch, esc in (("<", "\\u003c"), (">", "\\u003e"), ("&", "\\u0026"), ("'", "\\u0027")):
+        encoded = encoded.replace(ch, esc)
+    return Markup(encoded)
+
+env.filters["tojson"] = to_js
 
 # ── helpers ───────────────────────────────────────────────────
 def get_deadline(key):
@@ -52,6 +63,18 @@ def name_initials(name):
     return "".join(w[0] for w in words[:2]).upper()
 
 env.globals["initials"] = name_initials
+
+def sc_affiliation(person, year=None):
+    """Affiliation of a steering-committee member as of a given edition year:
+    the first `earlier_affiliations` entry whose `until` covers the year, else
+    the current `affiliation` (also used when no year is given)."""
+    if year is not None:
+        for e in sorted(person.get("earlier_affiliations", []), key=lambda e: e["until"]):
+            if int(year) <= e["until"]:
+                return e["affiliation"]
+    return person.get("affiliation", "")
+
+env.globals["sc_affiliation"] = sc_affiliation
 
 def render(template_name, out_path, extra=None):
     t = env.get_template(template_name)
