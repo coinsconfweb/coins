@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "partials/macros.html" import asset_url %}
+{% from "partials/macros.html" import asset_url, keynote_card, keynote_summary %}
 {% set depth = "" %}
 
 {% block title %}Home{% endblock %}
@@ -171,33 +171,25 @@
   </div>
 </section>
 
+<!-- PROGRAM AT A GLANCE -->
+<section class="section">
+  <div class="section-inner">
+    <span class="section-tag">Program at a Glance</span>
+    <h2 class="section-title">Three Days of Intelligent Systems</h2>
+    <p class="section-lead">{{ conf.meta.short_name }} brings together 100+ participants from 40+ countries for keynotes, technical and special sessions, tutorials, panels, and social events.</p>
+    {% include "partials/glance.html" %}
+  </div>
+</section>
+
 <!-- KEYNOTES TEASER -->
 <section class="section section-alt">
   <div class="section-inner">
     <span class="section-tag">Keynote Speakers</span>
     <h2 class="section-title">Invited Keynotes</h2>
-    <p class="section-lead">{{ conf.meta.acronym }} {{ conf.meta.edition }} features {{ conf.keynotes | length }} keynote lectures from world-leading researchers and innovators.</p>
+    <p class="section-lead">{{ conf.meta.acronym }} {{ conf.meta.edition }} features {{ keynote_summary(conf.keynotes) }} from world-leading researchers, innovators, and industry leaders.</p>
     <div class="keynote-grid">
       {% for k in conf.keynotes %}
-      <div class="keynote-card">
-        <div class="keynote-card-header">
-          {% if k.photo %}
-          <img class="keynote-photo" src="{{ k.photo }}" alt="{{ k.name }}">
-          {% else %}
-          <div class="keynote-avatar">🎤</div>
-          {% endif %}
-          <div class="keynote-meta">
-            {% if not k.confirmed %}<span class="tba-badge">TBA</span>{% endif %}
-            <div class="name">{{ k.name }}</div>
-            <div class="affil">{{ k.affiliation }}</div>
-            <div class="slot">{{ k.day }} · {{ k.time }}</div>
-          </div>
-        </div>
-        <div class="keynote-card-body">
-          <div class="talk-title">{{ k.title }}</div>
-          <div class="abstract">{{ k.abstract }}</div>
-        </div>
-      </div>
+      {{ keynote_card(k, depth) }}
       {% endfor %}
     </div>
     <div style="margin-top:1.5rem">

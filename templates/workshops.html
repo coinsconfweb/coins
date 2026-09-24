@@ -15,12 +15,6 @@
   <div class="section-inner">
 
     {% set confirmed = conf.workshops | selectattr('confirmed') | list %}
-    {% if not confirmed %}
-    <div class="info-box warning">
-      <strong>⏳ Workshop Program — To Be Announced</strong>
-      <p>The workshop program will be confirmed after proposal review. Proposals are due by <strong>{{ conf.cfp.proposal_deadline }}</strong>. See <a href="proposals.html">Call for Proposals</a> for submission details.</p>
-    </div>
-    {% endif %}
 
     <div class="event-grid" style="margin-top:2rem">
       {% for w in conf.workshops %}

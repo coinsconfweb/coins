@@ -8,25 +8,17 @@
   <div class="page-hero-inner">
     <div class="breadcrumb"><a href="{{ depth }}index.html">Home</a><span class="breadcrumb-sep">›</span> Program <span class="breadcrumb-sep">›</span> Tutorials</div>
     <h1>Tutorials</h1>
-    <p>Deep-dive technical tutorials on emerging and foundational topics in intelligent systems. Half-day and full-day sessions by leading experts.</p>
+    <p>{{ conf.meta.short_name }} features {{ conf.tutorials | length }} deep-dive tutorials on emerging and foundational topics in intelligent systems, led by leading experts.</p>
   </div>
 </div>
 
 <section class="section">
   <div class="section-inner">
 
-    {% set confirmed = conf.tutorials | selectattr('confirmed') | list %}
-    {% if not confirmed %}
-    <div class="info-box warning">
-      <strong>⏳ Tutorials — To Be Announced</strong>
-      <p>The tutorial program will be confirmed after proposal review. If you are interested in proposing a tutorial, please see the <a href="proposals.html">Call for Proposals</a>. Proposals must be submitted via <a href="{{ conf.meta.easychair_url }}" target="_blank">EasyChair</a>.</p>
-    </div>
-    {% endif %}
-
     <div class="event-grid">
       {% for t in conf.tutorials %}
       <div class="event-card" id="{{ t.id }}">
-        <div class="event-type">Tutorial · {{ t.duration }}</div>
+        <div class="event-type">Tutorial{% if t.duration and t.duration != 'TBA' %} · {{ t.duration }}{% endif %}</div>
         <h3>{{ t.title }}</h3>
         {% if t.presenter and t.presenter != 'TBA' %}
         <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.5rem">
@@ -39,6 +31,7 @@
         <div class="presenter" style="color:var(--gray)">Presenter TBA</div>
         {% endif %}
         <p>{{ t.abstract }}</p>
+        {% if not t.confirmed %}<div style="margin-top:1rem"><span class="tba-badge">Details TBA</span></div>{% endif %}
       </div>
       {% endfor %}
     </div>

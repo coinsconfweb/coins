@@ -1,0 +1,33 @@
+{# "Program at a Glance": planned program numbers and social events.
+   Counts come straight from the lists in conference.yml (keynotes by type,
+   special sessions, tutorials, panels), so they stay consistent site-wide. #}
+{% set n_keynotes = conf.keynotes | selectattr('type', 'equalto', 'Keynote') | list | length %}
+{% set n_ind_keynotes = conf.keynotes | selectattr('type', 'equalto', 'Industrial Keynote') | list | length %}
+{% set glance = [
+  (n_keynotes, 'Keynotes'),
+  (n_ind_keynotes, 'Industrial Keynotes'),
+  (conf.cfp.special_sessions | length, 'Special Sessions'),
+  (conf.tutorials | length, 'Tutorials'),
+  (conf.panels | length, 'Panels'),
+] %}
+<div class="glance-grid">
+  {% for num, label in glance if num %}
+  <div class="glance-item">
+    <div class="glance-num">{{ num }}</div>
+    <div class="glance-lbl">{{ label }}</div>
+  </div>
+  {% endfor %}
+</div>
+{% if conf.social_events %}
+<div class="glance-social">
+  {% for ev in conf.social_events %}
+  <div class="glance-event">
+    <span class="glance-event-icon" aria-hidden="true">{% if 'dinner' in ev.title | lower %}🍽{% else %}🥂{% endif %}</span>
+    <div>
+      <div class="glance-event-title">{{ ev.title }}</div>
+      <div class="glance-event-when">{{ ev.day_label }}{% if ev.time %} · {{ ev.time }}{% endif %}</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}

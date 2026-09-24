@@ -18,9 +18,12 @@
     {% if conf.program.status == 'draft' %}
     <div class="info-box warning">
       <strong>⏳ {{ conf.program.status_note }}</strong>
-      <p>The room plan below is confirmed. Session-by-session content (papers, keynotes, panels) is added here once the technical program is finalized after review — the same way past editions' final schedules were published.</p>
+      <p>The room plan below is confirmed. Session-by-session content (papers, keynotes, panels, special sessions, and tutorials): TBA.</p>
     </div>
     {% endif %}
+
+    <span class="section-tag" style="margin-top:0.5rem">Program at a Glance</span>
+    {% include "partials/glance.html" %}
 
     <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;margin-bottom:0.25rem">
       <a href="keynotes.html" class="btn btn-outline btn-sm" style="border-color:var(--gray-light);color:var(--text)">🎤 Keynotes</a>
@@ -180,10 +183,32 @@
           <div class="coins-cell coins-hdr">{{ r.name }}{% if r.role %}<span class="room-role">{{ r.role }}</span>{% endif %}</div>
           {% endfor %}
         </div>
-        <div class="coins-row coins-r2"><div class="coins-cell coins-time">&nbsp;</div><div class="coins-cell coins-break coins-full">Session schedule for {{ day.label }} will be published here once the technical program is finalized.</div></div>
+        <div class="coins-row coins-r2"><div class="coins-cell coins-time">&nbsp;</div><div class="coins-cell coins-break coins-full">Session schedule for {{ day.label }}: TBA</div></div>
+        {% for ev in conf.social_events if ev.day == day.id %}
+        <div class="coins-row coins-r2"><div class="coins-cell coins-time">{{ ev.time }}</div><div class="coins-cell coins-social coins-full"><strong>{{ ev.title }}</strong>{% if ev.description %}<span style="font-size:11px;color:#555">{{ ev.description }}</span>{% endif %}</div></div>
+        {% endfor %}
       </div>
       {% endfor %}
     </div>
+
+    {% if conf.panels %}
+    <div style="margin-top:3rem">
+      <span class="section-tag">Panel Sessions</span>
+      <h2 class="section-title">Panels</h2>
+      <div class="event-grid" style="margin-top:1.5rem">
+        {% for p in conf.panels %}
+        <div class="event-card" id="{{ p.id }}">
+          <div class="event-type">Panel</div>
+          <h3>{{ p.title }}</h3>
+          {% if p.topic and p.topic != 'TBA' %}<div class="presenter">Topic: {{ p.topic }}</div>{% endif %}
+          {% if p.moderator and p.moderator != 'TBA' %}<div class="presenter">Moderator: {{ p.moderator }}</div>{% endif %}
+          <p>{{ p.description | trim }}</p>
+          {% if not p.confirmed %}<div style="margin-top:1rem"><span class="tba-badge">Details TBA</span></div>{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
 
     {% if conf.panelists %}
     <div style="margin-top:3rem">

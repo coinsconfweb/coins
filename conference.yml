@@ -98,7 +98,7 @@ venue:
   # Airport (SVG) has international connections; the campus is a short bus/taxi
   # ride from the city centre.
   transport: >
-    Transport and parking details will be announced closer to the conference.
+    Transport and parking details: TBA.
   about_city: >
     Stavanger is a coastal city on Norway's southwestern fjord region, known as the
     country's energy capital and a gateway to the Lysefjord and Preikestolen (Pulpit Rock).
@@ -209,7 +209,7 @@ sponsorship:
   prospectus_url: ""
   deadline: "TBA"
   why_sponsor:
-    - "Direct visibility with 500+ attendees from 50+ countries, spanning academia and industry."
+    - "Direct visibility with 100+ participants from 40+ countries, spanning academia and industry."
     - "Logo placement on the conference website, printed program, and on-site signage."
     - "Opportunities to host recruiting tables, product demos, and industry talks."
     - "Support student travel grants and outreach programs that grow the community."
@@ -250,9 +250,9 @@ stats:
   - number: "4"
     label: "Thematic Clusters"
   - number: "100+"
-    label: "Expected Attendees"
-  - number: "50+"
-    label: "Countries Represented"
+    label: "Participants"
+  - number: "40+"
+    label: "Countries"
 
 committee:
   - role: "General Chairs"
@@ -441,10 +441,177 @@ steering_committee:
 # each page shows its own "to be announced" state automatically when its
 # list is empty. Add entries back in the same shape as the 2026 edition
 # once speakers/presenters/challenges are confirmed.
-keynotes: []
+# ── Keynotes ──────────────────────────────────────────────────
+# Shown on the Keynotes page and the homepage. To add a speaker, copy the
+# example block below into the list (replace `[]`), remove the leading "# ",
+# and fill in the fields. Each entry is one speaker.
+#
+# keynotes:
+#   - id: "k1"                          # unique short id (used as page anchor)
+#     name: "Prof. Jane Doe"
+#     affiliation: "University of Example, Country"
+#     title: "Talk title"               # "TBA" hides the title line
+#     abstract: >
+#       Two or three sentences describing the talk.
+#     bio: >
+#       Short speaker biography (shown in a collapsible "Speaker Bio" box).
+#     day: "Monday, August 2"
+#     time: "09:00–10:00"
+#     photo: "static/img/people/jane-doe.jpg"   # or a URL; "" for an icon
+#     type: "Keynote"                   # or "Industrial Keynote"
+#     confirmed: true                   # false shows a "TBA" badge
+#
+# Planned for 2027: 3 keynotes + 2 industrial keynotes. The placeholders
+# below keep those numbers visible site-wide; replace each one in place as
+# speakers are confirmed (keep the count in sync if the plan changes).
+keynotes:
+  - id: "k1"
+    type: "Keynote"
+    name: "Keynote Speaker 1"
+    affiliation: "TBA"
+    title: "TBA"
+    abstract: ""
+    bio: ""
+    day: "TBA"
+    time: ""
+    photo: ""
+    confirmed: false
+  - id: "k2"
+    type: "Keynote"
+    name: "Keynote Speaker 2"
+    affiliation: "TBA"
+    title: "TBA"
+    abstract: ""
+    bio: ""
+    day: "TBA"
+    time: ""
+    photo: ""
+    confirmed: false
+  - id: "k3"
+    type: "Keynote"
+    name: "Keynote Speaker 3"
+    affiliation: "TBA"
+    title: "TBA"
+    abstract: ""
+    bio: ""
+    day: "TBA"
+    time: ""
+    photo: ""
+    confirmed: false
+  - id: "ik1"
+    type: "Industrial Keynote"
+    name: "Industrial Keynote Speaker 1"
+    affiliation: "TBA"
+    title: "TBA"
+    abstract: ""
+    bio: ""
+    day: "TBA"
+    time: ""
+    photo: ""
+    confirmed: false
+  - id: "ik2"
+    type: "Industrial Keynote"
+    name: "Industrial Keynote Speaker 2"
+    affiliation: "TBA"
+    title: "TBA"
+    abstract: ""
+    bio: ""
+    day: "TBA"
+    time: ""
+    photo: ""
+    confirmed: false
 
-tutorials: []
+# ── Tutorials ─────────────────────────────────────────────────
+# Shown on the Tutorials page. One entry per tutorial.
+#
+# tutorials:
+#   - id: "t1"
+#     title: "Tutorial title"
+#     presenter: "Dr. John Smith"       # "TBA" shows "Presenter TBA"
+#     affiliation: "Company or University, Country"
+#     presenter_initials: "JS"          # avatar text when there is no photo
+#     presenter_photo: ""               # e.g. "static/img/people/john-smith.jpg"
+#     duration: "Half-day"              # e.g. "Half-day", "Full-day", "90 min"
+#     abstract: >
+#       What the tutorial covers, who it is for, and any prerequisites.
+#     confirmed: true                   # while no entry is confirmed, the page
+#
+# Planned for 2027: 2 tutorials (placeholders below — replace in place).
+tutorials:
+  - id: "t1"
+    title: "Tutorial 1"
+    presenter: "TBA"
+    affiliation: "TBA"
+    presenter_initials: ""
+    presenter_photo: ""
+    duration: "TBA"
+    abstract: "Topic and presenters TBA."
+    confirmed: false
+  - id: "t2"
+    title: "Tutorial 2"
+    presenter: "TBA"
+    affiliation: "TBA"
+    presenter_initials: ""
+    presenter_photo: ""
+    duration: "TBA"
+    abstract: "Topic and presenters TBA."
+    confirmed: false
 
+# ── Panels ────────────────────────────────────────────────────
+# Shown on the Program page. Planned for 2027: 2 panels.
+#
+# panels:
+#   - id: "p1"
+#     title: "Panel title"
+#     topic: "e.g. Diversity, Equity & Inclusion in AI"
+#     moderator: "Prof. Jane Doe, University of Example"
+#     description: >
+#       What the panel will discuss.
+#     confirmed: true
+panels:
+  - id: "p1"
+    title: "Panel 1"
+    topic: "TBA"
+    moderator: "TBA"
+    description: "Topic and panelists TBA."
+    confirmed: false
+  - id: "p2"
+    title: "Panel 2"
+    topic: "TBA"
+    moderator: "TBA"
+    description: "Topic and panelists TBA."
+    confirmed: false
+
+# ── Social events ─────────────────────────────────────────────
+# Shown on the homepage and in the evening slots of the Program page.
+social_events:
+  - id: "welcome-reception"
+    title: "Welcome Reception"
+    day: "mon"                 # must match a program.days[].id
+    day_label: "Monday, August 2"
+    time: "Evening"
+    description: "An evening to meet fellow participants at the start of the conference."
+  - id: "social-dinner"
+    title: "Social Dinner"
+    day: "tue"
+    day_label: "Tuesday, August 3"
+    time: "Evening"
+    description: "The conference dinner, open to all registered participants."
+
+# ── Competitions ──────────────────────────────────────────────
+# Shown on the Competitions page. One entry per challenge.
+#
+# competitions:
+#   - id: "c1"
+#     title: "Competition title"
+#     topic: "e.g. TinyML on microcontrollers"
+#     description: >
+#       What participants must do, the dataset/platform, and how entries
+#       are evaluated.
+#     prize: "e.g. €1,000 + certificate"  # "TBA" hides the prize line
+#     deadline: "June 1, 2027"            # "TBA" hides the deadline line
+#     contact: "organizer@example.org"    # "" hides the contact line
+#     confirmed: false                    # false shows a "Details TBA" badge
 competitions: []
 
 # Named panelists shown on the Program page. Leave the list empty until
@@ -488,7 +655,7 @@ workshops:
     title: "TBA"
     organizers: "TBA"
     duration: "Half-day"
-    description: "Workshop details will be announced after proposal review."
+    description: "Topic and organizers TBA."
     confirmed: false
 
 featured_activities:
@@ -513,7 +680,7 @@ featured_activities:
 
 program:
   status: "draft"
-  status_note: "Detailed program will be published after the paper review process."
+  status_note: "Detailed schedule: TBA"
   # Room plan for 2027: Room A hosts every plenary activity (keynotes, panels,
   # ceremonies); Rooms B–E run parallel technical & special paper sessions.
   rooms:
@@ -729,7 +896,27 @@ cfp:
             - "Cross-domain AI integration"
           keywords: ["AIoT", "Digital medicine", "Industry 4.0", "Smart cities", "Smart agriculture"]
   # Special sessions are proposal-based per edition — none accepted yet for 2027.
-  special_sessions: []
+  # Planned for 2027: 6 special sessions (placeholders — replace in place
+  # with title, description and keywords as proposals are accepted).
+  special_sessions:
+    - title: "Special Session 1"
+      description: "Topic and organizers TBA."
+      keywords: []
+    - title: "Special Session 2"
+      description: "Topic and organizers TBA."
+      keywords: []
+    - title: "Special Session 3"
+      description: "Topic and organizers TBA."
+      keywords: []
+    - title: "Special Session 4"
+      description: "Topic and organizers TBA."
+      keywords: []
+    - title: "Special Session 5"
+      description: "Topic and organizers TBA."
+      keywords: []
+    - title: "Special Session 6"
+      description: "Topic and organizers TBA."
+      keywords: []
 
 # Rates below carry over the 2026 fee structure as an indicative placeholder —
 # confirm real pricing and the early-registration deadline once finalized.

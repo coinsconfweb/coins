@@ -30,3 +30,40 @@
   </div>
 </div>
 {% endmacro %}
+
+{# One keynote card. `full` adds the collapsible speaker bio (Keynotes page).
+   Placeholder entries ("TBA" fields, confirmed: false) render cleanly. #}
+{% macro keynote_card(k, depth="", full=false) %}
+<div class="keynote-card" id="{{ k.id }}">
+  <div class="keynote-card-header">
+    {% if k.photo %}
+    <img class="keynote-photo" src="{{ asset_url(k.photo, depth) }}" alt="{{ k.name }}">
+    {% else %}
+    <div class="keynote-avatar">{% if k.type == 'Industrial Keynote' %}🏭{% else %}🎤{% endif %}</div>
+    {% endif %}
+    <div class="keynote-meta">
+      {% if k.type %}<div class="keynote-type">{{ k.type }}</div>{% endif %}
+      <div class="name">{{ k.name }}{% if not k.confirmed %} <span class="tba-badge">TBA</span>{% endif %}</div>
+      {% if k.affiliation and k.affiliation != 'TBA' %}<div class="affil">{{ k.affiliation }}</div>{% endif %}
+      {% if k.day and k.day != 'TBA' %}<div class="slot">{{ k.day }}{% if k.time %} · {{ k.time }}{% endif %}</div>{% endif %}
+    </div>
+  </div>
+  <div class="keynote-card-body">
+    <div class="talk-title">{% if k.title and k.title != 'TBA' %}{{ k.title }}{% else %}Talk title TBA{% endif %}</div>
+    {% if k.abstract %}<div class="abstract">{{ k.abstract }}</div>{% endif %}
+    {% if full and k.bio %}
+    <details style="margin-top:1rem">
+      <summary style="cursor:pointer;font-size:0.85rem;font-weight:600;color:var(--blue-bright)">Speaker Bio</summary>
+      <p style="margin-top:0.75rem;font-size:0.85rem;color:var(--gray-dark);line-height:1.7">{{ k.bio }}</p>
+    </details>
+    {% endif %}
+  </div>
+</div>
+{% endmacro %}
+
+{# "3 keynotes and 2 industrial keynotes" — counts by type from conf.keynotes. #}
+{% macro keynote_summary(keynotes) -%}
+{%- set n = keynotes | selectattr('type', 'equalto', 'Keynote') | list | length -%}
+{%- set ni = keynotes | selectattr('type', 'equalto', 'Industrial Keynote') | list | length -%}
+{{ n }} keynote{{ 's' if n != 1 }}{% if ni %} and {{ ni }} industrial keynote{{ 's' if ni != 1 }}{% endif %}
+{%- endmacro %}
