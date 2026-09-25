@@ -20,7 +20,7 @@ meta:
   # default "IEEE <acronym> <edition>" text badge.
   logo: "static/img/logos/0.jpg"
   description: >
-    IEEE COINS brings together researchers, engineers, and industry leaders to advance
+    IEEE International Conference on Omni-Layer Intelligent Systems (COINS) brings together researchers, engineers, and industry leaders to advance
     next-generation AI and intelligent systems spanning devices, architectures, and
     applications. It emphasizes cross-layer co-design, energy-efficient and secure
     computing, and the responsible integration of AI from embedded and edge platforms
@@ -739,7 +739,7 @@ cfp:
       tracks:
         - number: "Track 1"
           title: "AI Hardware, Circuits, and Devices"
-          description: "Physical and circuit-level foundations of intelligent computing."
+          description: "This track explores the physical and circuit-level foundations of intelligent computing. Topics include compute-in-memory (CIM/PIM) and near-sensor computing, mixed-signal and analog MAC design, on-chip learning, low-power digital accelerators, and reliability/variation-tolerant architectures. Contributions on heterogeneous 2.5D/3D integration, chiplet/interposer co-design, photonic and quantum devices, and novel materials for AI computing are encouraged."
           topics:
             - "Compute-in-memory (CIM/PIM) and near-sensor computing"
             - "Analog and mixed-signal AI accelerators"
@@ -751,7 +751,7 @@ cfp:
           keywords: ["CIM/PIM", "Analog MACs", "On-chip learning", "Chiplets", "Photonic AI"]
         - number: "Track 2"
           title: "AI-Driven Design Automation and Optimization"
-          description: "ML-enabled EDA and cross-layer optimization."
+          description: "This track focuses on machine-learning-enabled EDA and cross-layer optimization. Topics include predictive PnR and timing closure, reinforcement-learning-guided design-space exploration, generative circuit synthesis, formal verification and test (ATPG), yield and cost modeling, and runtime telemetry-driven optimization. Submissions combining HW/SW co-synthesis with AI-assisted reliability and power-performance-area (PPA) trade-offs are especially welcome."
           topics:
             - "Machine learning for EDA flows"
             - "AI-assisted placement, routing, and timing closure"
@@ -763,7 +763,7 @@ cfp:
           keywords: ["ML for EDA", "Timing closure", "Formal verification", "HW/SW co-synthesis"]
         - number: "Track 3"
           title: "AI Architectures and Systems Design"
-          description: "Next-generation AI accelerators and system architectures."
+          description: "This track covers architectural innovations for next-generation AI accelerators and systems. Topics include systolic and dataflow architectures, sparsity/quantization support, NoC/interconnect co-design, HBM/HMC hierarchies, RISC-V and chiplet-based SoCs, compiler/runtime co-optimization, and heterogeneous coherence standards (UCIe). Modeling and evaluation frameworks for scalable inference and training are also encouraged."
           topics:
             - "AI accelerator architectures and dataflow design"
             - "Memory-centric and bandwidth-aware architectures"
@@ -780,7 +780,7 @@ cfp:
       tracks:
         - number: "Track 4"
           title: "AI-Native Connectivity, Networks, and Distributed Intelligence"
-          description: "AI-native communication and network intelligence across 6G/7G systems."
+          description: "This track emphasizes AI-native communication and network intelligence across 6G/7G systems. Topics include semantic and goal-oriented communications, federated and in-network learning, O-RAN RIC (xApps/rApps), integrated sensing, communication, and computation (ISCC), reconfigurable intelligent surfaces (RIS), and digital twins of networks. Research on self-organizing networks, resource allocation, over-the-air aggregation, and field testbeds is encouraged."
           topics:
             - "AI-native and semantic communications (6G/7G)"
             - "Federated and in-network learning"
@@ -791,7 +791,7 @@ cfp:
           keywords: ["6G/7G", "O-RAN RIC", "Federated learning", "RIS/ISAC", "Semantic comms"]
         - number: "Track 5"
           title: "Cloud, Infrastructure, and Data-Centric Intelligence"
-          description: "AI computing infrastructure and data engineering."
+          description: "This track addresses AI computing infrastructure and data engineering. Areas include data pipelines, feature stores, vector databases, serverless AI frameworks, LLM serving and inference optimization, virtualization, and sustainability-aware resource management across cloud-edge continua. Work on digital twins for datacenter operations and blockchain-based data provenance is also welcome."
           topics:
             - "Cloud-edge orchestration and virtualization"
             - "Data pipelines, feature stores, and vector databases"
@@ -803,7 +803,7 @@ cfp:
           keywords: ["MLOps/LLMOps", "Vector DBs", "Model serving", "Digital twins", "Autoscaling"]
         - number: "Track 6"
           title: "Internet of Things (IoT) and Cyber-Physical Intelligence"
-          description: "IoT, edge intelligence, and cyber-physical systems."
+          description: "This track examines the convergence of the Internet of Things (IoT), edge intelligence, and cyber-physical systems (CPS) in creating smart, connected, and autonomous environments. It focuses on intelligent sensing and actuation, embedded and edge AI, TinyML, real-time analytics, and time-sensitive networking (TSN) for low-latency and deterministic communication. Topics also include hardware-in-the-loop (HIL) simulation, functional safety, edge–cloud orchestration, and large-scale interoperability across industrial, urban, and critical infrastructure systems. Submissions addressing digital twins, self-adaptive IoT architectures, industrial wireless technologies, or next-generation IoT protocols are particularly encouraged."
           topics:
             - "Intelligent sensing and actuation"
             - "Embedded AI and TinyML"
@@ -820,7 +820,7 @@ cfp:
       tracks:
         - number: "Track 7"
           title: "Secure, Reliable, and Trustworthy AI Systems"
-          description: "Hardware and AI security for trustworthy intelligent systems."
+          description: "This track unifies hardware and AI security for trustworthy intelligent systems. Topics include side-channel and fault-injection attacks, model watermarking and supply-chain security, red-teaming and safety cases, privacy-preserving learning, and runtime attestation of edge or cloud AI. Verification, certified robustness, and governed model lifecycles are also in scope."
           topics:
             - "Hardware and AI security"
             - "Side-channel and fault-injection attacks"
@@ -832,7 +832,7 @@ cfp:
           keywords: ["AI security", "Adversarial robustness", "Privacy (FL/DP/HE)", "Attestation"]
         - number: "Track 8"
           title: "Agentic and Robotic AI Systems"
-          description: "Autonomous and agentic AI in software and embodied forms."
+          description: "This track covers autonomous and agentic AI in both software and embodied forms. Topics include SLAM, 3D perception, manipulation and grasping, task and motion planning (TAMP), reinforcement learning for control, shared autonomy, multi-robot coordination, LLM-Enabled Robotic Agents and Embodied AI, Agentic AI Architectures for Autonomous Robots, and sim-to-real transfer. Submissions on safety-critical deployment, benchmarks, and field validation are encouraged."
           topics:
             - "Autonomous and agentic AI systems"
             - "Robotics perception, SLAM, and manipulation"
@@ -844,7 +844,7 @@ cfp:
           keywords: ["Robotics", "SLAM", "TAMP", "Multi-robot", "Sim-to-real", "Embodied AI"]
         - number: "Track 9"
           title: "Foundational, Generative, and Cognitive AI"
-          description: "Core algorithmic and model innovations in AI."
+          description: "This track spans core algorithmic and model innovations in AI. Topics include foundation and multimodal models (LLMs, VLMs), retrieval-augmented generation (RAG), parameter-efficient fine-tuning (LoRA/QLoRA), reinforcement learning (RL/RLHF/RLAIF), generative design, neurosymbolic reasoning, and cognitive architectures. Work on model efficiency, alignment, verification, and continual learning is encouraged."
           topics:
             - "Foundation and multimodal models (LLMs, VLMs)"
             - "Generative AI and generative design"
@@ -861,7 +861,7 @@ cfp:
       tracks:
         - number: "Track 10"
           title: "Human-Centered AI, Interaction, and Visualization"
-          description: "Human-AI interfaces and decision support systems."
+          description: "This track examines human–AI interfaces and decision support systems. Areas include explainable interfaces, uncertainty and provenance visualization, XR/AR/VR for operations and training, conversational UIs, and human-in-the-loop evaluation with cognitive load and ergonomic analysis. Contributions on trust calibration and safety UX are welcome."
           topics:
             - "Explainable and interpretable AI interfaces"
             - "Human-AI interaction and decision support"
@@ -873,7 +873,7 @@ cfp:
           keywords: ["XAI", "XR/AR/VR", "Human-in-the-loop", "Trust & safety UX", "Provenance"]
         - number: "Track 11"
           title: "Responsible, Ethical, and Sustainable AI"
-          description: "Fairness, accountability, and sustainability in AI lifecycles."
+          description: "This track addresses fairness, accountability, and sustainability in AI lifecycles. Topics include risk management, impact assessment, auditing and reporting (model cards/datasheets), governance and policy frameworks, safety certification, and environmental impact analysis of training and inference. Submissions aligned with NIST AI RMF principles are encouraged."
           topics:
             - "Fairness, accountability, and transparency"
             - "AI risk management and impact assessment"
@@ -885,7 +885,7 @@ cfp:
           keywords: ["Fairness", "Transparency", "Governance", "Sustainability", "Risk management"]
         - number: "Track 12"
           title: "Vertical Applications in Smart Cities, Industry 4.0, Healthcare & Beyond"
-          description: "AI-driven applications demonstrating real-world impact."
+          description: "This track focuses on AI-driven applications and vertical domains that demonstrate real-world impact. Topics include digital medicine and healthcare, Industry 4.0 and predictive manufacturing, process control (fabs/chemicals), smart energy and mobility, grid intelligence, logistics and ports, urban digital twins, and resilient infrastructure. Submissions highlighting cross-domain integration and sustainability are encouraged."
           topics:
             - "AI applications in healthcare and digital medicine"
             - "Industry 4.0 and predictive manufacturing"
