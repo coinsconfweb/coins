@@ -114,3 +114,38 @@ if ('IntersectionObserver' in window) {
     observer.observe(el);
   });
 }
+
+// ─── PERSON PHOTO LIGHTBOX ─────────────────────────────────
+// Click (or Enter/Space on) any committee/chair headshot to view it full-size.
+// The overlay is created on demand so no template needs its own markup.
+(function () {
+  const photos = document.querySelectorAll('img.person-photo');
+  if (!photos.length) return;
+  let box, img, cap;
+  const close = () => box && box.classList.remove('open');
+  const open = (photo) => {
+    if (!box) {
+      box = document.createElement('div');
+      box.className = 'lightbox person-lightbox';
+      box.innerHTML = '<button class="lightbox-close" aria-label="Close">×</button><img alt=""><div class="lightbox-caption"></div>';
+      img = box.querySelector('img');
+      cap = box.querySelector('.lightbox-caption');
+      box.addEventListener('click', close);
+      document.body.appendChild(box);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    }
+    img.src = photo.src;
+    img.alt = photo.alt;
+    cap.textContent = photo.alt;
+    box.classList.add('open');
+  };
+  photos.forEach(photo => {
+    photo.tabIndex = 0;
+    photo.setAttribute('role', 'button');
+    photo.title = 'Click to enlarge';
+    photo.addEventListener('click', () => open(photo));
+    photo.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(photo); }
+    });
+  });
+})();
