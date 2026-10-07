@@ -260,12 +260,12 @@ committee:
       - name: "Florenc Demrozi"
         affiliation: "University of Stavanger, Norway"
         initials: "FD"
-        photo: ""
+        photo: "static/img/people/Florenc_Demrozi.jpg"
         email: "florenc.demrozi@uis.no"
       - name: "Sudeep Pasricha"
         affiliation: "Colorado State University, USA"
         initials: "SP"
-        photo: ""
+        photo: "static/img/people/Sudeep_Pasricha.jpg"
         email: "sudeep@colostate.edu"
   - role: "Program Chairs"
     color: "accent"
@@ -273,12 +273,12 @@ committee:
       - name: "Federica Zonzini"
         affiliation: "University of Bologna, Italy"
         initials: "FZ"
-        photo: ""
+        photo: "static/img/people/Federica_Zonzini.jpeg"
         email: "federica.zonzini@unibo.it"
       - name: "Ferhat Özgur Catak"
         affiliation: "University of Stavanger, Norway"
         initials: "FC"
-        photo: ""
+        photo: "static/img/people/Ferhat_Ozgur_Catak.jpg"
         email: "f.ozgur.catak@uis.no"
   - role: "Finance Chair"
     members:
@@ -1054,13 +1054,17 @@ archives:
     general_chairs:
       - name: "Prof. Umit Yusuf Ogras"
         affiliation: "Gene Amdahl Professor, University of Wisconsin-Madison"
+        photo: "static/img/people/Umit_Yusuf_Ogras.jpg"
       - name: "Prof. Amit Singh"
         affiliation: "University of Essex"
+        photo: "static/img/people/Amit_Singh.jpg"
     program_chairs:
       - name: "Prof. Fatemeh Afghah"
         affiliation: "Clemson University"
+        photo: "static/img/people/Fatemeh_Afghah.jpg"
       - name: "Prof. Priya Panda"
         affiliation: "Yale University"
+        photo: "static/img/people/Priya_Panda.jpg"
     other_chairs:
       - role: "Publication Chairs"
         people: "Prof. Florenc Demrozi (University of Stavanger, Norway) & Prof. Kexin Li (Arizona State University)"
@@ -1194,15 +1198,20 @@ archives:
     general_chairs:
       - name: "Prof. Amit Singh"
         affiliation: "University of Essex"
+        photo: "static/img/people/Amit_Singh.jpg"
       - name: "Prof. Payam Barnaghi"
         affiliation: "Imperial College London"
+        photo: "static/img/people/Payam_Barnaghi.jpg"
     program_chairs:
       - name: "Prof. Eiman Kanjo"
         affiliation: "Imperial College London"
+        photo: "static/img/people/Eiman_Kanjo.jpg"
       - name: "Prof. Rishad Shafik"
         affiliation: "Newcastle University"
+        photo: "static/img/people/Rishad_Shafik.jpg"
       - name: "Prof. Geoff Merrett"
         affiliation: "University of Southampton"
+        photo: "static/img/people/Geoff_Merrett.jpg"
     other_chairs:
       - role: "Local Chairs"
         people: "Prof. Bipin Rajendran & Prof. Osvaldo Simeone (King's College London)"
@@ -1322,15 +1331,20 @@ archives:
     general_chairs:
       - name: "Farshad Firouzi, PhD"
         affiliation: "Duke University"
+        photo: "static/img/people/Farshad_Firouzi.jpg"
       - name: "Prof. Krishnendu Chakrabarty"
         affiliation: "Arizona State University"
+        photo: "static/img/people/Krishnendu_Chakrabarty.png"
     program_chairs:
       - name: "Bahar Farahani, PhD"
         affiliation: "Cyberspace Institute"
+        photo: "static/img/people/Bahar_Farahani.jpg"
       - name: "Prof. Diana Goehringer"
         affiliation: "TU Dresden"
+        photo: "static/img/people/Diana_Goehringer.png"
       - name: "Naghmeh Karimi, PhD"
         affiliation: "University of Maryland, Baltimore County"
+        photo: "static/img/people/Naghmeh_Karimi.jpg"
     other_chairs:
       - role: "Publication Chair"
         people: "Aurora Gil de Castro (University of Córdoba, Spain)"
@@ -1415,15 +1429,20 @@ archives:
     general_chairs:
       - name: "Farshad Firouzi, PhD"
         affiliation: "Duke University"
+        photo: "static/img/people/Farshad_Firouzi.jpg"
       - name: "Prof. Krishnendu Chakrabarty"
         affiliation: "Duke University"
+        photo: "static/img/people/Krishnendu_Chakrabarty.png"
     program_chairs:
       - name: "Bahar Farahani, PhD"
         affiliation: "Cyberspace Institute"
+        photo: "static/img/people/Bahar_Farahani.jpg"
       - name: "Prof. Sebastian Ventura"
         affiliation: "University of Cordoba"
+        photo: "static/img/people/Sebastian_Ventura.jpeg"
       - name: "Naghmeh Karimi, PhD"
         affiliation: "University of Maryland, Baltimore County"
+        photo: "static/img/people/Naghmeh_Karimi.jpg"
     other_chairs:
       - role: "Operations Chair"
         people: "Prof. Javier Prieto (University of Salamanca)"
@@ -1491,6 +1510,23 @@ archives:
     about: >
       The 3rd IEEE International Conference on Omni-Layer Intelligent Systems was held as a
       fully virtual event, with free registration for attendees.
+    general_chairs:
+      - name: "Dr.-Ing. Farshad Firouzi"
+        affiliation: "Duke University, USA"
+        photo: "static/img/people/Farshad_Firouzi.jpg"
+      - name: "Prof. Krishnendu Chakrabarty"
+        affiliation: "Duke University, USA"
+        photo: "static/img/people/Krishnendu_Chakrabarty.png"
+    program_chairs:
+      - name: "Bahar Farahani, PhD"
+        affiliation: ""
+        photo: "static/img/people/Bahar_Farahani.jpg"
+      - name: "Prof. William Fornaciari"
+        affiliation: "Politecnico di Milano, Italy"
+        photo: "static/img/people/William_Fornaciari.jpeg"
+      - name: "Vasilis Pavlidis, PhD"
+        affiliation: "University of Manchester, UK"
+        photo: "static/img/people/Vasilis_Pavlidis.jpg"
     keynotes:
       - name: "Prof. Marian Verhelst"
         affiliation: "KU Leuven University"
@@ -1508,8 +1544,8 @@ archives:
     archived_note: >
       Limited record: the coinsconf.com/2021 pages mostly carry leftover COINS 2020 content.
       Dates and keynotes above come from the official 2021 general program
-      (Program-General-S7-2021.pdf); no reliable 2021-specific committee or sponsor details
-      could be found.
+      (Program-General-S7-2021.pdf); the general and program chairs were confirmed by the
+      organizers (affiliations as of 2020). No reliable 2021 sponsor details could be found.
 
   - year: 2020
     edition_ordinal: "2nd"
@@ -1526,15 +1562,20 @@ archives:
     general_chairs:
       - name: "Dr.-Ing. Farshad Firouzi"
         affiliation: "Duke University, USA"
+        photo: "static/img/people/Farshad_Firouzi.jpg"
       - name: "Prof. Krishnendu Chakrabarty"
         affiliation: "Duke University, USA"
+        photo: "static/img/people/Krishnendu_Chakrabarty.png"
     program_chairs:
       - name: "Bahar Farahani, PhD"
         affiliation: ""
+        photo: "static/img/people/Bahar_Farahani.jpg"
       - name: "Prof. William Fornaciari"
         affiliation: "Politecnico di Milano, Italy"
+        photo: "static/img/people/William_Fornaciari.jpeg"
       - name: "Vasilis Pavlidis, PhD"
         affiliation: "University of Manchester, UK (IEEE CEDA)"
+        photo: "static/img/people/Vasilis_Pavlidis.jpg"
     other_chairs:
       - role: "Local Chairs"
         people: "Jose Ayala (University of Madrid, Spain) & Marina Zapater Sancho (EPFL, Switzerland)"
@@ -1584,15 +1625,19 @@ archives:
     general_chairs:
       - name: "Dr.-Ing. Farshad Firouzi"
         affiliation: "mVISE AG, Germany"
+        photo: "static/img/people/Farshad_Firouzi.jpg"
       - name: "Prof. Krishnendu Chakrabarty"
         affiliation: "Duke University, USA"
+        photo: "static/img/people/Krishnendu_Chakrabarty.png"
     program_chairs:
       - name: "Bahar Farahani, PhD"
         affiliation: "Shahid Beheshti University, Iran"
+        photo: "static/img/people/Bahar_Farahani.jpg"
       - name: "Fangming Ye, PhD"
         affiliation: "Huawei, USA"
       - name: "Vasilis Pavlidis, PhD"
         affiliation: "University of Manchester, UK"
+        photo: "static/img/people/Vasilis_Pavlidis.jpg"
     other_chairs:
       - role: "Local Chair"
         people: "Prof. Paris Kitsos (Technological Educational Institute of Western Greece)"

@@ -183,7 +183,8 @@ Every named person on the site — committee members (including track chairs), k
      initials: "JS"          # fallback shown as a colored avatar if no photo
      photo: "static/img/people/jane-smith.jpg"   # or "" to keep the initials avatar
    ```
-3. Run `python build.py`. If no photo is set (`photo: ""`), the person's initials are shown in a colored circle instead — nothing looks broken either way.
+3. Archived editions (`archives[].general_chairs` / `program_chairs`) accept the same `photo` field. All headshots share the single `static/img/people/` pool (named `First_Last.ext`, ASCII only), so a person who chaired several editions has one file. Don't create top-level `<year>/` folders for photos: `build.py` treats any 4-digit source-root folder as a frozen site snapshot. The frozen 2026 snapshot keeps its own copies in `2026/static/img/people/`.
+4. Run `python build.py`. If no photo is set (`photo: ""`), the person's initials are shown in a colored circle instead — nothing looks broken either way.
 
 To add named panelists, fill in the `panelists:` list in `conference.yml` (currently empty — the Program page section is hidden until it has entries).
 

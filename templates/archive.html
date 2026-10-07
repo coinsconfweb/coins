@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "partials/macros.html" import person_avatar %}
 {% set depth = "../" %}
 {% block title %}{{ conf.meta.acronym }} {{ archive.year }} Archive{% endblock %}
 {% block description %}Archived record of {{ conf.meta.full_name }} {{ archive.year }}, held in {{ archive.location }}.{% endblock %}
@@ -48,7 +49,7 @@
         <div class="people-grid">
           {% for person in archive.general_chairs %}
           <div class="person-card">
-            <div class="person-avatar">{{ initials(person.name) }}</div>
+            {{ person_avatar({'name': person.name, 'photo': person.photo, 'initials': initials(person.name)}, depth=depth) }}
             <div class="person-name">{{ person.name }}</div>
             <div class="person-affil">{{ person.affiliation }}</div>
           </div>
@@ -62,7 +63,7 @@
         <div class="people-grid">
           {% for person in archive.program_chairs %}
           <div class="person-card">
-            <div class="person-avatar">{{ initials(person.name) }}</div>
+            {{ person_avatar({'name': person.name, 'photo': person.photo, 'initials': initials(person.name)}, depth=depth) }}
             <div class="person-name">{{ person.name }}</div>
             <div class="person-affil">{{ person.affiliation }}</div>
           </div>
