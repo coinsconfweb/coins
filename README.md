@@ -2,6 +2,40 @@
 
 Parametrized static website for the IEEE International Conference on Omni-Layer Intelligent Systems. All content is driven by a single YAML file — no HTML editing required from year to year.
 
+Live site: **https://coinsconf.com** · Repository: **https://github.com/coinsconfweb/coins**
+
+## Quick Start for New Chairs
+
+You do not need to know HTML. The normal loop is: **edit `conference.yml` → preview locally → commit & push → the site updates itself.**
+
+### 1. One-time setup
+
+1. **Get access.** Ask the previous chairs to add your GitHub account to the `coinsconfweb` organization (write access to the `coins` repository). See [Handover Checklist](#handover-checklist) for the other accounts to transfer.
+2. **Install tools:** [Git](https://git-scm.com/downloads) and [Python 3.9+](https://www.python.org/downloads/) (on Windows, tick *"Add Python to PATH"* in the installer).
+3. **Download the project and install the two Python libraries:**
+   ```bash
+   git clone https://github.com/coinsconfweb/coins.git coins-website
+   cd coins-website
+   pip install pyyaml jinja2
+   ```
+
+### 2. Every time you update the site
+
+```bash
+git pull                      # get the latest version first (others may have edited it)
+# ... edit conference.yml (and add images under static/img/) ...
+python build.py               # regenerate the site into dist/ — fix any error it prints
+cd dist && python -m http.server 8000   # preview at http://localhost:8000, Ctrl+C to stop
+cd ..
+git add -A
+git commit -m "Describe what you changed"
+git push
+```
+
+After `git push`, GitHub rebuilds and publishes the site automatically in about 1–2 minutes. Check progress (green tick = live, red cross = failed, click it to read the error) under the repository's **Actions** tab. You never upload `dist/` yourself — it is regenerated on every build and is ignored by Git.
+
+> Prefer not to use the command line? Small text edits can be made directly on github.com: open `conference.yml`, click the ✏️ pencil, edit, and *Commit changes*. The site rebuilds the same way. Do preview locally for larger changes, since a YAML mistake stops the whole build.
+
 ## Project Structure
 
 ```
@@ -26,14 +60,19 @@ coins-website/
 │   ├── registration.html   ← Registration rates (from YAML)
 │   ├── venue.html          ← Venue + photo gallery + hotels (from YAML)
 │   ├── visa.html           ← VISA Information
-│   └── contact.html        ← Contact (program chairs auto-populated)
+│   ├── contact.html        ← Contact (program chairs auto-populated)
+│   ├── archive.html        ← One summary page per pre-2026 edition (from archives[])
+│   └── partials/           ← Reusable snippets (person avatars, keynote cards, …)
 ├── static/
 │   ├── css/style.css
 │   ├── js/main.js
 │   └── img/
-│       ├── coins-logo.png (example) ← conference logo, sponsor logos, etc.
-│       └── people/       ← put uploaded headshots here (or link an external URL)
-└── dist/                   ← Generated output (deploy this to GitHub Pages)
+│       ├── logos/          ← conference logo + sponsor logos
+│       ├── sponsors/       ← (optional) more sponsor logos
+│       └── people/         ← headshots, named First_Last.jpg (all editions share this folder)
+├── 2026/                   ← Frozen copy of the full 2026 site (plain HTML, never rebuilt)
+├── .github/workflows/deploy.yml ← Builds & publishes the site on every push to main
+└── dist/                   ← Generated output (not in Git — rebuilt automatically)
     ├── index.html
     ├── pages/
     ├── static/
@@ -62,75 +101,81 @@ coins-website/
 | Sponsors (+ logos) | `sponsors[]` |
 | Sponsorship tiers & benefits | `sponsorship.tiers[]` |
 | Conference logo (nav + footer) | `meta.logo` |
-| Past editions | `past_editions[]` |
+| EasyChair link, contact email, domain | `meta.easychair_url`, `meta.contact_email`, `meta.domain` |
+| Homepage numbers ("12 Technical Tracks"…) | `stats[]` |
+| Panels, social events, workshops | `panels[]`, `social_events[]`, `workshops[]` |
+| Special sessions | `cfp.special_sessions[]` |
+| VISA page | `visa.*` |
+| Past editions (nav "Past Events" menu) | `past_editions[]` |
+| Archived summary pages for 2019–2025 | `archives[]` |
+
+`conference.yml` itself is commented throughout. For keynotes, tutorials, panels and competitions it contains a commented-out example block (lines starting with `#`) showing every available field — copy it, remove the `# `, and fill it in; for other lists, copy an existing entry. An empty keynote/tutorial/competition list (`[]`) makes that page show a "to be announced" message automatically.
+
+### YAML in 30 seconds
+
+- **Indentation matters** and must use **spaces, never tabs**. Copy an existing entry and keep the same indentation.
+- Each list item starts with `- `. Fields belong to the item above them by being indented under it.
+- Put text in `"double quotes"`, especially if it contains `:` `#` `&` or starts with a special character. A literal `"` inside must be written `\"`.
+- Long paragraphs use `>` on the key line and the text indented on the next lines.
+- If `python build.py` fails with a `yaml` error, it prints the line and column — the mistake is usually on that line or just above it.
 
 ## Archiving a Past Edition (Rolling Over to a New Year)
 
-Starting with the 2026 edition, each finished edition's full site is preserved as a
-permanent, self-contained snapshot instead of being overwritten:
+Each finished edition's full site is preserved as a permanent, self-contained
+snapshot instead of being overwritten. 2026 has already been archived this way
+(the `2026/` folder). Example for rolling **2027 → 2028** (replace the years as needed):
 
-1. **Before editing `conference.yml` for the new year**, build the current site
-   (`python build.py`) and copy its output into a new source-root folder named after
-   that year, e.g.:
+1. **Before changing anything for the new year**, `git pull`, build the current
+   site and copy its output into a new top-level folder named after the finishing year:
    ```bash
-   mkdir 2026
-   cp -r dist/index.html dist/pages dist/static 2026/
+   python build.py
+   mkdir 2027
+   cp -r dist/index.html dist/pages dist/static 2027/
    ```
-   (Leave out `dist/CNAME` — that's site-wide, not per-edition.) This folder is
-   plain static HTML, never templated again — `build.py` automatically copies any
-   source-root folder matching a 4-digit year into `dist/<year>/` on every future
-   build, so the snapshot survives every later rebuild untouched.
-2. Add an entry for that year to `past_editions[]` with a `mirror:` field pointing
-   at it (e.g. `mirror: "2026/index.html"`) instead of `url:` — this makes the
-   "Past Events" nav link locally to the frozen mirror rather than an external site.
-3. Now edit `conference.yml` for the new year as normal (see the table below).
-   Reset year-specific content (`keynotes`, `tutorials`, `competitions`,
-   `program.days`, `cfp.special_sessions`, `committee`, deadlines, venue) to
-   `[]`/`"TBA"` as it becomes unknown again; evergreen content (CFP track
-   taxonomy, sponsorship tiers, featured activities) can stay as-is.
+   (On Windows without Git Bash, copy those three items from `dist\` into `2027\`
+   with File Explorer.) Do **not** copy `dist/CNAME` or the other year folders inside
+   `dist/` — those are site-wide. This folder is plain static HTML, never templated
+   again: `build.py` copies every top-level folder named with 4 digits into
+   `dist/<year>/` on each build, so the snapshot survives every later rebuild
+   untouched. (If you ever need to fix something in it, edit its HTML files directly.)
+2. Add an entry for that year at the top of `past_editions[]` with a `mirror:` field
+   (e.g. `mirror: "2027/index.html"`) instead of `url:` — this makes the
+   "Past Events" menu link to the frozen copy.
+3. Commit and push the new folder on its own (`git add 2027 conference.yml`,
+   `git commit -m "Archive the 2027 site"`, `git push`) so the archive is safe
+   before you start editing.
+4. Now edit `conference.yml` for the new year (see the table above): `meta.edition`,
+   `short_name`, `easychair_url`, `dates.*`, `venue.*`, etc. Reset year-specific
+   content (`keynotes`, `tutorials`, `competitions`, `program.days`,
+   `cfp.special_sessions`, `committee`, deadlines, venue) to `[]`/`"TBA"` until it
+   is known; evergreen content (CFP track taxonomy, sponsorship tiers, steering
+   committee, featured activities) can stay as-is.
+5. `python build.py`, preview, commit and push as usual.
 
-Editions before 2026 (2019-2025), whose own sites live externally and are being
-retired, instead get a condensed single-page summary under `archives[]`, published
-at `<year>/index.html` (the old `pages/archive-<year>.html` addresses redirect there) — see
-`templates/archive.html` and `build.py`'s per-entry render loop. That mechanism is
-separate from the full-mirror approach above and only applies to those legacy years.
-
-Then run:
-```bash
-python build.py
-```
-
-The rebuilt site lands in `dist/`. Push that to GitHub and you're done.
+Editions before 2026 (2019-2025), whose original sites were external, instead have
+a condensed single-page summary under `archives[]` in `conference.yml`, published
+at `<year>/index.html` (the old `pages/archive-<year>.html` addresses redirect
+there) — see `templates/archive.html`. That mechanism only applies to those
+legacy years; you normally don't need to touch it.
 
 ## Local Development
 
 ```bash
-# Install dependencies (one-time)
-pip install pyyaml jinja2
-
-# Build
-python build.py
-
-# Preview (Python's built-in server)
-cd dist && python -m http.server 8000
-# Open http://localhost:8000
+pip install pyyaml jinja2               # one-time
+python build.py                         # build into dist/
+cd dist && python -m http.server 8000   # preview at http://localhost:8000
 ```
 
 ## GitHub Pages Deployment
 
-### Option A — Automatic (GitHub Actions)
-Push the repository. The `.github/workflows/deploy.yml` workflow automatically:
+The site is published by **GitHub Actions** (repository *Settings → Pages → Source: GitHub Actions*).
+On every push to `main`, `.github/workflows/deploy.yml`:
 1. Installs Python + dependencies
 2. Runs `build.py`
 3. Deploys `dist/` to GitHub Pages
 
-### Option B — Manual
-```bash
-python build.py
-cd dist
-git init && git add . && git commit -m "Build"
-git push -f origin main:gh-pages
-```
+You can also re-run it by hand from the **Actions** tab → *Build and Deploy to GitHub Pages* → *Run workflow*.
+There is no `gh-pages` branch and nothing to upload manually.
 
 ### Custom Domain
 The `CNAME` file in `dist/` is generated automatically from `meta.domain` in `conference.yml` — change the domain there, not by hand. Add these DNS records at your registrar:
@@ -201,11 +246,37 @@ Same pattern as person photos — a local file under `static/img/` or a hosted U
     logo: "static/img/sponsors/ieee-italy.png"   # or "" to keep the text badge
   ```
 
-Drop logo files anywhere under `static/img/` (e.g. `static/img/sponsors/`) — that folder doesn't exist yet, create it when you add the first one. Run `python build.py` after editing.
+Drop logo files anywhere under `static/img/` (current logos live in `static/img/logos/`; `static/img/sponsors/` is also available). Run `python build.py` after editing.
 
 ## Call for Sponsorship Page
 
 `pages/sponsorship.html` is driven entirely by the `sponsorship:` block in `conference.yml`: an intro blurb, a "why sponsor" list, and a `tiers[]` list (name, price, benefits, and an optional `featured: true` to highlight one tier). It also automatically lists `sponsors[]` (with logos, if set) as "Current Sponsors". Edit the tier prices/benefits and `sponsorship.deadline` once they're finalized — everything currently says `"TBA"`.
+
+## Troubleshooting & Pitfalls
+
+| Symptom | Cause / fix |
+|---|---|
+| `python build.py` prints a `yaml.scanner` / `yaml.parser` error | Indentation or quoting mistake in `conference.yml` at the reported line (see *YAML in 30 seconds*). |
+| `archives[<year>] collides with the frozen snapshot folder` | A top-level folder named with a year exists (e.g. `2024/`) for a year that also has an `archives[]` entry. Only use year folders for frozen site snapshots — never to store photos or documents. |
+| `ModuleNotFoundError: No module named 'yaml'` / `'jinja2'` | Run `pip install pyyaml jinja2`. |
+| An image doesn't show | Path typo or wrong case: paths are case-sensitive on the live server (`Photo.JPG` ≠ `photo.jpg`). Use plain ASCII file names without spaces, e.g. `Jane_Smith.jpg`. |
+| Push succeeded but the site didn't change | Open the **Actions** tab: a red ✗ means the build failed (click it for the error). Otherwise wait 1–2 minutes and hard-refresh the browser (Ctrl+F5). |
+| `git push` is rejected ("fetch first") | Someone else pushed in the meantime: run `git pull`, then `git push` again. |
+| Build fails to delete `dist/` on Windows | Close any preview server (`Ctrl+C`) or File Explorer window showing `dist/`, then retry. In a OneDrive-synced folder the build waits and retries automatically. |
+
+Keep images reasonably small (headshots ≤ ~300 KB, about 400×400 px) so pages load fast.
+
+## Handover Checklist
+
+Everything about the *content* lives in this repository. These accounts and services live **outside** it and must be handed over explicitly by the outgoing chairs:
+
+- [ ] **GitHub** — admin/write access to the `coinsconfweb` organization and the `coins` repository.
+- [ ] **Domain `coinsconf.com`** — access to the domain registrar account (renewal and the DNS records listed under *Custom Domain*).
+- [ ] **Contact mailbox** `coins@coinsconf.com` (`meta.contact_email`) — who receives it and how to access/forward it.
+- [ ] **EasyChair** — create the new year's conference instance and update `meta.easychair_url`.
+- [ ] **IEEE / conference management** — registration platform, IEEE conference record, and any payment/registration links used in `registration`.
+
+When you hand over in turn, update this list with anything new and make sure the next chairs can log in to each item before you step down.
 
 ## Tech Stack
 
