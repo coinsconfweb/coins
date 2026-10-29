@@ -38,7 +38,7 @@
         <div class="people-grid">
           {% for person in conf.steering_committee %}
           <div class="person-card">
-            <div class="person-avatar" style="background:linear-gradient(135deg,var(--teal),var(--navy-mid))">{{ initials(person.name) }}</div>
+            {{ person_avatar({'name': person.name, 'photo': person.photo, 'initials': initials(person.name)}, teal=true, depth=depth) }}
             <div class="person-name">{{ person.name }}</div>
             <div class="person-affil">{{ sc_affiliation(person, conf.meta.edition) }}
               {% if person.note %}<br><span style="color:var(--person-link);font-size:0.78rem">{{ person.note }}</span>{% endif %}

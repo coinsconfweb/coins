@@ -423,24 +423,32 @@ steering_committee:
   - name: "Krishnendu Chakrabarty"
     affiliation: "Arizona State University"
     note: "Co-Founder & Steering Committee Co-Chair"
+    photo: "static/img/people/Krishnendu_Chakrabarty.png"
   - name: "Farshad Firouzi"
     affiliation: "Johns Hopkins University"
+    photo: "static/img/people/Farshad_Firouzi.jpg"
     earlier_affiliations:
       - until: 2025
         affiliation: "Duke University | Arizona State University"
     note: "Co-Founder & Steering Committee Co-Chair"
   - name: "Jan M. Rabaey"
     affiliation: "UC Berkeley"
+    photo: "static/img/people/Jan_M._Rabaey.jpg"
   - name: "David Z. Pan"
     affiliation: "University of Texas at Austin"
+    photo: "static/img/people/David_Z._Pan.jpg"
   - name: "Majid Sarrafzadeh"
     affiliation: "UCLA"
+    photo: "static/img/people/Majid_Sarrafzadeh.jpg"
   - name: "Mahmoud Daneshmand"
     affiliation: "Stevens Institute of Technology"
+    photo: "static/img/people/Mahmoud_Daneshmand.jpg"
   - name: "Honggang Wang"
     affiliation: "University of Massachusetts Dartmouth"
+    photo: "static/img/people/Honggang_Wang.jpg"
   - name: "Bahar Farahani"
     affiliation: "Cyberspace Institute"
+    photo: "static/img/people/Bahar_Farahani.jpg"
 
 # Keynotes, tutorials, and competitions are not yet confirmed for 2027 —
 # each page shows its own "to be announced" state automatically when its

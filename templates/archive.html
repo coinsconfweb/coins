@@ -101,7 +101,7 @@
         <div class="people-grid">
           {% for person in conf.steering_committee %}
           <div class="person-card">
-            <div class="person-avatar">{{ initials(person.name) }}</div>
+            {{ person_avatar({'name': person.name, 'photo': person.photo, 'initials': initials(person.name)}, depth=depth) }}
             <div class="person-name">{{ person.name }}</div>
             <div class="person-affil">{{ sc_affiliation(person, archive.year) }}{% if person.note %}<br><span style="font-size:0.78rem;color:var(--teal)">{{ person.note }}</span>{% endif %}</div>
           </div>
