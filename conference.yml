@@ -297,7 +297,7 @@ committee:
       - name: "Urbi Chatterjee"
         affiliation: "Indian Institute of Technology Kanpur"
         initials: "UC"
-        photo: "static/img/people/Urbi_Chatterjee.jpeg"
+        photo: "static/img/people/Urbi_Chatterjee.jpg"
         email: "urbic@cse.iitk.ac.in"
   - role: "Registration Chairs"
     members:
