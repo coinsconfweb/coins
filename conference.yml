@@ -393,7 +393,7 @@ committee:
         initials: "AR"
         photo: "static/img/people/Annachiara_Ruospo.jpg"
         email: "annachiara.ruospo@polito.it"
-      - name: "Alessio Burello"
+      - name: "Alessio_Burrello"
         affiliation: "Politecnico di Torino, Italy"
         initials: "AB"
         photo: "static/img/people/Alessio_Burrello.jpg"
