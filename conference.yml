@@ -393,11 +393,11 @@ committee:
         initials: "AR"
         photo: "static/img/people/Annachiara_Ruospo.jpg"
         email: "annachiara.ruospo@polito.it"
-      - name: "Alessio_Burrello"
+      - name: "Alessio Burrello"
         affiliation: "Politecnico di Torino, Italy"
         initials: "AB"
         photo: "static/img/people/Alessio_Burrello.jpg"
-        email: "alessio.burello@polito.it"
+        email: "alessio.burrello@polito.it"
   - role: "PhD Forum Chair"
     members:
       - name: "Laura Falaschetti"
