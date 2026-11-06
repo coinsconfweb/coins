@@ -396,7 +396,7 @@ committee:
       - name: "Alessio Burello"
         affiliation: "Politecnico di Torino, Italy"
         initials: "AB"
-        photo: "static/img/people/Alessio_Burello.jpg"
+        photo: "static/img/people/Alessio_Burello.jpg" 
         email: "alessio.burello@polito.it"
   - role: "PhD Forum Chair"
     members:
